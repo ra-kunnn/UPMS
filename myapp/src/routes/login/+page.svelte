@@ -1,9 +1,10 @@
 <script>
 	import LoginHeader from '$lib/loginHeader.svelte';
 	import PolygonBG from '$lib/polygonBG.svelte';
-	
+	import HideOverflow from '$lib/hideOverflow.svelte';
 </script>
 
+<HideOverflow />
 
 <div class="min-h-screen font-sans text-slate-800 bg-slate-300">
 	<div class="mx-auto w-full">
@@ -37,8 +38,6 @@
 			</div>
 		</div>
 		
-		<!--
 		<PolygonBG />
-		-->
 	</div>
 </div>
