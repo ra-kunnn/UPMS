@@ -13,9 +13,9 @@
 		<div class="h-screen flex items-center justify-center relative z-20 mx-auto">
 			<div class="block rounded-lg bg-white shadow-lg float-left w-3/12 m-10 p-12">
 				<div class="flex flex-row gap-3 pb-4">
-					<h1 class="font-semibold text-4xl my-auto">Log in Form</h1>
+					<h1 class="font-semibold text-4xl my-auto">Sign up</h1>
 				</div>
-				<div class="text-base text-slate-400 pb-8">Enter your credentials to access UPMS.</div>
+				<div class="text-base text-slate-400 pb-8">i will update this later</div>
 
 				<form class="flex flex-col">
 					<div class="pb-2">
@@ -30,9 +30,7 @@
 							<input type="password" name="password" id="password" placeholder="••••••••••" class="pl-12 mb-2 bg-slate-50 text-slate-600 border focus:border-transparent border-slate-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-slate-400 block w-full p-2.5 rounded-l-lg py-3 px-4" autocomplete="new-password">
 						</div>
 					</div>
-					<button type="submit" class="w-full text-white bg-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6">Login</button>
-					<div class="text-sm font-light text-slate-400">Don't have an account yet? <a href="/signup" class="font-medium text-blue-600 hover:underline">Sign Up</a>
-					</div>
+					<button type="submit" class="w-full text-white bg-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6">Sign up</button>
 				</form>
 			</div>
 		</div>

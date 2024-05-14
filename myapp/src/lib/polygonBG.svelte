@@ -1,0 +1,2 @@
+<div class="z-5 absolute inset-0 scale-y-70 translate-y-12 opacity-90 -translate-x-1/3 lg:translate-x-1/3 xl:translate-y-16 rotate-30 xl:rotate-45 xl:-translate-x-1/3 lg:opacity-50 xl:opacity-30 2xl:opacity-10 bg-gradient-to-br from-transparent via-blue-900 to-transparent">&nbsp;</div>
+		<div class="z-5 absolute inset-0 scale-y-70 rotate-45 translate-y-12 opacity-40 translate-x-1/3 lg:-translate-x-2/3 xl:translate-y-12 xl:rotate-45 xl:translate-x-3/5 lg:opacity-20 xl:opacity-20 2xl:opacity-20 bg-gradient-to-br from-transparent via-blue-900 to-transparent">&nbsp;</div>
