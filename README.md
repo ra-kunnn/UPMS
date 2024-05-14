@@ -1,2 +1,0 @@
-# UPMS
-UPad Management System
