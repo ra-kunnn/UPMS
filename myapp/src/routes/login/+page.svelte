@@ -2,6 +2,7 @@
 	import LoginHeader from '$lib/loginHeader.svelte';
 	import PolygonBG from '$lib/polygonBG.svelte';
 	import HideOverflow from '$lib/hideOverflow.svelte';
+
 </script>
 
 <HideOverflow />
@@ -31,7 +32,7 @@
 							<input type="password" name="password" id="password" placeholder="••••••••••" class="pl-12 mb-2 bg-slate-50 text-slate-600 border focus:border-transparent border-slate-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1 focus:outline-none focus:ring-slate-400 block w-full p-2.5 rounded-l-lg py-3 px-4" autocomplete="new-password">
 						</div>
 					</div>
-					<button type="submit" class="w-full text-white bg-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6">Login</button>
+					<button type="submit" class="w-full text-white bg-blue-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6"><a href="../tenant_main">Login</a></button>
 					<div class="text-sm font-light text-slate-400">Don't have an account yet? <a href="/signup" class="font-medium text-blue-600 hover:underline">Sign Up</a>
 					</div>
 				</form>
