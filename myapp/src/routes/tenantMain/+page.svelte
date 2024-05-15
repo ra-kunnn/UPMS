@@ -27,7 +27,7 @@
                 <div class="col-span-4 grid grid-cols-4 gap-4 text-surface-800">
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
                         <div class="flex m-auto justify-between pb-4">
-                            <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">March 2024</h3>
+                            <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">03/24</h3>
                             <span class="chip variant-soft-tertiary px-3">Unpaid</span>
                         </div>
                         
@@ -69,7 +69,7 @@
 
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
                         <div class="flex m-auto justify-between pb-4">
-                            <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">February 2024</h3>
+                            <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">02/24</h3>
                             <span class="chip variant-soft-error px-3">Unpaid</span>
                         </div>
                         
@@ -111,7 +111,7 @@
 
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
                         <div class="flex m-auto justify-between pb-4">
-                            <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">January 2024</h3>
+                            <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">01/24</h3>
                             <span class="chip variant-soft-success px-3">Paid</span>
                         </div>
                         
@@ -153,7 +153,7 @@
 
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
                         <div class="flex m-auto justify-between pb-4">
-                            <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">December 2023</h3>
+                            <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">12/23</h3>
                             <span class="chip variant-soft-success px-3">Paid</span>
                         </div>
                         
