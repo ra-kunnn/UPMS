@@ -5,13 +5,13 @@
 </script>
 
 <HideOverflow />
-<div class="min-h-screen flex-auto w-full h-full font-sans text-surface-900 bg-gradient-to-br from-primary-50 via-surface-200 to-secondary-200">
+<div class="min-h-screen flex-auto w-full h-full font-sans text-surface-900 bg-gradient-to-br from-primary-100 via-slate-300 to-secondary-300">
     <TenantHeader />
     <Aside />
     <header class="relative ml-80">
         <div class="w-auto p-10">
             <div class="flex bg-gradient-to-br variant-gradient-primary-secondary p-9 rounded-3xl">
-                <img class="object-cover h-40 w-40 rounded-xl" src="https://yt3.ggpht.com/F4Hc9ZLwy6PkyNfXr04K7SdwWUIHExFv9MWpHiBG5x-81SiZ2ysEUmodvWR4oDGAAU1-EpxI=s800-c-k-c0x00ffffff-no-rj" alt="pic">
+                <img class="object-cover h-40 w-40 rounded-xl shadow-md" src="https://yt3.ggpht.com/F4Hc9ZLwy6PkyNfXr04K7SdwWUIHExFv9MWpHiBG5x-81SiZ2ysEUmodvWR4oDGAAU1-EpxI=s800-c-k-c0x00ffffff-no-rj" alt="pic">
                 <div class="flex items-end pl-5">
                     <div class="flex-none">
                         <h1 class="h1 font-bold text-6xl pb-1">Gian Paolo Plariza</h1>
@@ -25,7 +25,7 @@
             <div class="bg-gradient-to-br variant-gradient-secondary-tertiary p-9 rounded-3xl">
                 <h1 class="h1 font-bold pb-8">Latest Bills</h1>
                 <div class="col-span-4 grid grid-cols-4 gap-4 text-surface-800">
-                    <div class="col-span-1 card card-hover bg-white p-4">
+                    <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
                         <div class="flex m-auto justify-between pb-4">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">March 2024</h3>
                             <span class="chip variant-soft-tertiary px-3">Unpaid</span>
@@ -67,7 +67,7 @@
                         </div>
                     </div>
 
-                    <div class="col-span-1 card card-hover bg-white p-4">
+                    <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
                         <div class="flex m-auto justify-between pb-4">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">February 2024</h3>
                             <span class="chip variant-soft-error px-3">Unpaid</span>
@@ -109,7 +109,7 @@
                         </div>
                     </div>
 
-                    <div class="col-span-1 card card-hover bg-white p-4">
+                    <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
                         <div class="flex m-auto justify-between pb-4">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">January 2024</h3>
                             <span class="chip variant-soft-success px-3">Paid</span>
@@ -151,7 +151,7 @@
                         </div>
                     </div>
 
-                    <div class="col-span-1 card card-hover bg-white p-4">
+                    <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
                         <div class="flex m-auto justify-between pb-4">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">December 2023</h3>
                             <span class="chip variant-soft-success px-3">Paid</span>
