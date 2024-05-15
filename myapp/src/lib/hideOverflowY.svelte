@@ -1,5 +1,5 @@
 <svelte:head>
 	<style>
-		body {overflow: hidden;}
+		body {overflow-y: hidden;}
 	</style>
 </svelte:head>

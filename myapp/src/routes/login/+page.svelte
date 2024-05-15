@@ -1,8 +1,7 @@
 <script>
-	import LoginHeader from '$lib/loginHeader.svelte';
+	import LoginHeader from '$lib/headerLogin.svelte';
 	import PolygonBG from '$lib/polygonBG.svelte';
-	import HideOverflow from '$lib/hideOverflow.svelte';
-
+	import HideOverflow from '$lib/hideOverflowY.svelte';
 </script>
 
 <HideOverflow />
@@ -15,7 +14,7 @@
 		<div class="h-screen flex items-center justify-center relative z-20 mx-auto">
 			<div class="block rounded-lg bg-surface-50 shadow-lg float-left w-3/12 m-10 p-10">
 				<div class="flex flex-row gap-3 pb-4">
-					<h1 class="font-semibold text-4xl my-auto">Log in Form</h1>
+					<h1 class="h1 font-semibold my-auto">Log in Form</h1>
 				</div>
 				<div class="text-base text-surface-400 pb-8">Enter your credentials to access UPMS.</div>
 
