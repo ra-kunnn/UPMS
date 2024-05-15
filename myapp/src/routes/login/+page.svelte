@@ -1,12 +1,11 @@
 <script>
 	import LoginHeader from '$lib/headerLogin.svelte';
-	import PolygonBG from '$lib/polygonBG.svelte';
 	import HideOverflow from '$lib/hideOverflowY.svelte';
 </script>
 
 <HideOverflow />
 
-<div class="min-h-screen font-sans text-surface-900 bg-surface-300">
+<div class="min-h-screen font-sans text-surface-900 bg-gradient-to-br from-surface-300 via-primary-200 to-primary-500">
 	<div class="mx-auto w-full">
 
 		<LoginHeader />
@@ -37,7 +36,5 @@
 				</form>
 			</div>
 		</div>
-		
-		<PolygonBG />
 	</div>
 </div>
