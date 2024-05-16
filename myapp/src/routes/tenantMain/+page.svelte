@@ -15,9 +15,9 @@
             
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
-            <div class="bg-gradient-to-br variant-gradient-secondary-tertiary p-9 rounded-3xl">
-                <h1 class="h1 font-bold pb-8 text-surface-50">Latest Bills</h1>
-                <div class="col-span-4 grid grid-cols-4 md:grid-cols-2 gap-4 text-surface-800">
+            <div class="bg-gradient-to-br variant-gradient-secondary-tertiary p-9 rounded-3xl text-surface-50">
+                <h1 class="h1 font-bold pb-8">Latest Bills</h1>
+                <div class="col-span-4 grid 2xl:grid-cols-4 xl:grid-cols-2 gap-4 text-surface-800">
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
                         <div class="flex m-auto justify-between pb-4">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">Mar 2024</h3>
@@ -29,32 +29,32 @@
                                 <tbody>
                                     <tr>
                                         <th>Monthly Rent</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Water Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Electricity Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Hut Rent</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Visitor Overnight Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Maintenance Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                         <th>Calculated Bill</th>
-                                        <td>Php 12000.00</td>
+                                        <td>₱12000.00</td>
                                 </tfoot>
                             </table>
                         </div>
@@ -71,32 +71,32 @@
                                 <tbody>
                                     <tr>
                                         <th>Monthly Rent</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Water Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Electricity Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Hut Rent</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Visitor Overnight Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Maintenance Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                         <th>Calculated Bill</th>
-                                        <td>Php 12000.00</td>
+                                        <td>₱12000.00</td>
                                 </tfoot>
                             </table>
                         </div>
@@ -113,32 +113,32 @@
                                 <tbody>
                                     <tr>
                                         <th>Monthly Rent</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Water Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Electricity Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Hut Rent</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Visitor Overnight Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Maintenance Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                         <th>Calculated Bill</th>
-                                        <td>Php 12000.00</td>
+                                        <td>₱12000.00</td>
                                 </tfoot>
                             </table>
                         </div>
@@ -155,32 +155,32 @@
                                 <tbody>
                                     <tr>
                                         <th>Monthly Rent</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Water Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Electricity Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Hut Rent</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Visitor Overnight Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                     <tr>
                                         <th>Maintenance Bill</th>
-                                        <td>Php 2000.00</td>
+                                        <td>₱2000.00</td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                         <th>Calculated Bill</th>
-                                        <td>Php 12000.00</td>
+                                        <td>₱12000.00</td>
                                 </tfoot>
                             </table>
                         </div>

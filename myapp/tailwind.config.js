@@ -1,11 +1,9 @@
-// @ts-check
 import { join } from 'path';
-
-// custom theme
 import { myCustomTheme } from './custom-theme'
-
-// 1. Import the Skeleton plugin
 import { skeleton } from '@skeletonlabs/tw-plugin';
+import forms from '@tailwindcss/forms';
+
+				
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -23,6 +21,7 @@ export default {
 		extend: {},
 	},
 	plugins: [
+	require('@tailwindcss/forms'),
     skeleton({
       themes: {
         custom: [
