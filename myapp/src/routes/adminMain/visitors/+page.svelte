@@ -2,7 +2,7 @@
 	import Header from '$lib/admin/headerAdmin.svelte';
     import Aside from '$lib/admin/asideAdmin.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
-    import Profile from '$lib/admin/displayAdmin.svelte';
+    import Profile from '$lib/admin/profileAdmin.svelte';
 </script>
 
 <HideOverflow />

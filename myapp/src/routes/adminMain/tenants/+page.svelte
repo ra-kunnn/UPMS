@@ -2,7 +2,7 @@
 	import Header from '$lib/admin/headerAdmin.svelte';
     import Aside from '$lib/admin/asideAdmin.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
-    import Profile from '$lib/admin/displayAdmin.svelte';
+    import Profile from '$lib/admin/profileAdmin.svelte';
 </script>
 
 <HideOverflow />
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 
-                <div class="col-span-4 grid grid-cols-4 gap-4 text-surface-800 pb-6">
+                <div class="col-span-4 grid grid-cols-4 gap-4 text-surface-800">
 
                     <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                         <header>
@@ -34,7 +34,7 @@
                         <div class="p-4">
                             <div class="flex m-auto justify-between">
                                 <div class="block">
-                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Plariza, Gian Paolo</h4>
+                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Gian Paolo Plariza</h4>
                                     <p class="text-base pb-2">Room A</p>
                                     <p class="text-sm text-surface-400">gianpdplariza@gmail.com<br>tenant since May 2023</p>
                                 </div>
@@ -56,7 +56,7 @@
                         <div class="p-4">
                             <div class="flex m-auto justify-between">
                                 <div class="block">
-                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Ratilla, Chester John</h4>
+                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Chester John Ratilla</h4>
                                     <p class="text-base pb-2">Room 201</p>
                                     <p class="text-sm text-surface-400">cjratilla@gmail.com<br>tenant since May 2023</p>
                                 </div>
@@ -78,7 +78,7 @@
                         <div class="p-4">
                             <div class="flex m-auto justify-between">
                                 <div class="block">
-                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Veralio, Arwen Eve</h4>
+                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Arwen Eve Veralio</h4>
                                     <p class="text-base pb-2">Room 207</p>
                                     <p class="text-sm text-surface-400">rakun@gmail.com<br>tenant since May 2023</p>
                                 </div>
@@ -92,6 +92,8 @@
             
                     </div>
 
+                    <!--
+
                     <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                         <header>
                             <img src="https://cdnb.artstation.com/p/users/avatars/005/132/879/large/030349c9dde8636c1371938fc2e8dc3b.jpg?1646621001" class="object-cover aspect-square w-full" alt="Post" />
@@ -100,7 +102,7 @@
                         <div class="p-4">
                             <div class="flex m-auto justify-between">
                                 <div class="block">
-                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Rosales, Violette Gwen Rai</h4>
+                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Violette Gwen Rai Rosales</h4>
                                     <p class="text-base pb-2">Room A</p>
                                     <p class="text-sm text-surface-400">gwenrairosales@gmail.com<br>tenant since May 2023</p>
                                 </div>
@@ -113,6 +115,8 @@
                         </div>
             
                     </div>
+
+                    -->
 
                 </div>
 

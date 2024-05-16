@@ -2,7 +2,7 @@
 	import Header from '$lib/admin/headerAdmin.svelte';
     import Aside from '$lib/admin/asideAdmin.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
-    import Profile from '$lib/admin/displayAdmin.svelte';
+    import Profile from '$lib/admin/profileAdmin.svelte';
 </script>
 
 <HideOverflow />
@@ -13,7 +13,186 @@
         <div class="w-auto p-10">
             <Profile />
             
+            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+
+            <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-9 rounded-3xl text-surface-50">
+                <h1 class="h1 font-bold pb-2 text-surface-50">Visitor Requests</h1>
+                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10 text-surface-800">
+
+                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
+                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
+                                    <p class="text-sm text-surface-400">Room A</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
+                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                        </div>
+            
+                    </div>
+
+                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
+                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
+                                    <p class="text-sm text-surface-400">Room A</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
+                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                        </div>
+            
+                    </div>
+
+                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
+                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
+                                    <p class="text-sm text-surface-400">Room A</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
+                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                        </div>
+            
+                    </div>
+
+                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
+                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
+                                    <p class="text-sm text-surface-400">Room A</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
+                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                        </div>
+            
+                    </div>
+
+                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
+                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
+                                    <p class="text-sm text-surface-400">Room A</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
+                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                        </div>
+            
+                    </div>
+
+                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
+                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
+                                    <p class="text-sm text-surface-400">Room A</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
+                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            
+            <div class="bg-gradient-to-br from-primary-400 to-secondary-700 p-9 rounded-3xl text-surface-50">
+                <h1 class="h1 font-bold pb-2 text-surface-50">Pending Payments</h1>
+                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10 text-surface-800">
+
+                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 font-semibold">Room A</h4>
+                                    <h2 class="h2 tracking-tight font-bold pb-1">₱10,000.00</h2>
+                                    <p class="text-sm text-surface-400">tenant 1, tenant 2, tenant 3, tenant 4</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                        </div>
+            
+                    </div>
+
+                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 font-semibold">Room B</h4>
+                                    <h2 class="h2 tracking-tight font-bold pb-1">₱10,000.00</h2>
+                                    <p class="text-sm text-surface-400">tenant 1, tenant 2, tenant 3, tenant 4</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                        </div>
+            
+                    </div>
+
+                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 font-semibold">Room 205</h4>
+                                    <h2 class="h2 tracking-tight font-bold pb-1">₱6,000.00</h2>
+                                    <p class="text-sm text-surface-400">tenant 1, tenant 2</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+
         </div>
     </header>
 </div>

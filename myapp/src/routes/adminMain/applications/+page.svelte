@@ -2,7 +2,7 @@
 	import Header from '$lib/admin/headerAdmin.svelte';
     import Aside from '$lib/admin/asideAdmin.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
-    import Profile from '$lib/admin/displayAdmin.svelte';
+    import Profile from '$lib/admin/profileAdmin.svelte';
 </script>
 
 <HideOverflow />
@@ -14,7 +14,7 @@
             <div>
                 <h1 class="h1 font-bold pb-8">Room Applications</h1>
                 
-                <div class="col-span-4 grid 2xl:grid-cols-5 grid-cols-4 gap-4 text-surface-800 pb-6">
+                <div class="col-span-4 grid 2xl:grid-cols-5 grid-cols-4 gap-4 text-surface-800">
 
                     <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                         <header>
@@ -26,7 +26,7 @@
                                 <div class="block">
                                     <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Minecraft Steve</h4>
                                     <p class="text-base pb-1">applied for Room 201</p>
-                                    <p class="text-sm text-surface-400">mcsteve@minecraft.com<br>applied 8:58 PM on 3/24/24</p>
+                                    <p class="text-sm text-surface-400">09888387772<br>mcsteve@minecraft.com<br>applied 8:58 PM on 3/24/24</p>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                                 <div class="block">
                                     <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Minecraft Alex</h4>
                                     <p class="text-base pb-1">applied for Room 201</p>
-                                    <p class="text-sm text-surface-400">lexyminer@minecraft.com<br>applied 8:46 PM on 3/24/24</p>
+                                    <p class="text-sm text-surface-400">09189173819<br>lexyminer@minecraft.com<br>applied 8:46 PM on 3/24/24</p>
                                 </div>
                             </div>
                         </div>

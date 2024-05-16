@@ -2,7 +2,7 @@
 	import Header from '$lib/admin/headerAdmin.svelte';
     import Aside from '$lib/admin/asideAdmin.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
-    import Profile from '$lib/admin/displayAdmin.svelte';
+    import Profile from '$lib/admin/profileAdmin.svelte';
 </script>
 
 <HideOverflow />
@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 
-                <div class="col-span-3 grid grid-cols-3 gap-4 text-surface-800 pb-6">
+                <div class="col-span-3 grid grid-cols-3 gap-4 text-surface-800">
 
                     <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                         <header>

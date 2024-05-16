@@ -3,7 +3,7 @@
     <div class="flex items-end pl-5">
         <div class="flex-none">
             <h1 class="h1 font-bold text-6xl">Gian Paolo Plariza</h1>
-            <p>Tenant</p>
+            <p class="font-bold">Room A</p>
         </div>
     </div>
 </div>
