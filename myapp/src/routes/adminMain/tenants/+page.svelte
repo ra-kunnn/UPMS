@@ -92,8 +92,6 @@
             
                     </div>
 
-                    <!--
-
                     <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                         <header>
                             <img src="https://cdnb.artstation.com/p/users/avatars/005/132/879/large/030349c9dde8636c1371938fc2e8dc3b.jpg?1646621001" class="object-cover aspect-square w-full" alt="Post" />
@@ -115,8 +113,6 @@
                         </div>
             
                     </div>
-
-                    -->
 
                 </div>
 
