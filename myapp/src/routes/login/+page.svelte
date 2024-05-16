@@ -1,5 +1,5 @@
 <script>
-	import LoginHeader from '$lib/headerLogin.svelte';
+	import LoginHeader from '$lib/login/headerLogin.svelte';
 	import HideOverflow from '$lib/hideOverflowY.svelte';
 </script>
 
