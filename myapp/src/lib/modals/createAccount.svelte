@@ -22,10 +22,11 @@
 
 {#if $modalStore[0]}
 	<div class="{cBase}">
-		<header class={cHeader}>To proceed, you must create an account.</header>
+		<header class={cHeader}>To proceed, you must have an account.</header>
+		<article>Log in to apply for a room you like!</article>
 		<!-- prettier-ignore -->
 		<footer class="modal-footer {parent.regionFooter}">
-			<a href="/login" class="btn {parent.buttonPositive}">Create Account</a>
+			<a href="/login" class="btn {parent.buttonPositive}">Log In</a>
 			<button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>Not Now</button>
 		</footer>
 	</div>

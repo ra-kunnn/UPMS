@@ -10,6 +10,7 @@
     import ChangeTenantRoom from '$lib/modals/changeRoom.svelte';
     import AssignTenants from '$lib/modals/assignTenants.svelte';
     import CreateAccount from '$lib/modals/createAccount.svelte';
+	import ChangePassword from "$lib/modals/changePassword.svelte";
 
     const modalRegistry: Record<string, ModalComponent> = {
         // Set a unique modal ID, then pass the component reference
@@ -19,6 +20,7 @@
         ChangeTenantRoom: { ref: ChangeTenantRoom },
         AssignTenants: { ref: AssignTenants },
         CreateAccount: { ref: CreateAccount },
+        ChangePassword: { ref: ChangePassword },
         // ...
 };
 </script>

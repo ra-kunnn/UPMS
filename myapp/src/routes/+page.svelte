@@ -46,7 +46,7 @@
 
                 <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                     <header>
-                        <img src="https://cdn.vox-cdn.com/thumbor/z2M_XZXuk2EK-oIBbPXCVizxN80=/0x0:6492x4328/1200x675/filters:focal(2727x1645:3765x2683)/cdn.vox-cdn.com/uploads/chorus_image/image/69720403/13_THURSDAY_020.0.jpg" class="bg-black/50 w-full aspect-[21/9]" alt="Post" />
+                        <img src="https://cdn.vox-cdn.com/thumbor/z2M_XZXuk2EK-oIBbPXCVizxN80=/0x0:6492x4328/1200x675/filters:focal(2727x1645:3765x2683)/cdn.vox-cdn.com/uploads/chorus_image/image/69720403/13_THURSDAY_020.0.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />
                     </header>
 
                     <div class="p-4">
@@ -90,7 +90,7 @@
 
                 <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                     <header>
-                        <img src="https://asiasociety.org/sites/default/files/styles/1200w/public/D/dormroom.jpg" class="bg-black/50 w-full aspect-[21/9]" alt="Post" />
+                        <img src="https://asiasociety.org/sites/default/files/styles/1200w/public/D/dormroom.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />
                     </header>
 
                     <div class="p-4">
@@ -133,7 +133,7 @@
 
                 <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                     <header>
-                        <img src="https://i.ytimg.com/vi/Kak4sSmBjM8/maxresdefault.jpg" class="bg-black/50 w-full aspect-[21/9]" alt="Post" />
+                        <img src="https://i.ytimg.com/vi/Kak4sSmBjM8/maxresdefault.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />
                     </header>
                     
                     <div class="p-4">
@@ -170,7 +170,7 @@
 
                 <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                     <header>
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Sharp_Hall_Dorm_Room.jpg" class="bg-black/50 w-full aspect-[21/9]" alt="Post" />
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/84/Sharp_Hall_Dorm_Room.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />
                     </header>
                     
                     <div class="p-4 pb-0">
@@ -207,7 +207,7 @@
 
                 <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                     <header>
-                        <img src="https://www.thespruce.com/thmb/CnQmH_kyVVM4Av5_OnsxyiOstmk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SPR-how-to-make-dorm-room-functional-relaxing-5649206-hero-ee04000729fd4f71ac65ad91a11f6275.jpg" class="bg-black/50 w-full aspect-[21/9]" alt="Post" />
+                        <img src="https://www.thespruce.com/thmb/CnQmH_kyVVM4Av5_OnsxyiOstmk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SPR-how-to-make-dorm-room-functional-relaxing-5649206-hero-ee04000729fd4f71ac65ad91a11f6275.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />
                     </header>
                     
                     <div class="p-4">
