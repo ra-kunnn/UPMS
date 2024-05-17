@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 
-                <div class="col-span-4 grid grid-cols-4 gap-4 text-surface-800">
+                <div class="col-span-4 grid grid-cols-4 md:grid-cols-3 gap-4 text-surface-800">
 
                     <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                         <header>

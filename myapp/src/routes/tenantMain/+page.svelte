@@ -16,7 +16,7 @@
             <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
             <h1 class="h1 text-4xl pb-6 font-bold">Roommates</h1>
-            <div class="col-span-4 grid grid-cols-11 gap-4 text-surface-800">
+            <div class="col-span-4 grid grid-cols-11  md:grid-cols-7 gap-4 text-surface-800">
                 <div class="col-span-2 card card-hover overflow-hidden shadow bg-white">
                     <div class="p-4">
                         <div class="flex m-auto justify-between">
@@ -57,11 +57,15 @@
                 <h1 class="h1 font-bold pb-8">Latest Bills</h1>
                 <div class="col-span-4 grid 2xl:grid-cols-4 xl:grid-cols-2 gap-4 text-surface-800">
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
-                        <div class="flex m-auto justify-between pb-4">
+                        <div class="flex m-auto justify-between">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">Mar 2024</h3>
                             <span class="badge variant-ghost-tertiary px-3 self-center">Unpaid</span>
                         </div>
                         
+                        <div class="block pb-4">
+                            <p class="text-sm text-surface-400">pay within the month</p>
+                        </div>
+
                         <div class="table-container">
                             <table class="table table-hover bg-surface-50">
                                 <tbody>
@@ -99,10 +103,14 @@
                     </div>
 
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
-                        <div class="flex m-auto justify-between pb-4">
+                        <div class="flex m-auto justify-between">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">Feb 2024</h3>
                             <span class="badge variant-ghost-error px-3 self-center">Unpaid</span>
                         </div>
+
+                        <div class="block pb-4">
+                            <p class="text-sm text-surface-400">pay within the month</p>
+                        </div>
                         
                         <div class="table-container">
                             <table class="table table-hover bg-surface-50">
@@ -141,10 +149,14 @@
                     </div>
 
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
-                        <div class="flex m-auto justify-between pb-4">
+                        <div class="flex m-auto justify-between">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">Jan 2024</h3>
                             <span class="badge variant-ghost-success px-3 self-center">Paid</span>
                         </div>
+
+                        <div class="block pb-4">
+                            <p class="text-sm text-surface-400">paid 01/11/24</p>
+                        </div>
                         
                         <div class="table-container">
                             <table class="table table-hover bg-surface-50">
@@ -183,9 +195,13 @@
                     </div>
 
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
-                        <div class="flex m-auto justify-between pb-4">
+                        <div class="flex m-auto justify-between">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">Dec 2023</h3>
                             <span class="badge variant-ghost-success px-3 self-center">Paid</span>
+                        </div>
+
+                        <div class="block pb-4">
+                            <p class="text-sm text-surface-400">paid 01/11/24</p>
                         </div>
                         
                         <div class="table-container">

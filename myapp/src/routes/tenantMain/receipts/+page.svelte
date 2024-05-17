@@ -24,13 +24,17 @@
                     </div>
                 </div>
                 
-                <div class="col-span-4 grid grid-cols-4 gap-4 text-surface-800 pb-6">
+                <div class="col-span-4 grid grid-cols-4 md:grid-cols-3 gap-4 text-surface-800 pb-6">
 
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
-                        <div class="flex m-auto justify-between pb-4">
+                        <div class="flex m-auto justify-between">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">Mar 2024</h3>
                             <span class="badge variant-ghost-tertiary px-3 self-center">Unpaid</span>
                         </div>
+
+                        <div class="block pb-4">
+                            <p class="text-sm text-surface-400">pay within the month</p>
+                        </div>
                         
                         <div class="table-container">
                             <table class="table table-hover bg-surface-50">
@@ -69,10 +73,14 @@
                     </div>
 
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
-                        <div class="flex m-auto justify-between pb-4">
+                        <div class="flex m-auto justify-between">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">Feb 2024</h3>
                             <span class="badge variant-ghost-error px-3 self-center">Unpaid</span>
                         </div>
+
+                        <div class="block pb-4">
+                            <p class="text-sm text-surface-400">pay within the month</p>
+                        </div>
                         
                         <div class="table-container">
                             <table class="table table-hover bg-surface-50">
@@ -111,10 +119,14 @@
                     </div>
 
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
-                        <div class="flex m-auto justify-between pb-4">
+                        <div class="flex m-auto justify-between">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">Jan 2024</h3>
                             <span class="badge variant-ghost-success px-3 self-center">Paid</span>
                         </div>
+
+                        <div class="block pb-4">
+                            <p class="text-sm text-surface-400">paid 01/11/24</p>
+                        </div>
                         
                         <div class="table-container">
                             <table class="table table-hover bg-surface-50">
@@ -153,9 +165,13 @@
                     </div>
 
                     <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
-                        <div class="flex m-auto justify-between pb-4">
+                        <div class="flex m-auto justify-between">
                             <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">Dec 2023</h3>
                             <span class="badge variant-ghost-success px-3 self-center">Paid</span>
+                        </div>
+
+                        <div class="block pb-4">
+                            <p class="text-sm text-surface-400">paid 01/11/24</p>
                         </div>
                         
                         <div class="table-container">

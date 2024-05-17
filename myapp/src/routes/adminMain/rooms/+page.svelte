@@ -64,8 +64,8 @@
                             </div>
                         </div>
 
-                        <div class="flex p-4 pt-0 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Issue Bill</button>
+                        <div class="flex p-4 pt-2 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">View Bills</button>
                             <button class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
                         </div>
             
@@ -109,8 +109,8 @@
                             </div>
                         </div>
 
-                        <div class="flex p-4 pt-0 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Issue Bill</button>
+                        <div class="flex p-4 pt-2 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">View Bills</button>
                             <button class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
                         </div>
             
@@ -146,8 +146,8 @@
                             </div>
                         </div>
 
-                        <div class="flex p-4 pt-0 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Issue Bill</button>
+                        <div class="flex p-4 pt-2 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">View Bills</button>
                             <button class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
                         </div>
 
@@ -183,8 +183,8 @@
                             </div>
                         </div>
 
-                        <div class="flex p-4 pt-0 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Issue Bill</button>
+                        <div class="flex p-4 pt-2 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">View Bills</button>
                             <button class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
                         </div>
                     </div>
@@ -219,8 +219,8 @@
                             </div>
                         </div>
 
-                        <div class="flex p-4 pt-0 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Issue Bill</button>
+                        <div class="flex p-4 pt-2 float-right">
+                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">View Bills</button>
                             <button class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
                         </div>
                     </div>

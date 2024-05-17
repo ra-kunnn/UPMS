@@ -1,6 +1,6 @@
 <script>
-	import Header from '$lib/landing/headerLanding.svelte';
-    import Aside from '$lib/landing/asideLanding.svelte';
+	import Header from '$lib/user/headerUser.svelte';
+    import Aside from '$lib/user/asideUser.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
 </script>
 
@@ -15,6 +15,52 @@
                 <blockquote class="blockquote text-surface-50">quote, quote quote quote.</blockquote>
             </div>
             
+            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+
+            <div class="block bg-gradient-to-br from-error-500 to-warning-600 text-surface-50 p-9 rounded-3xl">
+                <h1 class="h1 font-bold text-6xl pb-8">Room Application</h1>
+
+                <div class="block">
+                    <div class="card overflow-hidden shadow bg-white text-surface-800">
+                        <header>
+                            <img src="https://www.thespruce.com/thmb/CnQmH_kyVVM4Av5_OnsxyiOstmk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SPR-how-to-make-dorm-room-functional-relaxing-5649206-hero-ee04000729fd4f71ac65ad91a11f6275.jpg" class="bg-black/50 w-full aspect-[21/9]" alt="Post" />
+                        </header>
+                        
+                        <div class="p-4">
+                            <div class="flex m-auto justify-between">
+                                <h3 class="h3 pr-3 text-3xl font-bold tracking-tight">Room 207</h3>
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 text-surface-500 fill-surface-300 transition duration-75 dark:text-surface-400 group-hover:text-surface-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                        <path d="M 10 9 a 5 4.5 0 1 0 0 -9 a 4.5 4.5 0 0 0 0 9 Z M 10 11 H 5 a 5.006 5.006 0 0 0 -5 5 v 2 a 1 1 0 0 0 1 1 h 18 a 1 1 0 0 0 1 -1 v -2 a 5.006 5.006 0 0 0 -5 -5 Z"/>
+                                    </svg>
+                                    <svg class="w-4 h-4 text-surface-500 fill-surface-800 transition duration-75 dark:text-surface-400 group-hover:text-surface-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
+                                        <path d="M 10 9 a 5 4.5 0 1 0 0 -9 a 4.5 4.5 0 0 0 0 9 Z M 10 11 H 5 a 5.006 5.006 0 0 0 -5 5 v 2 a 1 1 0 0 0 1 1 h 18 a 1 1 0 0 0 1 -1 v -2 a 5.006 5.006 0 0 0 -5 -5 Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="block">
+                                <h4 class="h4 font-semibold justify-items-end">₱4,000/month</h4>
+                                <p class="text-base text-surface-400 pb-2">2nd Floor Right Wing</p>
+                            </div>
+
+                            <div class="block gap-1">
+                                <span class="badge variant-ghost-primary text-primary-700 mb-1">1 Bed</span>
+                                <span class="badge variant-ghost-success text-success-700 mb-1">Aircon</span>
+                                <span class="badge variant-ghost-error text-error-700 mb-1">Communal Comfort Room</span>
+                                <span class="badge variant-ghost-error text-error-700 mb-1">Communal Sink</span>
+                            </div>
+
+                            <div class="flex pt-4">
+                                <button class="btn btn-sm variant-filled-error text-white w-full">Cancel</button>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
             <div class="flex m-auto justify-between pb-8">
@@ -66,6 +112,10 @@
                             <span class="badge variant-ghost-success text-success-700 mb-1">Sink</span>
                             <span class="badge variant-ghost-error text-error-700 mb-1">No Aircon</span>
                         </div>
+                        
+                        <div class="flex pt-4">
+                            <button class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                        </div>
 
                     </div>
         
@@ -107,6 +157,10 @@
                             <span class="badge variant-ghost-error text-error-700 mb-1">No Aircon</span>
                         </div>
 
+                        <div class="flex pt-4">
+                            <button class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                        </div>
+
                     </div>
                 </div>
 
@@ -138,6 +192,10 @@
                             <span class="badge variant-ghost-success text-success-700 mb-1">Aircon</span>
                             <span class="badge variant-ghost-error text-error-700 mb-1">Communal Comfort Room</span>
                             <span class="badge variant-ghost-error text-error-700 mb-1">Communal Sink</span>
+                        </div>
+
+                        <div class="flex pt-4">
+                            <button class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
                         </div>
                         
                     </div>
@@ -172,6 +230,10 @@
                             <span class="badge variant-ghost-error text-error-700 mb-1">Communal Comfort Room</span>
                             <span class="badge variant-ghost-error text-error-700 mb-1">Communal Sink</span>
                         </div>
+
+                        <div class="flex pt-4">
+                            <button class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                        </div>
                         
                     </div>
                 </div>
@@ -204,6 +266,10 @@
                             <span class="badge variant-ghost-success text-success-700 mb-1">Aircon</span>
                             <span class="badge variant-ghost-error text-error-700 mb-1">Communal Comfort Room</span>
                             <span class="badge variant-ghost-error text-error-700 mb-1">Communal Sink</span>
+                        </div>
+
+                        <div class="flex pt-4">
+                            <button class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
                         </div>
                         
                     </div>
