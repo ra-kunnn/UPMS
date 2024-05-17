@@ -10,11 +10,9 @@
 
 	const modalStore = getModalStore();
 
-	// Form Data
 	const formData = {
-		name: 'Jane Doe',
-		tel: '214-555-1234',
-		email: 'jdoe@email.com'
+		tenant: "John Pork",
+		room: "102"
 	};
 
 	// We've created a custom submit function to pass the response and close the modal.
@@ -33,27 +31,30 @@
 
 {#if $modalStore[0]}
 	<div class="modal-example-form {cBase}">
-		<header class={cHeader}>{$modalStore[0].title ?? '(title missing)'}</header>
-		<article>{$modalStore[0].body ?? '(body missing)'}</article>
+		<header class={cHeader}>Change Room</header>
+		<article>mm/dd/yyyy</article>
 		<!-- Enable for debugging: -->
 		<form class="modal-form {cForm}">
 			<label class="label">
-				<span>Name</span>
-				<input class="input" type="text" bind:value={formData.name} placeholder="Enter name..." />
+				<span>Tenant (automate)</span>
+				<input class="input" bind:value={formData.tenant} type="text" disabled />
 			</label>
+
 			<label class="label">
-				<span>Phone Number</span>
-				<input class="input" type="tel" bind:value={formData.tel} placeholder="Enter phone..." />
-			</label>
-			<label class="label">
-				<span>Email</span>
-				<input class="input" type="email" bind:value={formData.email} placeholder="Enter email address..." />
+				<span>Room Assignment (selected should be current room)</span>				
+					<select class="select">
+						<option value="A">Room A</option>
+						<option value="B">Room B</option>
+						<option value="C">Room C</option>
+						<option value="D">Room D</option>
+						<option value="101">Room 101</option>
+					</select>
 			</label>
 		</form>
 		<!-- prettier-ignore -->
 		<footer class="modal-footer {parent.regionFooter}">
 			<button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
-			<button class="btn {parent.buttonPositive}" on:click={onFormSubmit}>Submit Form</button>
+			<button class="btn {parent.buttonPositive}" on:click={onFormSubmit}>Assign Room</button>
 		</footer>
 	</div>
 {/if}

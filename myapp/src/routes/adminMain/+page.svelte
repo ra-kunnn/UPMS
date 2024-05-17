@@ -1,8 +1,29 @@
-<script>
+<script lang="ts">
 	import Header from '$lib/admin/headerAdmin.svelte';
     import Aside from '$lib/admin/asideAdmin.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/admin/profileAdmin.svelte';
+
+    import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+    import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
+
+    const modalStore = getModalStore();
+
+    function billPopUp(): void {
+        const modal: ModalSettings = {
+        type: 'component',
+        component: 'BillingForm',
+        };
+        modalStore.trigger(modal);
+    }
+
+    function areYouSure(): void {
+        const modal: ModalSettings = {
+        type: 'component',
+        component: 'AreYouSure',
+        };
+        modalStore.trigger(modal);
+    }
 </script>
 
 <HideOverflow />
@@ -31,7 +52,7 @@
                         </div>
 
                         <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end">Issue Bill</button>
+                            <button on:click={billPopUp} class="btn btn-sm variant-filled-success text-white self-end">Issue Bill</button>
                         </div>
             
                     </div>
@@ -48,7 +69,7 @@
                         </div>
 
                         <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end">Issue Bill</button>
+                            <button on:click={billPopUp} class="btn btn-sm variant-filled-success text-white self-end">Issue Bill</button>
                         </div>
             
                     </div>
@@ -74,7 +95,7 @@
                         </div>
 
                         <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                            <button on:click={areYouSure} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
                         </div>
             
                     </div>
@@ -92,7 +113,7 @@
                         </div>
 
                         <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                            <button on:click={areYouSure} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
                         </div>
             
                     </div>
@@ -110,7 +131,7 @@
                         </div>
 
                         <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                            <button on:click={areYouSure} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
                         </div>
             
                     </div>
@@ -136,7 +157,7 @@
 
                         <div class="flex p-4 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                         </div>
             
                     </div>
@@ -154,7 +175,7 @@
 
                         <div class="flex p-4 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                         </div>
             
                     </div>
@@ -172,7 +193,7 @@
 
                         <div class="flex p-4 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                         </div>
             
                     </div>
@@ -190,7 +211,7 @@
 
                         <div class="flex p-4 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                         </div>
             
                     </div>
@@ -208,7 +229,7 @@
 
                         <div class="flex p-4 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                         </div>
             
                     </div>
@@ -226,7 +247,7 @@
 
                         <div class="flex p-4 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                         </div>
             
                     </div>

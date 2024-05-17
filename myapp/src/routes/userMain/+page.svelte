@@ -1,7 +1,28 @@
-<script>
+<script lang="ts">
 	import Header from '$lib/user/headerUser.svelte';
     import Aside from '$lib/user/asideUser.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
+
+    import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+    import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
+
+    const modalStore = getModalStore();
+
+    function applyPopUp(): void {
+        const modal: ModalSettings = {
+        type: 'component',
+        component: 'ConfirmApplication',
+        };
+        modalStore.trigger(modal);
+    }
+
+    function cancelPopUp(): void {
+        const modal: ModalSettings = {
+        type: 'component',
+        component: 'AreYouSure',
+        };
+        modalStore.trigger(modal);
+    }
 </script>
 
 <HideOverflow />
@@ -52,7 +73,7 @@
                             </div>
 
                             <div class="flex pt-4">
-                                <button class="btn btn-sm variant-filled-error text-white w-full">Cancel</button>
+                                <button on:click={cancelPopUp} class="btn btn-sm variant-filled-error text-white w-full">Cancel</button>
                             </div>
                             
                         </div>
@@ -114,7 +135,7 @@
                         </div>
                         
                         <div class="flex pt-4">
-                            <button class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                            <button on:click={applyPopUp} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
                         </div>
 
                     </div>
@@ -158,7 +179,7 @@
                         </div>
 
                         <div class="flex pt-4">
-                            <button class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                            <button on:click={applyPopUp} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
                         </div>
 
                     </div>
@@ -195,7 +216,7 @@
                         </div>
 
                         <div class="flex pt-4">
-                            <button class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                            <button on:click={applyPopUp} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
                         </div>
                         
                     </div>
@@ -232,7 +253,7 @@
                         </div>
 
                         <div class="flex pt-4">
-                            <button class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                            <button on:click={applyPopUp} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
                         </div>
                         
                     </div>
@@ -269,7 +290,7 @@
                         </div>
 
                         <div class="flex pt-4">
-                            <button class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                            <button on:click={applyPopUp} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
                         </div>
                         
                     </div>

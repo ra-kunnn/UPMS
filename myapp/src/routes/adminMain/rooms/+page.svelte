@@ -1,8 +1,21 @@
-<script>
+<script lang="ts">
 	import Header from '$lib/admin/headerAdmin.svelte';
     import Aside from '$lib/admin/asideAdmin.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/admin/profileAdmin.svelte';
+
+    import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+    import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
+
+    const modalStore = getModalStore();
+
+    function assignTenants(): void {
+        const modal: ModalSettings = {
+        type: 'component',
+        component: 'AssignTenants',
+        };
+        modalStore.trigger(modal);
+    }
 </script>
 
 <HideOverflow />
@@ -66,7 +79,7 @@
 
                         <div class="flex p-4 pt-2 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">View Bills</button>
-                            <button class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
+                            <button on:click={assignTenants} class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
                         </div>
             
                     </div>
@@ -111,7 +124,7 @@
 
                         <div class="flex p-4 pt-2 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">View Bills</button>
-                            <button class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
+                            <button on:click={assignTenants} class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
                         </div>
             
                     </div>
@@ -148,7 +161,7 @@
 
                         <div class="flex p-4 pt-2 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">View Bills</button>
-                            <button class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
+                            <button on:click={assignTenants} class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
                         </div>
 
                     </div>
@@ -185,7 +198,7 @@
 
                         <div class="flex p-4 pt-2 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">View Bills</button>
-                            <button class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
+                            <button on:click={assignTenants} class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
                         </div>
                     </div>
 
@@ -221,7 +234,7 @@
 
                         <div class="flex p-4 pt-2 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">View Bills</button>
-                            <button class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
+                            <button on:click={assignTenants} class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
                         </div>
                     </div>
 

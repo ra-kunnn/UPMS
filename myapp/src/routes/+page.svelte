@@ -1,7 +1,20 @@
-<script>
+<script lang="ts">
 	import Header from '$lib/landing/headerLanding.svelte';
     import Aside from '$lib/landing/asideLanding.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
+
+    import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+    import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
+
+    const modalStore = getModalStore();
+
+    function makeAnAccount(): void {
+        const modal: ModalSettings = {
+        type: 'component',
+        component: 'CreateAccount',
+        };
+        modalStore.trigger(modal);
+    }
 </script>
 
 <HideOverflow />
@@ -67,6 +80,10 @@
                             <span class="badge variant-ghost-error text-error-700 mb-1">No Aircon</span>
                         </div>
 
+                        <div class="flex pt-4">
+                            <button on:click={makeAnAccount} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                        </div>
+
                     </div>
         
                 </div>
@@ -107,6 +124,10 @@
                             <span class="badge variant-ghost-error text-error-700 mb-1">No Aircon</span>
                         </div>
 
+                        <div class="flex pt-4">
+                            <button on:click={makeAnAccount} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                        </div>
+
                     </div>
                 </div>
 
@@ -140,6 +161,10 @@
                             <span class="badge variant-ghost-error text-error-700 mb-1">Communal Sink</span>
                         </div>
                         
+                        <div class="flex pt-4">
+                            <button on:click={makeAnAccount} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                        </div>
+
                     </div>
                 </div>
 
@@ -173,6 +198,10 @@
                             <span class="badge variant-ghost-error text-error-700 mb-1">Communal Sink</span>
                         </div>
                         
+                        <div class="flex pt-4">
+                            <button on:click={makeAnAccount} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                        </div>
+
                     </div>
                 </div>
 
@@ -204,6 +233,10 @@
                             <span class="badge variant-ghost-success text-success-700 mb-1">Aircon</span>
                             <span class="badge variant-ghost-error text-error-700 mb-1">Communal Comfort Room</span>
                             <span class="badge variant-ghost-error text-error-700 mb-1">Communal Sink</span>
+                        </div>
+
+                        <div class="flex pt-4">
+                            <button on:click={makeAnAccount} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
                         </div>
                         
                     </div>

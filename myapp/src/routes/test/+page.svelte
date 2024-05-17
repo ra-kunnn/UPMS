@@ -7,7 +7,7 @@
     function testModal(): void {
         const modal: ModalSettings = {
         type: 'component',
-        component: 'Form',
+        component: 'ConfirmApplication',
         };
         modalStore.trigger(modal);
     }
