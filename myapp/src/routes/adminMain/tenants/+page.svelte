@@ -9,10 +9,10 @@
 
     const modalStore = getModalStore();
 
-    function changeTenantRoom(): void {
+    function editTenant(): void {
         const modal: ModalSettings = {
         type: 'component',
-        component: 'ChangeTenantRoom',
+        component: 'editTenant',
         };
         modalStore.trigger(modal);
     }
@@ -63,7 +63,7 @@
                         </div>
 
                         <div class="flex p-4 float-right">
-                            <button on:click={changeTenantRoom} class="btn btn-sm variant-filled-success text-white self-end mr-2">Change Room</button>
+                            <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
                             <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
                         </div>
             
@@ -85,7 +85,7 @@
                         </div>
 
                         <div class="flex p-4 float-right">
-                            <button on:click={changeTenantRoom} class="btn btn-sm variant-filled-success text-white self-end mr-2">Change Room</button>
+                            <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
                             <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
                         </div>
             
@@ -107,7 +107,7 @@
                         </div>
 
                         <div class="flex p-4 float-right">
-                            <button on:click={changeTenantRoom} class="btn btn-sm variant-filled-success text-white self-end mr-2">Change Room</button>
+                            <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
                             <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
                         </div>
             
@@ -129,7 +129,7 @@
                         </div>
 
                         <div class="flex p-4 float-right">
-                            <button on:click={changeTenantRoom} class="btn btn-sm variant-filled-success text-white self-end mr-2">Change Room</button>
+                            <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
                             <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
                         </div>
             

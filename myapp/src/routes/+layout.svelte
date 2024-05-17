@@ -7,20 +7,24 @@
     import ConfirmApplication from '$lib/modals/confirmApply.svelte';
     import AreYouSure from '$lib/modals/confirmDeny.svelte';
     import BillingForm from '$lib/modals/issueBill.svelte';
-    import ChangeTenantRoom from '$lib/modals/changeRoom.svelte';
+    import editTenant from '$lib/modals/editTenant.svelte';
     import AssignTenants from '$lib/modals/assignTenants.svelte';
     import CreateAccount from '$lib/modals/createAccount.svelte';
 	import ChangePassword from "$lib/modals/changePassword.svelte";
+    import LogIn from '$lib/modals/login.svelte';
+	import SignUp from "$lib/modals/signup.svelte";
 
     const modalRegistry: Record<string, ModalComponent> = {
         // Set a unique modal ID, then pass the component reference
         ConfirmApplication: { ref: ConfirmApplication },
         AreYouSure: { ref: AreYouSure },
         BillingForm: { ref: BillingForm },
-        ChangeTenantRoom: { ref: ChangeTenantRoom },
+        editTenant: { ref: editTenant },
         AssignTenants: { ref: AssignTenants },
         CreateAccount: { ref: CreateAccount },
         ChangePassword: { ref: ChangePassword },
+        LogIn: { ref: LogIn },
+        SignUp: { ref: SignUp },
         // ...
 };
 </script>

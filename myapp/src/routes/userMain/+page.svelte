@@ -39,7 +39,7 @@
             <div class="block bg-gradient-to-br from-error-500 to-warning-600 text-surface-50 p-9 rounded-3xl">
                 <h1 class="h1 font-bold text-6xl pb-8">Room Application</h1>
 
-                <div class="block">
+                <div class="block w-6/12 mx-auto">
                     <div class="card overflow-hidden shadow bg-white text-surface-800">
                         <header>
                             <img src="https://www.thespruce.com/thmb/CnQmH_kyVVM4Av5_OnsxyiOstmk=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SPR-how-to-make-dorm-room-functional-relaxing-5649206-hero-ee04000729fd4f71ac65ad91a11f6275.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />

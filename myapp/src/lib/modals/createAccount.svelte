@@ -26,8 +26,7 @@
 		<article>Log in to apply for a room you like!</article>
 		<!-- prettier-ignore -->
 		<footer class="modal-footer {parent.regionFooter}">
-			<a href="/login" class="btn {parent.buttonPositive}">Log In</a>
-			<button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>Not Now</button>
+			<button class="btn {parent.buttonPositive}" on:click={parent.onClose}>Okay</button>
 		</footer>
 	</div>
 {/if}

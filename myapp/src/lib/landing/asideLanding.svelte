@@ -26,6 +26,8 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">To Admin Page</span>
                 </a>
             </li>
+
+            <!--
             <li>
                 <a href="/about" class="flex items-center p-2 text-surface-900 rounded-lg dark:text-white hover:bg-surface-100 dark:hover:bg-surface-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-surface-500 transition duration-75 dark:text-surface-400 group-hover:text-surface-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -36,6 +38,7 @@
                     <span class="flex-1 ms-3 whitespace-nowrap">About The Developers</span>
                 </a>
             </li>
+            -->
         </ul>
     </div>
 </aside>
