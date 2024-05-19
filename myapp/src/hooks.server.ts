@@ -1,82 +1,66 @@
-import { createServerClient } from '@supabase/ssr'
-import { type Handle, redirect } from '@sveltejs/kit'
-import { sequence } from '@sveltejs/kit/hooks'
-
-import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public'
+import { createServerClient } from '@supabase/ssr';
+import { type Handle, redirect } from '@sveltejs/kit';
+import { sequence } from '@sveltejs/kit/hooks';
+import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
 
 const supabase: Handle = async ({ event, resolve }) => {
-  /**
-   * Creates a Supabase client specific to this server request.
-   *
-   * The Supabase client gets the Auth token from the request cookies.
-   */
   event.locals.supabase = createServerClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
     cookies: {
       get: (key) => event.cookies.get(key),
-      /**
-       * SvelteKit's cookies API requires `path` to be explicitly set in
-       * the cookie options. Setting `path` to `/` replicates previous/
-       * standard behavior.
-       */
       set: (key, value, options) => {
-        event.cookies.set(key, value, { ...options, path: '/' })
+        event.cookies.set(key, value, { ...options, path: '/' });
       },
       remove: (key, options) => {
-        event.cookies.delete(key, { ...options, path: '/' })
+        event.cookies.delete(key, { ...options, path: '/' });
       },
     },
-  })
+  });
 
-  /**
-   * Unlike `supabase.auth.getSession()`, which returns the session _without_
-   * validating the JWT, this function also calls `getUser()` to validate the
-   * JWT before returning the session.
-   */
   event.locals.safeGetSession = async () => {
-    const {
-      data: { session },
-    } = await event.locals.supabase.auth.getSession()
-    if (!session) {
-      return { session: null, user: null }
-    }
+    const { data: { session } } = await event.locals.supabase.auth.getSession();
+    if (!session) return { session: null, user: null };
 
-    const {
-      data: { user },
-      error,
-    } = await event.locals.supabase.auth.getUser()
-    if (error) {
-      // JWT validation has failed
-      return { session: null, user: null }
-    }
+    const { data: { user }, error } = await event.locals.supabase.auth.getUser();
+    if (error) return { session: null, user: null };
 
-    return { session, user }
-  }
+    return { session, user };
+  };
 
   return resolve(event, {
     filterSerializedResponseHeaders(name) {
-      /**
-       * Supabase libraries use the `content-range` and `x-supabase-api-version`
-       * headers, so we need to tell SvelteKit to pass it through.
-       */
-      return name === 'content-range' || name === 'x-supabase-api-version'
+      return name === 'content-range' || name === 'x-supabase-api-version';
     },
-  })
-}
+  });
+};
 
 const authGuard: Handle = async ({ event, resolve }) => {
-  const { session, user } = await event.locals.safeGetSession()
-  event.locals.session = session
-  event.locals.user = user
+  const { session, user } = await event.locals.safeGetSession();
+  event.locals.session = session;
+  event.locals.user = user;
 
-  if (!event.locals.session && event.url.pathname.startsWith('/tenantMain')) {
-    return redirect(303, '/')
-  }// the / means it goes back to the main page
+  if (!event.locals.session && (event.url.pathname.startsWith('/tenantMain') || event.url.pathname.startsWith('/userMain') || event.url.pathname.startsWith('/adminMain'))) {
+    return redirect(303, '/');
+  }
 
   if (event.locals.session && event.url.pathname === '/') {
-    return redirect(303, '/tenantMain')
-  }//tenantmain means its already logged in
+    const { data: potCust } = await event.locals.supabase
+      .from('Potential Customer')
+      .select('customerEmail')
+      .eq('customerEmail', user.email)
+      .single();
+    if (potCust) return redirect(303, '/userMain');
 
-  return resolve(event)
-}
+    const { data: manager } = await event.locals.supabase
+      .from('Manager')
+      .select('managerEmail')
+      .eq('managerEmail', user.email)
+      .single();
+    if (manager) return redirect(303, '/adminMain');
 
-export const handle: Handle = sequence(supabase, authGuard)
+    return redirect(303, '/tenantMain');
+  }
+
+  return resolve(event);
+};
+
+export const handle: Handle = sequence(supabase, authGuard);
