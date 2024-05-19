@@ -11,16 +11,6 @@
 
 	const modalStore = getModalStore();
 
-	const formData = {
-		email: 'test@gmail.com'
-	};
-
-	// We've created a custom submit function to pass the response and close the modal.
-	function onFormSubmit(): void {
-		if ($modalStore[0].response) $modalStore[0].response(formData);
-		modalStore.close();
-	}
-
 	// Base Classes
 	const cBase = 'card p-4 w-modal shadow-xl space-y-4';
 	const cHeader = 'text-2xl font-bold';
@@ -34,21 +24,21 @@
 		<header class={cHeader}>Sign Up</header>
 		<article>Create your account if you don't have one yet!</article>
 		<!-- Enable for debugging: -->
-		<form class="modal-form {cForm}">
+		<form method="POST" action="?/signup" class="modal-form {cForm}">
 			<div class="flex gap-2">
 				<label class="label">
 					<span>First Name</span>
-					<input class="input" type="text" />
+					<input name="fname" id="fname"  class="input" type="text" />
 				</label>
 	
 				<label class="label">
 					<span>Last Name</span>
-					<input class="input" type="text" />
+					<input name="lname" id="lname" class="input" type="text" />
 				</label>
 
 				<label class="label">
 					<span>Sex</span>
-					<select class="select">
+					<select id="sex" name ="sex" class="select">
 						<option selected hidden></option>
 						<option value="M">Male</option>
 						<option value="F">Female</option>
@@ -59,30 +49,32 @@
 			<div class="flex gap-2">
 				<label class="label">
 					<span>E-mail</span>
-					<input class="input" type="email" placeholder="name@company.com" />
+					<input name="email" id="email"  class="input" type="email" placeholder="name@company.com" />
 				</label>
 	
 				<label class="label">
 					<span>Contact Number</span>
-					<input class="input" type="text" placeholder="09..." />
+					<input name="phone" id="phone" class="input" type="text" placeholder="09..." />
 				</label>
 			</div>
 
 			<label class="label">
 				<span>Password</span>
-				<input class="input" type="password" placeholder="••••••••••" />
+				<input name="password" id="password" class="input" type="password" placeholder="••••••••••" />
 			</label>
 
 			<label class="label">
 				<span>Confirm Password</span>
-				<input class="input" type="password" placeholder="••••••••••" />
+				<input name="conpassword" id="conpassword" class="input" type="password" placeholder="••••••••••" />
 			</label>
+
+			<!-- prettier-ignore -->
+		 <footer class="modal-footer {parent.regionFooter}">
+                <button type="submit" class="btn {parent.buttonPositive}">Sign Up</button>
+                <button type="button" class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
+            </footer>
 			
 		</form>
-		<!-- prettier-ignore -->
-		<footer class="modal-footer {parent.regionFooter}">
-			<a href="/userMain" class="btn {parent.buttonPositive}" on:click={onFormSubmit}>Sign Up</a>
-			<button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
-		</footer>
+		
 	</div>
 {/if}

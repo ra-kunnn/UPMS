@@ -10,16 +10,6 @@
 
 	const modalStore = getModalStore();
 
-	const formData = {
-		email: 'test@gmail.com'
-	};
-
-	// We've created a custom submit function to pass the response and close the modal.
-	function onFormSubmit(): void {
-		if ($modalStore[0].response) $modalStore[0].response(formData);
-		modalStore.close();
-	}
-
 	// Base Classes
 	const cBase = 'card p-4 w-modal shadow-xl space-y-4';
 	const cHeader = 'text-2xl font-bold';
@@ -33,21 +23,21 @@
 		<header class={cHeader}>Log In</header>
 		<article>Enter your credentials to access UPMS.</article>
 		<!-- Enable for debugging: -->
-		<form class="modal-form {cForm}">
+		<form method="POST" action="?/login" class="modal-form {cForm}">
 			<label class="label">
 				<span>Email</span>
-				<input class="input" type="email" placeholder="name@company.com" />
+				<input name="email" id="email" class="input" type="email" placeholder="name@company.com" />
 			</label>
 
 			<label class="label">
 				<span>Password</span>
-				<input class="input" type="password" placeholder="••••••••••" />
+				<input name="password" id="password" class="input" type="password" placeholder="••••••••••" />
 			</label>
-		</form>
-		<!-- prettier-ignore -->
+			<!-- prettier-ignore -->
 		<footer class="modal-footer {parent.regionFooter}">
-			<a href="/userMain" class="btn {parent.buttonPositive}" on:click={onFormSubmit}>Log In</a>
-			<button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
+			<button type="submit" class="btn {parent.buttonPositive}">Log In</button>
+			<button type="button" class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
 		</footer>
+		</form>
 	</div>
 {/if}
