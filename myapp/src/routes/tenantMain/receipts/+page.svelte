@@ -3,11 +3,22 @@
     import Aside from '$lib/tenant/asideTenant.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/tenant/profileTenant.svelte';
+
+    export let data;
+
+    const logout = async () => {
+        const { supabase } = data; // Destructure supabase from data
+        const { error } = await supabase.auth.signOut();
+        if (error) {
+            console.error(error);
+        }
+    };
+    
 </script>
 
 <HideOverflow />
 <div class="min-h-screen flex-auto w-full h-full font-sans text-surface-900 bg-gradient-to-br from-primary-100 via-slate-300 to-secondary-300">
-    <TenantHeader />
+    <TenantHeader {logout}/>
     <Aside />
     <header class="relative ml-80">
         <div class="w-auto p-10">
