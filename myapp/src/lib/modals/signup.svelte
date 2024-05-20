@@ -16,7 +16,15 @@
 	const cHeader = 'text-2xl font-bold';
 	const cForm = 'border border-surface-500 p-4 space-y-4 rounded-container-token';
 
+	
+
 	const handleSubmit = (event: Event) => {
+
+	const form = event.target as HTMLFormElement;
+	const formData = new FormData(form);
+	const password = formData.get('password') as string;
+	const conpassword = formData.get('conpassword') as string;
+
 		if (password !== conpassword) {
 			event.preventDefault();
 			alert('Password and Confirm Password are not the same.');
