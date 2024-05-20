@@ -15,6 +15,8 @@
         };
         modalStore.trigger(modal);
     }
+
+    
 </script>
 
 <HideOverflow />

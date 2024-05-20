@@ -11,6 +11,7 @@ export const actions: Actions = {
       const email = formData.get('email') as string;
       const phone = formData.get('phone') as string;
       const password = formData.get('password') as string;
+      const conpassword = formData.get('conpassword') as string;
       const sex = formData.get('sex') as string;
 
       const displayName = `${lname} ${fname}`;

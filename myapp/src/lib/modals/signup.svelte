@@ -15,6 +15,14 @@
 	const cBase = 'card p-4 w-modal shadow-xl space-y-4';
 	const cHeader = 'text-2xl font-bold';
 	const cForm = 'border border-surface-500 p-4 space-y-4 rounded-container-token';
+
+	const handleSubmit = (event: Event) => {
+		if (password !== conpassword) {
+			event.preventDefault();
+			alert('Password and Confirm Password are not the same.');
+		}
+	};
+
 </script>
 
 <!-- @component This example creates a simple form modal. -->
@@ -24,7 +32,7 @@
 		<header class={cHeader}>Sign Up</header>
 		<article>Create your account if you don't have one yet!</article>
 		<!-- Enable for debugging: -->
-		<form method="POST" action="?/signup" class="modal-form {cForm}">
+		<form method="POST" action="?/signup" on:submit={handleSubmit} class="modal-form {cForm}">
 			<div class="flex gap-2">
 				<label class="label">
 					<span>First Name</span>
