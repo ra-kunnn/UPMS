@@ -14,9 +14,10 @@ export const actions: Actions = {
       const conpassword = formData.get('conpassword') as string;
       const sex = formData.get('sex') as string;
 
-      const displayName = `${lname} ${fname}`;
+      const displayName = `${fname} ${lname}`;
 
       console.log('Form data:', { fname, lname, email, phone, password, sex, displayName });
+
 
       const { data: user, error: signupError} = await supabase.auth.signUp({
         email,
@@ -30,6 +31,7 @@ export const actions: Actions = {
           },
         },
       });
+
 
       if (signupError || !user) {
         console.error('Sign-up error:', signupError);
@@ -64,6 +66,7 @@ export const actions: Actions = {
       const email = formData.get('email') as string;
       const password = formData.get('password') as string;
 
+     //idk is there an auth way to get details... i think so? with the user id u did
       const { error } = await supabase.auth.signInWithPassword({ email, password });
 
       if (error) {

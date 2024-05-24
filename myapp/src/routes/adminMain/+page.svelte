@@ -25,7 +25,7 @@
         modalStore.trigger(modal);
     }
 
-    export let data;
+    export let data:PageData;
 
     const logout = async () => {
         const { supabase } = data; // Destructure supabase from data
@@ -34,6 +34,24 @@
             console.error(error);
         }
     };
+
+
+
+    import { invalidate } from '$app/navigation';
+    import type { EventHandler } from 'svelte/elements';
+    import type { PageData } from './$types';
+
+    const { user } = data;
+
+    let managerEmail = user[0].managerEmail;
+    let managerName = user[0].managerName;
+
+    function handleProfile(event) {
+    managerName = event.detail.managerName;
+    managerEmail = event.detail.managerEmail;
+  }
+
+
 </script>
 
 <HideOverflow />
@@ -42,7 +60,8 @@
     <Aside />
     <header class="relative ml-80">
         <div class="w-auto p-10">
-            <Profile />
+            <Profile on:modalOpen={handleProfile} {managerName} {managerEmail} />
+
             
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
 

@@ -25,7 +25,7 @@
         modalStore.trigger(modal);
     }
 
-    export let data;
+    export let data:PageData;
 
     const logout = async () => {
         const { supabase } = data; // Destructure supabase from data
@@ -35,6 +35,15 @@
         }
     };
 
+      const { user } = data;
+
+      let customerName = user?.customerName ?? '';
+
+      function handleProfile(event) {
+      customerName = event.detail.customerName;
+    }
+
+
 </script>
 
 <HideOverflow />
@@ -43,7 +52,7 @@
     <Aside />
     <header class="relative ml-80">
         <div class="w-auto p-10">
-            <Profile />
+            <Profile  on:modalOpen={handleProfile} {customerName} />
             
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 

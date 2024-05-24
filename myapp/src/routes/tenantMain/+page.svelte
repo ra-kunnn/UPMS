@@ -1,10 +1,15 @@
-<script>
+<script lang="ts">
 	import TenantHeader from '$lib/tenant/headerTenant.svelte';
     import Aside from '$lib/tenant/asideTenant.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/tenant/profileTenant.svelte';
+    import { onMount } from 'svelte';
 
-     export let data;
+    import { invalidate } from '$app/navigation';
+    import type { EventHandler } from 'svelte/elements';
+    import type { PageData } from './$types';
+
+      export let data:PageData;
 
     const logout = async () => {
         const { supabase } = data; // Destructure supabase from data
@@ -13,6 +18,18 @@
             console.error(error);
         }
     };
+
+      
+
+
+      const { user } = data;
+
+      let tenantName = user?.tenantName ?? '';
+
+      function handleProfile(event) {
+      tenantName = event.detail.tenantName;
+    }
+
 
     
 </script>
@@ -23,7 +40,7 @@
     <Aside />
     <header class="relative ml-80">
         <div class="w-auto p-10">
-            <Profile/>
+            <Profile on:modalOpen={handleProfile} {tenantName}/>
 
             <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
