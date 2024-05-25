@@ -3,9 +3,10 @@
     import Aside from '$lib/user/asideUser.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/user/profileUser.svelte';
-    import type { PageData } from './$types';
+
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
+    import type { PageData } from './$types';
 
     const modalStore = getModalStore();
 
