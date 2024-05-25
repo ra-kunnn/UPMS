@@ -11,13 +11,11 @@ export const actions: Actions = {
       const email = formData.get('email') as string;
       const phone = formData.get('phone') as string;
       const password = formData.get('password') as string;
-      const conpassword = formData.get('conpassword') as string;
       const sex = formData.get('sex') as string;
 
-      const displayName = `${fname} ${lname}`;
+      const displayName = `${lname} ${fname}`;
 
       console.log('Form data:', { fname, lname, email, phone, password, sex, displayName });
-
 
       const { data: user, error: signupError} = await supabase.auth.signUp({
         email,
@@ -31,7 +29,6 @@ export const actions: Actions = {
           },
         },
       });
-
 
       if (signupError || !user) {
         console.error('Sign-up error:', signupError);
@@ -66,7 +63,6 @@ export const actions: Actions = {
       const email = formData.get('email') as string;
       const password = formData.get('password') as string;
 
-     //idk is there an auth way to get details... i think so? with the user id u did
       const { error } = await supabase.auth.signInWithPassword({ email, password });
 
       if (error) {
@@ -97,3 +93,38 @@ export const actions: Actions = {
     return redirect(303, '/tenantMain');
   },
 };
+
+import type { PageServerLoad } from './$types';
+
+export const load: PageServerLoad = async ({ depends, locals: { supabase, session } }) => {
+
+  depends('supabase:db:Dorm Room');
+  depends('supabase:db:Availability');
+
+  const { data: roomData, error: roomError } = await supabase
+    .from('Dorm Room')
+    .select('*');
+
+  
+  const { data: availabilityData, error: availabilityError } = await supabase
+    .from('Availability')
+    .select('*');
+
+  if (roomError) {
+    console.error('Error fetching room data:', roomError);
+    return { rooms: [], availability: availabilityData ?? [], error: roomError.message };
+  }
+
+  if (availabilityError) {
+    console.error('Error fetching availability data:', availabilityError);
+    return { rooms: roomData ?? [], availability: [], error: availabilityError.message };
+  }
+
+
+
+
+
+  return { rooms: roomData ?? [], availability: availabilityData ?? [] };
+
+};
+
