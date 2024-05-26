@@ -29,11 +29,7 @@
 			return;
 		}
 
-		const {data: { user },} = await supabase.auth.getUser()
-		let metadata = user.user_metadata
-
-		console.log(metadata);
-
+		console.log(email, oldPassword)
 
 		// Authenticate with current password
 		const { error: signInError } = await supabase.auth.signInWithPassword({
@@ -67,6 +63,7 @@
 	<div class="modal-example-form {cBase}">
 		<header class={cHeader}>Password Change</header>
 		<form on:submit={changepw} class="modal-form {cForm}">
+
 			<label class="label">
 				<span>Email</span>
 				<input name="email" id="email" class="input" type="email" placeholder="@company.com" required />

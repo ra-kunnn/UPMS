@@ -1,16 +1,27 @@
 <script lang="ts">
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
+    import ChangePassword from '$lib/modals/ChangePassword.svelte';
+
 
     const modalStore = getModalStore();
 
-    function passwordChange(): void {
+    import { createEventDispatcher } from 'svelte';
+
+    const dispatch = createEventDispatcher();
+
+    export let managerEmail:string;
+    console.log("email at aside:" + managerEmail)
+
+     function passwordChange(): void {
         const modal: ModalSettings = {
         type: 'component',
         component: 'ChangePassword',
         };
         modalStore.trigger(modal);
     }
+
+
 </script>
 
 <aside class="fixed top-20 left-0 z-20 w-80 h-screen transition-transform -translate-x-full sm:translate-x-0">

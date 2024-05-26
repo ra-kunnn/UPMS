@@ -3,7 +3,6 @@
     import Aside from '$lib/admin/asideAdmin.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/admin/profileAdmin.svelte';
-
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
 
@@ -52,12 +51,18 @@
   }
 
 
+  function handleAside(event) {
+    managerEmail = event.detail.managerEmail;
+  }
+
+
+
 </script>
 
 <HideOverflow />
 <div class="min-h-screen flex-auto w-full h-full font-sans text-surface-900 bg-gradient-to-br from-primary-100 via-slate-300 to-secondary-300">
     <Header {logout}/>
-    <Aside />
+    <Aside on:modalOpen={handleAside} {managerEmail} />
     <header class="relative ml-80">
         <div class="w-auto p-10">
             <Profile on:modalOpen={handleProfile} {managerName} {managerEmail} />
