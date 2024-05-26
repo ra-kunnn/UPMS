@@ -23,7 +23,10 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
     return { user: null, error: error.message };
   }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
   depends('supabase:db:Dorm Room');
   depends('supabase:db:Availability');
 
@@ -47,9 +50,16 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
   }
 
 
+<<<<<<< Updated upstream
 console.log(user)
 
 
   return { rooms: roomData ?? [], availability: availabilityData ?? [], user: user ?? []  };
 
+=======
+
+
+
+  return { rooms: roomData ?? [], availability: availabilityData ?? [], user: user ?? []  };
+>>>>>>> Stashed changes
 };
