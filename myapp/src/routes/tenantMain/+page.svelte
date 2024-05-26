@@ -4,7 +4,7 @@
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/tenant/profileTenant.svelte';
     import { onMount } from 'svelte';
-
+    import Cookies from 'js-cookie';
     import { invalidate } from '$app/navigation';
     import type { EventHandler } from 'svelte/elements';
     import type { PageData } from './$types';
@@ -25,11 +25,13 @@
       const { user } = data;
 
       let tenantName = user?.tenantName ?? '';
+      let tenantEmail = user?.tenantEmail ?? '';
 
       function handleProfile(event) {
       tenantName = event.detail.tenantName;
     }
 
+    Cookies.set('email', tenantEmail);
 
     
 </script>

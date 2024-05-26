@@ -12,7 +12,7 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
 
   const { data: tenant, error } = await supabase
     .from('Tenant')
-    .select('tenantName')
+    .select('tenantName, tenantEmail')
     .eq('userID', userId)
     .single();
 

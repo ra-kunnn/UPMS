@@ -8,11 +8,6 @@
 
     import { createEventDispatcher } from 'svelte';
 
-    const dispatch = createEventDispatcher();
-
-    export let managerEmail:string;
-    console.log("email at aside:" + managerEmail)
-
      function passwordChange(): void {
         const modal: ModalSettings = {
         type: 'component',

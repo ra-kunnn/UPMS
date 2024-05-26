@@ -2,6 +2,7 @@
 	import type { SvelteComponent } from 'svelte';
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import { supabase } from '$lib/supabaseClient';
+	import Cookies from 'js-cookie';
 
 	export let parent: SvelteComponent;
 
@@ -11,13 +12,16 @@
 	const cHeader = 'text-2xl font-bold';
 	const cForm = 'border border-surface-500 p-4 space-y-4 rounded-container-token';
 
+	const email = Cookies.get('email');
+	console.log('email in chpw:', email);
+
+
 	const changepw = async (event: Event) => {
 		event.preventDefault(); // Prevent the default form submission
 
 		const form = event.target as HTMLFormElement;
 		const formData = new FormData(form);
 
-		const email = formData.get('email') as string;
 		const oldPassword = formData.get('oldpw') as string;
 		const newPassword = formData.get('newpw') as string;
 		const confirmPassword = formData.get('conpw') as string;
@@ -53,8 +57,15 @@
 		}
 
 		alert('Password changed successfully!');
+		Cookies.remove('email');
 		parent.onClose(); // Close the modal
 	};
+
+	function remCookie(){
+		Cookies.remove('email');
+	}
+
+	
 </script>
 
 <!-- @component This example creates a simple form modal. -->
@@ -66,7 +77,7 @@
 
 			<label class="label">
 				<span>Email</span>
-				<input name="email" id="email" class="input" type="email" placeholder="@company.com" required />
+				<input name="email" id="email" class="input" type="email" value="{email}" readonly />
 			</label>
 
 			<label class="label">
@@ -88,7 +99,7 @@
 
 			<footer class="modal-footer {parent.regionFooter}">
 				<button type="submit" class="btn {parent.buttonPositive}">Change Password</button>
-				<button type="button" class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
+				<button type="button" class="btn {parent.buttonNeutral}" on:click={() => { parent.onClose(); remCookie(); }}>{parent.buttonTextCancel}</button>
 			</footer>
 		</form>
 	</div>

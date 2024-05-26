@@ -3,7 +3,7 @@
     import Aside from '$lib/user/asideUser.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/user/profileUser.svelte';
-
+    import Cookies from 'js-cookie';
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import type { PageData } from './$types';    
@@ -68,6 +68,7 @@
     let availRows: Availability[] = [];
     let availableRooms: Room[] = [];
     let customerName: string = '';
+    let customerEmail: string = '';
 
 
     onMount(() => {
@@ -79,6 +80,8 @@
                 return roomAvailability && roomAvailability.availability;
             });
             customerName = data.user?.customerName ?? '';
+            customerEmail = data.user?.customerEmail ?? '';
+            Cookies.set('email', customerEmail);
         } catch (error) {
             console.error(error);
             roomRows = [];
@@ -86,6 +89,8 @@
             availableRooms = [];
         }
     });
+
+
 
     function createArray(length: number): number[] {
         return Array.from({ length }, (_, i) => i);
