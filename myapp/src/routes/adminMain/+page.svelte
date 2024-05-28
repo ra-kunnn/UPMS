@@ -6,7 +6,10 @@
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import Cookies from 'js-cookie';
-
+    import { onMount } from 'svelte';
+    import { invalidate } from '$app/navigation';
+    import type { EventHandler } from 'svelte/elements';
+    import type { PageData } from './$types';
     const modalStore = getModalStore();
 
     function billPopUp(): void {
@@ -35,23 +38,106 @@
         }
     };
 
+    
+
+    interface Tenant{
+        tenantID: number;
+        tenantName: string;
+        tenantSex: string;
+        dormNo: number;
+        tenantEmail: string;
+        tenantPhone: number;
+    }
+
+    interface Bills{
+        billID: number;
+        dormNo: number;
+        dateIssued: Date;
+        paymentStatus: boolean;
+        datePaid: Date;
+        monthlyRent: number;
+        waterBill: number;
+        electricityBill: number;
+        hutRent: number;
+        visitorOvernightBill: number;
+        maintenanceBill: number;
+        totalBillAmount?: number;
+        
+    }
+
+    interface Visitors{
+        visitorID: number;
+        visitorName: string;
+        startDateOfVisit: Date;
+        visitorRelation: string;
+        tenantID: number;
+        endDateOfVisit: Date;
+        isApproved: boolean;
+    }
+
+    interface Maintenance{
+        maintenanceID: number;
+        maintenanceRequest: string;
+        startDateOfMaintenance: Date;
+        dormNo: number;
+        endDateOfMaintenance: Date;
+        isDone: boolean;
+    }
+
+    interface Room {
+        dormNo: number;
+        PAX: number;
+        airconStatus: boolean;
+        personalCrStatus: boolean;
+        personalSinkStatus: boolean;
+        monthlyRent: number;
+        floor: number;
+        roomName: string;
+        // Add other columns as needed
+  }
+    const maxThings = 4;
 
 
-    import { invalidate } from '$app/navigation';
-    import type { EventHandler } from 'svelte/elements';
-    import type { PageData } from './$types';
 
-    const { user } = data;
+    let managerName: string = '';
+    let managerEmail: string = '';
+    let tenantRows: Tenant[] = [];
+    let billRows: Bills[] = [];
+    let visitorRows: Visitors[] = [];  
+    let maintenanceRows: Maintenance[] = [];
+    let roomRows: Room[] = [];
+    const maxBills = 4;
 
+    function calculateTotalBillAmount(bill: Bills): number {
+        return bill.monthlyRent + bill.waterBill + bill.electricityBill + bill.hutRent + bill.visitorOvernightBill + bill.maintenanceBill;
+    }
 
-    let managerEmail = user[0].managerEmail;
-    let managerName = user[0].managerName;
-
-    Cookies.set('email', managerEmail);
-
+    onMount(() => {
+        try {
+            billRows = data.bill || [];
+            tenantRows = data.allTenants || [];
+            visitorRows = data.visitor || [];
+            maintenanceRows = data.maintenance || [];
+            roomRows = data.rooms || [];
+            managerName = data.user[0]?.managerName ?? '';
+            managerEmail = data.user[0]?.managerEmail ?? '';
+            Cookies.set('email', managerEmail);
+            billRows = billRows.map(bill => ({
+                ...bill,
+                totalBillAmount: calculateTotalBillAmount(bill)
+            }));
+            
+        } catch (error) {
+            console.error(error);
+            tenantRows = [];
+            billRows = [];
+        }
+    });
+    
+    Cookies.set('email', managerEmail); 
     function handleProfile(event) {
-    managerName = event.detail.managerName;
-    managerEmail = event.detail.managerEmail;
+        managerName = event.detail.managerName;
+        managerEmail = event.detail.managerEmail;
   }
 
 
@@ -114,60 +200,32 @@
             <div class="bg-gradient-to-br from-primary-400 to-secondary-700 p-9 rounded-3xl text-surface-50">
                 <h1 class="h1 font-bold pb-2 text-surface-50">Released Bills</h1>
                 <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10 text-surface-800">
-
-                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-
-                        <div class="p-4 pb-0">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 font-semibold">Room A – Mar 2024</h4>
-                                    <h2 class="h2 tracking-tight font-bold pb-1">₱10,000.00</h2>
-                                    <p class="text-sm text-surface-400">tenant 1, tenant 2, tenant 3, tenant 4</p>
+                {#each billRows.slice(0, 4) as billRow}
+                    {#if !billRow.paymentStatus}
+                        <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        {#each roomRows as roomRow}    
+                            {#if roomRow.dormNo === billRow.dormNo}
+                                <div class="p-4 pb-0">
+                                    <div class="flex m-auto justify-between">
+                                        <div class="block">
+                                            <h4 class="h4 font-semibold">Room {roomRow.roomName} – {billRow.dateIssued}</h4>
+                                            <h2 class="h2 tracking-tight font-bold pb-1">₱{billRow.totalBillAmount}</h2>
+                                            
+                                                <p class="text-sm text-surface-400">{#each tenantRows as tenantRow}    {#if tenantRow.dormNo === billRow.dormNo}{tenantRow.tenantName}, {/if}{/each}</p>
+                                            
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="flex p-4 float-right">
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
-                        </div>
-            
-                    </div>
-
-                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-                        
-                        <div class="p-4 pb-0">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 font-semibold">Room B – Mar 2024</h4>
-                                    <h2 class="h2 tracking-tight font-bold pb-1">₱10,000.00</h2>
-                                    <p class="text-sm text-surface-400">tenant 1, tenant 2, tenant 3, tenant 4</p>
+                                <div class="flex p-4 float-right">
+                                    <button on:click={areYouSure} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
                                 </div>
-                            </div>
+                            {/if}
+                        {/each}
                         </div>
-
-                        <div class="flex p-4 float-right">
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
-                        </div>
-            
-                    </div>
-
-                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-                        
-                        <div class="p-4 pb-0">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 font-semibold">Room 205 – Mar 2024</h4>
-                                    <h2 class="h2 tracking-tight font-bold pb-1">₱6,000.00</h2>
-                                    <p class="text-sm text-surface-400">tenant 1, tenant 2</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex p-4 float-right">
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
-                        </div>
-            
-                    </div>
+                    {/if}
+                {/each}
+                    
                 </div>
             </div>
 
@@ -176,114 +234,32 @@
             <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-9 rounded-3xl text-surface-50">
                 <h1 class="h1 font-bold pb-2 text-surface-50">Visitor Requests</h1>
                 <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10 text-surface-800">
-
-                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-                        <div class="p-4 pb-0">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
-                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
-                                    <p class="text-sm text-surface-400">Room A</p>
+                {#each visitorRows as visitorRow}
+                    {#if !visitorRow.isApproved}
+                        <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                            <div class="p-4 pb-0">
+                                <div class="flex m-auto justify-between">
+                                    <div class="block">
+                                        {#each tenantRows as tenantRow}
+                                            {#if tenantRow.tenantID === visitorRow.tenantID}
+                                                <h4 class="h4 text-2 xl font-bold tracking-tight">{tenantRow.tenantName}</h4>
+                                                <p class="text-base pb-1">Visitor: {visitorRow.visitorName}, {visitorRow.visitorRelation}</p>
+                                                <p class="text-sm text-surface-400">Room {#each roomRows as roomRow}{#if roomRow.dormNo === tenantRow.dormNo}{roomRow.roomName}{/if}{/each}</p>
+                                            {/if}
+                                        {/each}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
-                        </div>
-            
-                    </div>
-
-                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-                        <div class="p-4 pb-0">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
-                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
-                                    <p class="text-sm text-surface-400">Room A</p>
-                                </div>
+                            <div class="flex p-4 float-right">
+                                <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
+                                <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                             </div>
+                
                         </div>
-
-                        <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
-                        </div>
-            
-                    </div>
-
-                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-                        <div class="p-4 pb-0">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
-                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
-                                    <p class="text-sm text-surface-400">Room A</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
-                        </div>
-            
-                    </div>
-
-                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-                        <div class="p-4 pb-0">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
-                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
-                                    <p class="text-sm text-surface-400">Room A</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
-                        </div>
-            
-                    </div>
-
-                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-                        <div class="p-4 pb-0">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
-                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
-                                    <p class="text-sm text-surface-400">Room A</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
-                        </div>
-            
-                    </div>
-
-                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-                        <div class="p-4 pb-0">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
-                                    <p class="text-base pb-1">Visitor: Alex Plariza, father</p>
-                                    <p class="text-sm text-surface-400">Room A</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
-                        </div>
-            
-                    </div>
+                    {/if}
+                {/each}
+                    
                 </div>
             </div>
             

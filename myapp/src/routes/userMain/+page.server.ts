@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
 
   const { data: user, error } = await supabase
     .from('Potential Customer')
-    .select('customerName, customerEmail')
+    .select('*')
     .eq('userID', userId)
     .single();
 
@@ -35,6 +35,14 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
     .from('Availability')
     .select('*');
 
+   
+
+  const { data: applicationData, applicationError } = await supabase
+  .from('Application Form')
+  .select('*')
+  .eq('customerID', user.customerID);
+
+
   if (roomError) {
     console.error('Error fetching room data:', roomError);
     return { rooms: [], availability: availabilityData ?? [], error: roomError.message };
@@ -45,9 +53,12 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
     return { rooms: roomData ?? [], availability: [], error: availabilityError.message };
   }
 
+  if (applicationError) {
+    console.error('Error fetching availability data:', applicationError);
+    return { rooms: roomData ?? [], availability: availabilityData ?? [], application: [], error: applicationError.message };
+  }
+  console.log(user);
+  console.log(applicationData);
 
-
-
-
-  return { rooms: roomData ?? [], availability: availabilityData ?? [], user: user ?? []  };
+  return { rooms: roomData ?? [], availability: availabilityData ?? [], user: user ?? [], application: applicationData ?? []  };
 };

@@ -1,10 +1,23 @@
-<script>
+<script lang="ts">
 	import Header from '$lib/admin/headerAdmin.svelte';
     import Aside from '$lib/admin/asideAdmin.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/admin/profileAdmin.svelte';
 
-    export let data;
+    import { Modal, getModalStore } from '@skeletonlabs/skeleton';
+    import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
+    import type { PageData } from './$types';
+    import { onMount } from 'svelte';
+    const modalStore = getModalStore();
+
+    function assignTenants(): void {
+        const modal: ModalSettings = {
+        type: 'component',
+        component: 'AssignTenants',
+        };
+        modalStore.trigger(modal);
+    }
+    export let data:PageData;
 
     const logout = async () => {
         const { supabase } = data; // Destructure supabase from data
@@ -13,6 +26,41 @@
             console.error(error);
         }
     };
+
+    interface Maintenance{
+        maintenanceID: number;
+        maintenanceRequest: string;
+        startDateOfMaintenance: Date;
+        dormNo: number;
+        endDateOfMaintenance: Date;
+        isDone: boolean;
+    }
+
+    interface Room {
+        dormNo: number;
+        PAX: number;
+        airconStatus: boolean;
+        personalCrStatus: boolean;
+        personalSinkStatus: boolean;
+        monthlyRent: number;
+        floor: number;
+        roomName: string;
+        // Add other columns as needed
+  }
+
+    let roomRows: Room[] = [];
+    let maintenanceRows: Maintenance[] = [];
+
+    onMount(() => {
+        try {
+            roomRows = data.rooms || [];
+            maintenanceRows = data.maintenance || [];
+            
+        } catch (error) {
+            console.error(error);
+            roomRows = [];
+        }
+    });
 </script>
 
 <HideOverflow />
@@ -38,31 +86,24 @@
                     <table class="table table-fixed table-hover bg-surface-50">
                         <thead>
                             <tr class="bg-secondary-400">
-                                <th>Name</th>
+                                <th>Dorm Room</th>
                                 <th colspan="2">Task Description</th>
                                 <th>Start Date and Time</th>
                                 <th>End Date and Time</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>John Pork</td>
-                                <td colspan="2">Plumbing for Room A</td>
-                                <td>03/16/24, 13:00</td>
-                                <td>03/16/24, 17:00</td>
-                            </tr>
-                            <tr>
-                                <td>Mario the Plumber</td>
-                                <td colspan="2">Plumbing for Room A</td>
-                                <td>03/16/24, 13:00</td>
-                                <td>03/16/24, 17:00</td>
-                            </tr>
-                            <tr>
-                                <td>Sonny Angle</td>
-                                <td colspan="2">AC Unit Cleaning for Room 204</td>
-                                <td>03/12/24, 08:00</td>
-                                <td>03/12/24, 11:00</td>
-                            </tr>
+                            {#each maintenanceRows as maintenanceRow}
+                                {#if maintenanceRow.isDone}
+                                    <tr>
+                                        {#each roomRows as roomRow}{#if roomRow.dormNo === maintenanceRow.dormNo} <td>Room {roomRow.roomName}</td>{/if}{/each}
+                                        <td colspan="2">{maintenanceRow.maintenanceRequest}</td>
+                                        <td>{maintenanceRow.startDateOfMaintenance}</td>
+                                        <td>{maintenanceRow.endDateOfMaintenance}</td>
+                                    </tr>
+                                {/if}
+                            {/each}
+                            
                         </tbody>
                     </table>
                 </div>

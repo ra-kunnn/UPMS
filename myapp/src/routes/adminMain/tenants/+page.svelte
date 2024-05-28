@@ -3,7 +3,8 @@
     import Aside from '$lib/admin/asideAdmin.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/admin/profileAdmin.svelte';
-
+    import type { PageData } from './$types';
+    import { onMount } from 'svelte';
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
 
@@ -25,7 +26,7 @@
         modalStore.trigger(modal);
     }
 
-    export let data;
+    export let data:PageData;
 
     const logout = async () => {
         const { supabase } = data; // Destructure supabase from data
@@ -34,6 +35,38 @@
             console.error(error);
         }
     };
+    interface Room {
+        dormNo: number;
+        PAX: number;
+        airconStatus: boolean;
+        personalCrStatus: boolean;
+        personalSinkStatus: boolean;
+        monthlyRent: number;
+        floor: number;
+        roomName: string;
+        // Add other columns as needed
+    }
+    interface Tenant{
+        tenantID: number;
+        tenantName: string;
+        tenantSex: string;
+        dormNo: number;
+        tenantEmail: string;
+        tenantPhone: number;
+    }
+    let tenantRows: Tenant[] = [];
+    let roomRows: Room[] = [];
+    onMount(() => {
+        try {
+            tenantRows = data.allTenants || [];
+            roomRows = data.rooms || [];
+            
+        } catch (error) {
+            console.error(error);
+            tenantRows = [];    
+        }
+    });
+
 </script>
 
 <HideOverflow />
@@ -57,28 +90,31 @@
                 
                 <div class="col-span-4 grid grid-cols-4 md:grid-cols-3 gap-4 text-surface-800">
 
-                    <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
-                        <header>
-                            <img src="https://yt3.ggpht.com/F4Hc9ZLwy6PkyNfXr04K7SdwWUIHExFv9MWpHiBG5x-81SiZ2ysEUmodvWR4oDGAAU1-EpxI=s800-c-k-c0x00ffffff-no-rj" class="object-cover aspect-square w-full" alt="Post" />
-                        </header>
+                    {#each tenantRows as tenantRow}
+                        <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
+                            <header>
+                                <img src="https://yt3.ggpht.com/F4Hc9ZLwy6PkyNfXr04K7SdwWUIHExFv9MWpHiBG5x-81SiZ2ysEUmodvWR4oDGAAU1-EpxI=s800-c-k-c0x00ffffff-no-rj" class="object-cover aspect-square w-full" alt="Post" />
+                            </header>
 
-                        <div class="p-4">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Gian Paolo Plariza</h4>
-                                    <p class="text-base pb-2">Room A</p>
-                                    <p class="text-sm text-surface-400">gianpdplariza@gmail.com<br>tenant since May 2023</p>
+                            <div class="p-4">
+                                <div class="flex m-auto justify-between">
+                                    <div class="block">
+                                        <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">{tenantRow.tenantName}</h4>
+                                        {#each roomRows as roomRow} {#if roomRow.dormNo === tenantRow.dormNo}<p class="text-base pb-2">Room {roomRow.roomName}</p>{/if} {/each}
+                                            
+                                       
+                                        <p class="text-sm text-surface-400">{tenantRow.tenantEmail}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="flex p-4 float-right">
-                            <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
+                            <div class="flex p-4 float-right">
+                                <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
+                                <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
+                            </div>
+                
                         </div>
-            
-                    </div>
-
+                    {/each}
                     <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                         <header>
                             <img src="https://img-aws.ehowcdn.com/750x428p/photos.demandstudios.com/getty/article/232/231/484726794.jpg" class="object-cover aspect-square w-full" alt="Post" />

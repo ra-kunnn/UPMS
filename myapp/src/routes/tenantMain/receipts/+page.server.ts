@@ -41,8 +41,5 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
     return { user: tenant ?? null, bills: billData ?? [], allTenants: [], error: billError.message };
   }
 
-  const { data: roomData, error: roomError } = await supabase
-    .from('Dorm Room')
-    .select('*');
-  return { rooms: roomData ?? [], user: tenant ?? [], bill: billData ?? [], allTenants: allTenantData ?? [], };
+  return {  bill: billData ?? []};
 };
