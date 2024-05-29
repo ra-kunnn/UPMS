@@ -46,6 +46,7 @@
         monthlyRent: number;
         floor: number;
         roomName: string;
+        currentPeople: number;
         // Add other columns as needed
   }
 
@@ -80,6 +81,8 @@
     let applicationRows: Application[] = [];
     let customerName: string = '';
     let customerEmail: string = '';
+    let customerID: number = 0;
+    let customerHasApplied: boolean = false;
 
 
     onMount(() => {
@@ -93,6 +96,8 @@
             });
             customerName = data.user?.customerName ?? '';
             customerEmail = data.user?.customerEmail ?? '';
+            customerID = data.user?.customerID ?? 0;
+            customerHasApplied = data.user?.hasApplied ?? false;
             Cookies.set('email', customerEmail);
         } catch (error) {
             console.error(error);
@@ -127,13 +132,13 @@
             <Profile  on:modalOpen={handleProfile} {customerName} />
             
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
-            {#if applicationRows}
+            {#if customerHasApplied}     
                 <div class="block bg-gradient-to-br from-error-500 to-warning-600 text-surface-50 p-9 rounded-3xl">
                     <h1 class="h1 font-bold text-6xl pb-8">Room Application</h1>
-
+                   
                     {#each applicationRows as applicationRow}
-                        {#each roomRows as roomRow}
-                            {#if roomRow.dormNo === applicationRow.dormNo}
+                            {#each roomRows as roomRow}
+                                {#if roomRow.dormNo === applicationRow.dormNo}
                                 <div class="block w-6/12 mx-auto">
                                     <div class="card overflow-hidden shadow bg-white text-surface-800">
                                         <header>
@@ -219,11 +224,13 @@
                                 </div>
                                 {/if}
                             {/each}
+                        
                     {/each}
+            
                 </div>
-
+            {/if}
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
-            {:else}
+            {#if !customerHasApplied} 
                 <div class="flex m-auto justify-between pb-8">
                     <h1 class="h1 font-bold my-auto">Available Rooms</h1>
                     <div class="input-group input-group-divider grid-cols-[auto_1fr_auto] w-72">
@@ -235,9 +242,9 @@
                         <input type="search" placeholder="Search..." />
                     </div>
                 </div>
-                
+             
                 <div class="col-span-3 grid grid-cols-3 gap-4 text-surface-800">
-
+                
                     {#each availableRooms as roomRow}
                             
                                 <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
