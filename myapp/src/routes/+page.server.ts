@@ -39,7 +39,7 @@ export const actions: Actions = {
 
       // If signup succeeds, add user details to the user table
       const { error: profileError } = await supabase
-        .from('Potential Customer') // Replace 'Potential Customer' with your actual user table name
+        .from('Potential Customer') 
         .insert([
           {
             customerName: displayName,
@@ -47,6 +47,7 @@ export const actions: Actions = {
             customerEmail: email,
             customerSex: sex,
             userID: userID,
+            hasApplied: 'FALSE',
           },
         ]);
 
