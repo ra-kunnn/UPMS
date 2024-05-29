@@ -80,12 +80,10 @@
 				<input name="email" id="email" class="input" type="email" value="{email}" readonly />
 			</label>
 
-			<label class="label">
+			<label class="label pb-3">
 				<span>Old Password</span>
 				<input name="oldpw" id="oldpw" class="input" type="password" placeholder="••••••••••" required />
 			</label>
-
-			<br>
 
 			<label class="label">
 				<span>New Password</span>

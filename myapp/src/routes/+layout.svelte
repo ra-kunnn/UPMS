@@ -13,9 +13,11 @@
     import editTenant from '$lib/modals/editTenant.svelte';
     import AssignTenants from '$lib/modals/assignTenants.svelte';
     import CreateAccount from '$lib/modals/createAccount.svelte';
-    import ChangePassword from "$lib/modals/changePassword.svelte";
+    import ChangePassword from '$lib/modals/changePassword.svelte';
     import LogIn from '$lib/modals/login.svelte';
     import SignUp from "$lib/modals/signup.svelte";
+    import VisitorForm from "$lib/modals/requestFormVisitor.svelte";
+    import MaintenanceForm from "$lib/modals/requestFormMaintenance.svelte";
 
     const modalRegistry: Record<string, ModalComponent> = {
         ConfirmApplication: { ref: ConfirmApplication },
@@ -27,6 +29,8 @@
         ChangePassword: { ref: ChangePassword },
         LogIn: { ref: LogIn },
         SignUp: { ref: SignUp },
+        VisitorForm: { ref: VisitorForm },
+        MaintenanceForm: { ref: MaintenanceForm },
     };
 
     export let data;

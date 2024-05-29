@@ -11,6 +11,22 @@
         };
         modalStore.trigger(modal);
     }
+
+    function requestForm(): void {
+        const modal: ModalSettings = {
+        type: 'component',
+        component: 'VisitorForm',
+        };
+        modalStore.trigger(modal);
+    }
+
+    function maintenanceForm(): void {
+        const modal: ModalSettings = {
+        type: 'component',
+        component: 'MaintenanceForm',
+        };
+        modalStore.trigger(modal);
+    }
 </script>
 
 <aside class="fixed top-20 left-0 z-20 w-80 h-screen transition-transform -translate-x-full sm:translate-x-0">
@@ -32,6 +48,24 @@
                     </svg>
                 <span class="ms-3">Receipts</span>
                 </a>
+            </li>
+            <li>
+                <button on:click={requestForm} class="flex items-center w-full p-2 text-surface-900 rounded-lg dark:text-white hover:bg-surface-100 dark:hover:bg-surface-700 group">
+                    <svg class="flex-shrink-0 w-5 h-5 text-surface-500 transition duration-75 dark:text-surface-400 group-hover:text-surface-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                    <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
+                    <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
+                    </svg>
+                    <span class="ms-3">Visitor Request Form</span>
+                </button>
+            </li>
+            <li>
+                <button on:click={maintenanceForm} class="flex items-center w-full p-2 text-surface-900 rounded-lg dark:text-white hover:bg-surface-100 dark:hover:bg-surface-700 group">
+                    <svg class="flex-shrink-0 w-5 h-5 text-surface-500 transition duration-75 dark:text-surface-400 group-hover:text-surface-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+                    <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
+                    <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
+                    </svg>
+                    <span class="ms-3">Maintenance Request Form</span>
+                </button>
             </li>
             <li>
                 <button on:click={passwordChange} class="flex items-center w-full p-2 text-surface-900 rounded-lg dark:text-white hover:bg-surface-100 dark:hover:bg-surface-700 group">

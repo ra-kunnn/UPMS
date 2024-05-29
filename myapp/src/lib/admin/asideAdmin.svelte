@@ -1,7 +1,6 @@
 <script lang="ts">
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
-    import ChangePassword from '$lib/modals/ChangePassword.svelte';
 
 
     const modalStore = getModalStore();
