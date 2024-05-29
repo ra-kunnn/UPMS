@@ -65,6 +65,7 @@
     }
     let tenantName: string = '';
     let tenantEmail: string = '';
+    let tenantRoom: string = '';
     let currentTenantRows: currentTenant[] = [];
     let billRows: Bills[] = [];
     let otherTenantRows: otherTenants[] = [];
@@ -85,6 +86,7 @@
             otherTenantRows = data.allTenants || [];
             roomRows = data.rooms || [];
             tenantName = data.user?.tenantName ?? '';
+            tenantRoom = data.user?.dormNo ?? '';
             tenantEmail = data.user?.tenantEmail ?? '';
             Cookies.set('email', tenantEmail);
             billRows = billRows.map(bill => ({
@@ -101,6 +103,7 @@
     });
       function handleProfile(event) {
       tenantName = event.detail.tenantName;
+      tenantRoom = event.detail.tenantRoom;
     }
 
     Cookies.set('email', tenantEmail);
@@ -114,7 +117,7 @@
     <Aside />
     <header class="relative ml-80">
         <div class="w-auto p-10">
-            <Profile on:modalOpen={handleProfile} {tenantName}/>
+            <Profile on:modalOpen={handleProfile} {tenantName} {tenantRoom}/>
 
             <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 

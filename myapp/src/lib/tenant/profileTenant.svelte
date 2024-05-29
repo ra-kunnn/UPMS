@@ -3,10 +3,11 @@
 
   const dispatch = createEventDispatcher();
 
-  export let tenantName;
+  export let tenantName, tenantRoom;
+  console.log("test"+tenantName);
 
   function onModalOpen() {
-    dispatch('modalOpen', {tenantName});
+    dispatch('modalOpen', {tenantName, tenantRoom});
   }
 </script>
 
@@ -16,7 +17,7 @@
 	    <div class="flex items-end pl-5">
 	        <div class="flex-none">
 	            <h1 class="h1 font-bold text-6xl">{tenantName}</h1>
-	            <p class="font-bold">Room A</p>
+	            <p class="font-bold">Room {tenantRoom}</p>
 	        </div>
 	    </div>
 	</div>
