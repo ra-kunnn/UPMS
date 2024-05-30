@@ -120,12 +120,10 @@
                                                     {/if}
                                                 {/each}
                                             
-                                                        
-                                                
-                                            
                                         </div>
                                     </div>
-                                    <div class="block">
+
+                                    <div class="block h-44">
                                         <h4 class="h4 font-semibold justify-items-end">₱{roomRow.monthlyRent}/month</h4>
                                         {#if roomRow.PAX === 2}
                                             {#if roomRow.floor === 1}
@@ -147,10 +145,16 @@
                                                 {/if}
                                             {/each}
                                         </ul>
-                                        <div class="flex p-4 pt-2 float-right">
-                                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">View Bills</button>
-                                            <button on:click={assignTenants} class="btn btn-sm variant-filled-surface text-white self-end">Assign Tenants</button>
-                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex pt-2 gap-2">
+                                        <button class="btn btn-sm variant-filled-primary text-white self-end w-full">View Bills</button>
+                                        <button on:click={assignTenants} class="btn btn-sm variant-filled-surface text-white self-end w-full">Assign Tenants</button>
+                                    </div>
+
+                                    <div class="flex pt-2 gap-2">
+                                        <button class="btn btn-sm text-white variant-filled-success w-full">Tag Room as Available</button>
+                                        <button class="btn btn-sm text-white variant-filled-error w-full">Tag Room as Unavailable</button>
                                     </div>
                                     
                                 </div>

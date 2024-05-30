@@ -119,6 +119,11 @@
         <div class="w-auto p-10">
             <Profile on:modalOpen={handleProfile} {tenantName} {tenantRoom}/>
 
+            <div class="flex pt-6 gap-3">
+                <button class="btn text-white variant-filled-success">Tag Room as Available</button>
+                <button class="btn text-white variant-filled-error">Tag Room as Unavailable</button>
+            </div>
+
             <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
             <h1 class="h1 text-4xl pb-6 font-bold">Roommates</h1>
