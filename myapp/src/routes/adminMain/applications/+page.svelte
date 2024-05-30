@@ -9,13 +9,7 @@
     import type { PageData } from './$types';
     import { onMount } from 'svelte';
     const modalStore = getModalStore();
-    function areYouSure(): void {
-        const modal: ModalSettings = {
-        type: 'component',
-        component: 'AreYouSure',
-        };
-        modalStore.trigger(modal);
-    }
+
     function assignTenants(): void {
         const modal: ModalSettings = {
         type: 'component',
@@ -101,8 +95,8 @@
                             </div>
 
                             <div class="flex p-4 float-right">
-                                <button on:click={areYouSure} class="btn btn-sm variant-filled-success text-white self-end mr-2">Accept</button>
-                                <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                                <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Accept</button>
+                                <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                             </div>
                         </div>
                     {/each}

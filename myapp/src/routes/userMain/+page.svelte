@@ -23,14 +23,6 @@
         window.location.reload();
     }
 
-    function cancelPopUp(): void {
-        const modal: ModalSettings = {
-        type: 'component',
-        component: 'AreYouSure',
-        };
-        modalStore.trigger(modal);
-    }
-
     export let data:PageData;
 
     const logout = async () => {
@@ -225,7 +217,7 @@
                                             </div>
 
                                             <div class="flex pt-4">
-                                                <button on:click={cancelPopUp} class="btn btn-sm variant-filled-error text-white w-full">Cancel</button>
+                                                <button class="btn btn-sm variant-filled-error text-white w-full">Cancel</button>
                                             </div>
                                             
                                         </div>
@@ -239,7 +231,9 @@
             
                 </div>
             {/if}
+
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+
             {#if !customerHasApplied} 
                 <div class="flex m-auto justify-between pb-8">
                     <h1 class="h1 font-bold my-auto">Available Rooms</h1>

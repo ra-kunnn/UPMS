@@ -8,7 +8,6 @@
     import { onMount } from 'svelte';
 
     import ConfirmApplication from '$lib/modals/confirmApply.svelte';
-    import AreYouSure from '$lib/modals/confirmDeny.svelte';
     import BillingForm from '$lib/modals/issueBill.svelte';
     import editTenant from '$lib/modals/editTenant.svelte';
     import AssignTenants from '$lib/modals/assignTenants.svelte';
@@ -21,7 +20,6 @@
 
     const modalRegistry: Record<string, ModalComponent> = {
         ConfirmApplication: { ref: ConfirmApplication },
-        AreYouSure: { ref: AreYouSure },
         BillingForm: { ref: BillingForm },
         editTenant: { ref: editTenant },
         AssignTenants: { ref: AssignTenants },

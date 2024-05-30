@@ -20,14 +20,6 @@
         modalStore.trigger(modal);
     }
 
-    function areYouSure(): void {
-        const modal: ModalSettings = {
-        type: 'component',
-        component: 'AreYouSure',
-        };
-        modalStore.trigger(modal);
-    }
-
     export let data:PageData;
 
     const logout = async () => {
@@ -218,7 +210,7 @@
                                 </div>
 
                                 <div class="flex p-4 float-right">
-                                    <button on:click={areYouSure} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                                    <button class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
                                 </div>
                             {/if}
                         {/each}
@@ -253,7 +245,7 @@
 
                             <div class="flex p-4 float-right">
                                 <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                                <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                                <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                             </div>
                 
                         </div>
@@ -281,7 +273,7 @@
 
                         <div class="flex p-4 float-right">
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                         </div>
             
                     </div>

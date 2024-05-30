@@ -17,15 +17,7 @@
         };
         modalStore.trigger(modal);
     }
-
-    function areYouSure(): void {
-        const modal: ModalSettings = {
-        type: 'component',
-        component: 'AreYouSure',
-        };
-        modalStore.trigger(modal);
-    }
-
+    
     export let data:PageData;
 
     const logout = async () => {
@@ -110,7 +102,7 @@
 
                             <div class="flex p-4 float-right">
                                 <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
-                                <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
+                                <button class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
                             </div>
                 
                         </div>
@@ -132,7 +124,8 @@
 
                         <div class="flex p-4 float-right">
                             <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
+                            <button
+                             class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
                         </div>
             
                     </div>
@@ -154,7 +147,7 @@
 
                         <div class="flex p-4 float-right">
                             <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
+                            <button class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
                         </div>
             
                     </div>
@@ -176,7 +169,7 @@
 
                         <div class="flex p-4 float-right">
                             <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
-                            <button on:click={areYouSure} class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
+                            <button class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
                         </div>
             
                     </div>
