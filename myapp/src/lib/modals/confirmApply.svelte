@@ -29,25 +29,27 @@
 	//releasing cookie
 	//Cookies.remove('userID');
 
-	let formElement: HTMLFormElement;
 
 	const applyroom = async (event: Event) => { 
 
 		event.preventDefault();
-        // Create a FormData object from the form element
-        const formData = new FormData(formElement);
+        
+        const form = event.target as HTMLFormElement;
+        const formData = new FormData(form);
 
 
 		const startOfTenancy = formData.get('startOfTenancy') as Date;
 
+		const currentDate = new Date().toISOString().split('T')[0];
+
 		console.log(formData.get('startOfTenancy'));
 
-		console.log(startOfTenancy);
+		console.log(startOfTenancy, currentDate);
 
-		//precall precautions
-		//if date is crazy
-
-
+		if(startOfTenancy < currentDate){
+			alert('Please enter valid date.');
+		  return;
+		}
 
 		
 
@@ -98,14 +100,14 @@
 	<div class="{cBase}">
 		<header class={cHeader}>Confirm Application</header>
 		<article>When is your preferred start of tenancy to {dormNo}?</article>
-		
-		<input type="date" id="startOfTenancy" name="startOfTenancy" required/>
-
-		<!-- prettier-ignore -->
-		<footer class="modal-footer {parent.regionFooter}">
-			<button class="btn {parent.buttonPositive}" on:click={applyroom}>Yes</button>
-			<button class="btn {parent.buttonNeutral}" on:click={() => { parent.onClose(); remCookie(); }}>No</button>
-		</footer>
+		<form on:submit={applyroom}>
+			<input type="date" id="startOfTenancy" name="startOfTenancy" required/>
+			<!-- prettier-ignore -->
+			<footer class="modal-footer {parent.regionFooter}">
+				<button type="submit" class="btn {parent.buttonPositive}">Yes</button>
+				<button class="btn {parent.buttonNeutral}" on:click={() => { parent.onClose(); remCookie(); }}>No</button>
+			</footer>
+		</form>
 	</div>
 {/if}
 
