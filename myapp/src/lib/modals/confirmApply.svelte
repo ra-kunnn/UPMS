@@ -38,7 +38,11 @@
         const formData = new FormData(formElement);
 
 
-		const startOfTenancy = formData.get('startOfTenancy') as date;
+		const startOfTenancy = formData.get('startOfTenancy') as Date;
+
+		console.log(formData.get('startOfTenancy'));
+
+		console.log(startOfTenancy);
 
 		//precall precautions
 		//if date is crazy
@@ -77,6 +81,7 @@
 
 		  alert(' Application sent! See application status on your dashboard.');
 		  remCookie();
+		  window.location.reload();
 		  parent.onClose();
 
 	};

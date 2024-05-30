@@ -9,6 +9,7 @@
     import type { PageData } from './$types';    
     import { onMount } from 'svelte';
     import { createEventDispatcher } from 'svelte';
+    import { supabase } from '$lib/supabaseClient';
 
 
     const dispatch = createEventDispatcher();
@@ -20,7 +21,6 @@
         component: 'ConfirmApplication',
         };
         modalStore.trigger(modal);
-        window.location.reload();
     }
 
     export let data:PageData;
@@ -121,6 +121,34 @@
         Cookies.set('dormNo', dormNo); 
     };
 
+     const cancelApplication = async (appID: number, customerID: number) => {
+
+     console.log("deleting application "+ appID)
+
+        const { error: deleteError } = await supabase
+            .from('Application Form')
+            .delete()
+            .eq('applicationID',appID);
+
+        if (deleteError) {
+                    console.error('Error deleting application:', error);
+                    alert('Error deleting application');
+                } 
+
+        const { error: updateError } = await supabase
+            .from('Potential Customer')
+            .update({ hasApplied: false })
+            .eq('customerID', customerID);
+
+        if(updateError){
+          alert(' There was an error with the dorm application');
+          return;
+        }
+
+        alert('Application deleted successfully');
+        window.location.reload();
+    };
+
    
 
 </script>
@@ -217,7 +245,7 @@
                                             </div>
 
                                             <div class="flex pt-4">
-                                                <button class="btn btn-sm variant-filled-error text-white w-full">Cancel</button>
+                                                <button on:click={() => {cancelApplication(applicationRow.applicationID, applicationRow.customerID ); }} class="btn btn-sm variant-filled-error text-white w-full">Cancel</button>
                                             </div>
                                             
                                         </div>
