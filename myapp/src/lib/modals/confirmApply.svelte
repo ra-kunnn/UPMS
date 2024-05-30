@@ -25,12 +25,20 @@
 	const customerID = Cookies.get('userID');
 	const dormNo = Cookies.get('dormNo');
 
+	console.log(customerID, dormNo);
 	//releasing cookie
 	//Cookies.remove('userID');
 
+	let formElement: HTMLFormElement;
+
 	const applyroom = async (event: Event) => { 
 
-		const startOfTenancy = formData.get('startOfTenancy') as string;
+		event.preventDefault();
+        // Create a FormData object from the form element
+        const formData = new FormData(formElement);
+
+
+		const startOfTenancy = formData.get('startOfTenancy') as date;
 
 		//precall precautions
 		//if date is crazy

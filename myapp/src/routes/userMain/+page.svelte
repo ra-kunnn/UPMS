@@ -8,7 +8,10 @@
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import type { PageData } from './$types';    
     import { onMount } from 'svelte';
+    import { createEventDispatcher } from 'svelte';
 
+
+    const dispatch = createEventDispatcher();
     const modalStore = getModalStore();
 
     function applyPopUp(): void {
@@ -17,6 +20,7 @@
         component: 'ConfirmApplication',
         };
         modalStore.trigger(modal);
+        window.location.reload();
     }
 
     function cancelPopUp(): void {
@@ -83,7 +87,6 @@
     let customerEmail: string = '';
     let customerID: number = 0;
     let customerHasApplied: boolean = false;
-    let chosenDorm: number = 0;
 
 
     onMount(() => {
@@ -99,7 +102,9 @@
             customerEmail = data.user?.customerEmail ?? '';
             customerID = data.user?.customerID ?? 0;
             customerHasApplied = data.user?.hasApplied ?? false;
+            Cookies.set('userID', customerID);
             Cookies.set('email', customerEmail);
+            console.log("testing cookies"+ customerID, customerEmail);
         } catch (error) {
             console.error(error);
             roomRows = [];
@@ -110,26 +115,21 @@
     });
 
 
-
     function createArray(length: number): number[] {
         return Array.from({ length }, (_, i) => i);
     }
 
-
-
       function handleProfile(event) {
       customerName = event.detail.customerName;
     }
-//make a get for chosen dorm. so when u press apply we send the current dorm in that each
-//only line 371 pa ang na change, i dont know how to apply it yet bc its not eached yet
 
-    function setChosenDorm(x){
-        chosenDorm = x;
-    }
+    console.log("when does this pop up");
+    const setChosenDorm = (dormNo: number) => {
+        console.log(dormNo);
+        Cookies.set('dormNo', dormNo); 
+    };
 
-    Cookies.set('userID', customerID); 
-    Cookies.set('dormNo', chosenDorm); 
-
+   
 
 </script>
 
@@ -326,7 +326,9 @@
                                             {/if}
                                         </div>
                                         <div class="flex pt-4">
-                                            <button on:click={applyPopUp} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+                                            <button on:click={() => { applyPopUp(); setChosenDorm(roomRow.dormNo); }} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
+
+
                                         </div>
                                     </div>
                                 </div>
