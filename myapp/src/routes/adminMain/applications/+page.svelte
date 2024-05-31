@@ -89,6 +89,8 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
         return;
     }
 
+    console.log("fetched user data")
+
     const { data: application, error: applicationError } = await supabase
         .from('Application Form')
         .select('startOfTenancy')
@@ -120,7 +122,7 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
            dormNo: dormNo,
            tenantEmail: user.customerEmail, 
            tenantPhone: user.customerPhone,
-           startOfTenancy: startOfTenancy.toISOString().split('T')[0],
+           startOfTenancy: startOfTenancy,
          },
        ]);
 
@@ -130,6 +132,8 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
              alert(' There was an error with adding the tenant');
              return;
         }
+
+        console.log("inserted tenant")
 
        //deleting application
         const { error: deleteAppError } = await supabase
@@ -142,6 +146,8 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
              return;
         }
 
+        console.log("deleted app")
+
         //deleting user
         const { error: deleteUserError } = await supabase
             .from('Potential Customer')
@@ -153,6 +159,8 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
              return;
         }
 
+        console.log("deleted user")
+
         //get availableSlots value
         const { data: availData, error: availError } = await supabase
             .from('Availability')
@@ -162,6 +170,8 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
 
         let availSlots = availData.availableSlots - 1;
 
+        console.log("slots")
+
         //get preexistingTenants value
         const { data: preexData, error: preexError } = await supabase
             .from('Availability')
@@ -170,6 +180,8 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
             .single();
 
           let preexTenants = preexData.preexistingTenants + 1;  
+
+          console.log("preex")
 
         //update availableSlots & preexisting tenants
         const { error: updateSlotsError } = await supabase
@@ -181,6 +193,8 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
              alert(' There was an error with updating availability 1');
              return;
         }
+
+        console.log("slots and preex update")
 
 
         if(availSlots===0){
@@ -195,18 +209,33 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
              return;
             }
 
+            console.log("avail update")
+
         }
+
+        //get currppl value
+        const { data: currdata, error: currerror } = await supabase
+            .from('Dorm Room')
+            .select('currentPeople')
+            .eq('dormNo', dormNo )
+            .single();
+
+          let currppl = currdata.currentPeople - 1; 
+
+          console.log("currppl") 
 
         //update room
         const { error: updateDormError } = await supabase
           .from('Dorm Room')
-          .update({ currentPeople: supabase.raw('currentPeople + 1') })
+          .update({ currentPeople: currppl })
           .eq('dormNo', dormNo);
 
         if(updateDormError){
              alert(' There was an error with updating dorm values');
              return;
         }
+
+        console.log("updated dorm")
 
         alert('Tenant applied successfully');
         window.location.reload();
