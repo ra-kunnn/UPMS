@@ -57,8 +57,6 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
     console.error('Error fetching availability data:', applicationError);
     return { rooms: roomData ?? [], availability: availabilityData ?? [], application: [], error: applicationError.message };
   }
-  console.log(user);
-  console.log(applicationData);
 
   return { rooms: roomData ?? [], availability: availabilityData ?? [], user: user ?? [], application: applicationData ?? []  };
 };

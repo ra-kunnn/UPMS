@@ -26,6 +26,10 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
     .from('Tenant')
     .select('*');
 
+  const { data: availabilityData, error: availabilityError } = await supabase
+    .from('Availability')
+    .select('*');
+    
   if (error) {
     console.log('Error fetching tenant data:', error);
     return { user: null, bills: billData ?? [], allTenants: allTenantData ?? [], error: error.message };
@@ -44,5 +48,5 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
   const { data: roomData, error: roomError } = await supabase
     .from('Dorm Room')
     .select('*');
-  return { rooms: roomData ?? [], user: tenant ?? [], bill: billData ?? [], allTenants: allTenantData ?? [], };
+  return { rooms: roomData ?? [], user: tenant ?? [], bill: billData ?? [], allTenants: allTenantData ?? [], availability: availabilityData ?? []};
 };

@@ -8,6 +8,7 @@
     import { invalidate } from '$app/navigation';
     import type { EventHandler } from 'svelte/elements';
     import type { PageData } from './$types';
+    import { supabase } from '$lib/supabaseClient';
 
     export let data:PageData;
 
@@ -63,10 +64,19 @@
         tenantEmail: string;
         tenantPhone: number;
     }
+    interface Availability {
+        dormNo: number;
+        availability: boolean;
+        availableSlots: number;
+        preexistingTenants: number;
+        // Add other columns as needed
+    }
     let tenantName: string = '';
+    let tenantID: string = '';
     let tenantEmail: string = '';
     let tenantRoom: string = '';
     let currentTenantRows: currentTenant[] = [];
+    let availRows: Availability[] = [];
     let billRows: Bills[] = [];
     let otherTenantRows: otherTenants[] = [];
     let roomRows: Room[] = [];
@@ -85,10 +95,13 @@
             billRows = data.bill || [];
             otherTenantRows = data.allTenants || [];
             roomRows = data.rooms || [];
+            availRows = data.availability || [];
             tenantName = data.user?.tenantName ?? '';
             tenantRoom = data.user?.dormNo ?? '';
             tenantEmail = data.user?.tenantEmail ?? '';
+            tenantID = data.user?.tenantID ?? '';
             Cookies.set('email', tenantEmail);
+            Cookies.set('tenantID', tenantID);
             billRows = billRows.map(bill => ({
                 ...bill,
                 totalBillAmount: calculateTotalBillAmount(bill)
@@ -107,7 +120,36 @@
     }
 
     Cookies.set('email', tenantEmail);
+    const setAvailability = async (availability: boolean, dormNo: number) => {
+        console.log(availability);
+        console.log(dormNo)
+        
+        if (availability){
+            const { error: availError } = await supabase
+                .from('Availability')
+                .update({availability: false})
+                .eq('dormNo', dormNo);
 
+                if (availError) {
+                    console.error('Error deleting application:', availError);
+                    alert('Error deleting application');
+                } 
+        }
+        else if(!availability){
+            const { error: availError } = await supabase
+                .from('Availability')
+                .update({availability: true})
+                .eq('dormNo', dormNo);
+
+                if (availError) {
+                    console.error('Error deleting application:', availError);
+                    alert('Error deleting application');
+                } 
+        }
+
+        alert('Room availability changed');
+        window.location.reload();
+    };
     
 </script>
 
@@ -118,12 +160,15 @@
     <header class="relative ml-80">
         <div class="w-auto p-10">
             <Profile on:modalOpen={handleProfile} {tenantName} {tenantRoom}/>
-
-            <div class="flex pt-6 gap-3">
-                <button class="btn text-white variant-filled-success">Tag Room as Available</button>
-                <button class="btn text-white variant-filled-error">Tag Room as Unavailable</button>
-            </div>
-
+            {#each availRows as availRow}
+                {#if availRow.dormNo === currentTenantRows.dormNo}
+                    <div class="flex pt-6 gap-3">
+                        {#if !availRow.availability}
+                        <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn text-white variant-filled-success">Tag Room as Available</button>{/if}
+                        {#if availRow.availability}<button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)  }} class="btn text-white variant-filled-error">Tag Room as Unavailable</button>{/if}
+                    </div>
+                {/if}
+            {/each}
             <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
             <h1 class="h1 text-4xl pb-6 font-bold">Roommates</h1>
