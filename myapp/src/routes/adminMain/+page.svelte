@@ -153,49 +153,6 @@
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
 
 
-            <div class="bg-gradient-to-bl from-amber-600 via-surface-500 to-surface-400 p-9 rounded-3xl text-surface-50">
-                <h1 class="h1 font-bold pb-2 text-surface-50">Rooms Awaiting Bills</h1>
-                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10 text-surface-800">
-                    
-                            
-                                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-
-                                        <div class="p-4 pb-0">
-                                            <div class="flex m-auto justify-between">
-                                                <div class="block">
-                                                    <h4 class="h4 font-semibold">Room C – Mar 2024<br>Base Price: <span class="font-bold">₱7,000.00</span></h4>
-                                                    <p class="text-sm text-surface-400">tenant 1, tenant 2, tenant 3, tenant 4</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="flex p-4 float-right">
-                                            <button on:click={billPopUp} class="btn btn-sm variant-filled-success text-white self-end">Issue Bill</button>
-                                        </div>
-                            
-                                    </div>
-                            
-                    
-                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-
-                        <div class="p-4 pb-0">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 font-semibold">Room D – Mar 2024<br>Base Price: <span class="font-bold">₱7,000.00</span></h4>
-                                    <p class="text-sm text-surface-400">tenant 1, tenant 2, tenant 3, tenant 4</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex p-4 float-right">
-                            <button on:click={billPopUp} class="btn btn-sm variant-filled-success text-white self-end">Issue Bill</button>
-                        </div>
-            
-                    </div>
-                </div>
-            </div>
-
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
             
             <div class="bg-gradient-to-br from-primary-400 to-secondary-700 p-9 rounded-3xl text-surface-50">
                 <h1 class="h1 font-bold pb-2 text-surface-50">Released Bills</h1>
