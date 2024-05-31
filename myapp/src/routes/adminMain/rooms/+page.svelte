@@ -8,6 +8,8 @@
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import type { PageData } from './$types';
     import { onMount } from 'svelte';
+    import { supabase } from '$lib/supabaseClient';
+    import Cookies from 'js-cookie';
     const modalStore = getModalStore();
 
     function assignTenants(): void {
@@ -71,6 +73,40 @@
     function createArray(length: number): number[] {
         return Array.from({ length }, (_, i) => i);
     }
+    const setAvailability = async (availability: boolean, dormNo: number) => {
+        console.log(availability);
+        console.log(dormNo)
+        
+        if (availability){
+            const { error: availError } = await supabase
+                .from('Availability')
+                .update({availability: false})
+                .eq('dormNo', dormNo);
+
+                if (availError) {
+                    console.error('Error deleting application:', availError);
+                    alert('Error deleting application');
+                } 
+        }
+        else if(!availability){
+            const { error: availError } = await supabase
+                .from('Availability')
+                .update({availability: true})
+                .eq('dormNo', dormNo);
+
+                if (availError) {
+                    console.error('Error deleting application:', availError);
+                    alert('Error deleting application');
+                } 
+        }
+        
+        alert('Room availability changed');
+        window.location.reload();
+    };
+    const setChosenRoom = (dormNo: number, roomName: string) => {
+        Cookies.set('dormNo', dormNo); 
+        Cookies.set('roomName', roomName); 
+    };
 </script>
 
 <HideOverflow />
@@ -148,14 +184,17 @@
                                     </div>
                                     
                                     <div class="flex pt-2 gap-2">
-                                        <button on:click={assignTenants} class="btn btn-sm variant-filled-surface text-white self-end w-full">Assign Tenants</button>
+                                        <button on:click={() => {assignTenants(); setChosenRoom(roomRow.dormNo, roomRow.roomName)}} class="btn btn-sm variant-filled-surface text-white self-end w-full">Assign Tenants</button>
                                     </div>
 
                                     <div class="flex pt-2 gap-2">
-                                        <button class="btn btn-sm text-white variant-filled-success w-full">Tag Room as Available</button>
-                                        <button class="btn btn-sm text-white variant-filled-error w-full">Tag Room as Unavailable</button>
+                                        {#each availableRooms as availableRoom}
+                                            {#if availableRoom.dormNo === roomRow.dormNo}
+                                                {#if !availableRoom.availability}<button on:click={() => {setAvailability(availableRoom.availability, availableRoom.dormNo)}} class="btn btn-sm text-white variant-filled-success w-full">Tag Room as Available</button>{/if}
+                                                {#if availableRoom.availability}<button on:click={() => {setAvailability(availableRoom.availability, availableRoom.dormNo)}} class="btn btn-sm text-white variant-filled-error w-full">Tag Room as Unavailable</button>{/if}
+                                            {/if}
+                                        {/each}
                                     </div>
-                                    
                                 </div>
                             </div>
                         

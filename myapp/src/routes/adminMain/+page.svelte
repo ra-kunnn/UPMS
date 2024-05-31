@@ -10,6 +10,8 @@
     import { invalidate } from '$app/navigation';
     import type { EventHandler } from 'svelte/elements';
     import type { PageData } from './$types';
+    import { supabase } from '$lib/supabaseClient';
+
     const modalStore = getModalStore();
 
     function billPopUp(): void {
@@ -139,6 +141,69 @@
     function getMonth(date: Date): number {
         return date.getMonth() + 1; // Months are zero-based, so we add 1
     }
+    const confirmPayment = async (billID: number) => {
+
+            const { error: billError } = await supabase
+                .from('Tenant Bill') 
+                .update([
+                {
+                    paymentStatus : true,
+                },
+                ])
+                .eq('billID', billID);
+
+                if (billError) {
+                    console.error('Error confirming payment:', billError);
+                    alert('Error confirming payment');
+                } 
+       
+       
+
+        alert('Payment Confirmed');
+        window.location.reload();
+    };
+    const confirmVisitor = async (visitorID: number) => {
+
+            const { error: visitorError } = await supabase
+                .from('Visitor Info') 
+                .update([
+                {
+                    isApproved : true,
+                },
+                ])
+                .eq('visitorID', visitorID);
+
+                if (visitorError) {
+                    console.error('Error confirming visit:', visitorError);
+                    alert('Error confirming visit');
+                } 
+       
+       
+
+        alert('Visit Confirmed');
+        window.location.reload();
+    };
+    const confirmMaintenance = async (maintenanceID: number) => {
+
+            const { error: maintenanceError } = await supabase
+                .from('Maintenance Info') 
+                .update([
+                {
+                    isDone: true,
+                },
+                ])
+                .eq('maintenanceID', maintenanceID);
+
+                if (maintenanceError) {
+                    console.error('Error marking maintenance done:', maintenanceError);
+                    alert('Error marking maintenance done');
+                } 
+       
+       
+
+        alert('Maintenance Done');
+        window.location.reload();
+    };
 </script>
 
 <HideOverflow />
@@ -175,7 +240,7 @@
                                 </div>
 
                                 <div class="flex p-4 float-right">
-                                    <button class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                                    <button on:click={() => { confirmPayment(billRow.billID) }} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
                                 </div>
                             {/if}
                         {/each}
@@ -202,6 +267,8 @@
                                                 <h4 class="h4 text-2 xl font-bold tracking-tight">{tenantRow.tenantName}</h4>
                                                 <p class="text-base pb-1">Visitor: {visitorRow.visitorName}, {visitorRow.visitorRelation}</p>
                                                 <p class="text-sm text-surface-400">Room {#each roomRows as roomRow}{#if roomRow.dormNo === tenantRow.dormNo}{roomRow.roomName}{/if}{/each}</p>
+                                                <p class="text-sm text-surface-400">Start: {visitorRow.startDateOfVisit}</p>
+                                            <p class="text-sm text-surface-400">End: {visitorRow.endDateOfVisit}</p>
                                             {/if}
                                         {/each}
                                     </div>
@@ -209,8 +276,8 @@
                             </div>
 
                             <div class="flex p-4 float-right">
-                                <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                                <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                                
+                                <button on:click={() => { confirmVisitor(visitorRow.visitorID) }} class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
                             </div>
                 
                         </div>
@@ -225,22 +292,26 @@
             <div class="bg-gradient-to-br from-tertiary-700 to-surface-400 p-9 rounded-3xl text-surface-50">
                 <h1 class="h1 font-bold pb-2 text-surface-50">Maintenance Requests</h1>
                 <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10 text-surface-800">
-                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
-                        <div class="p-4 pb-0">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
-                                    <p class="text-base">Room 201</p>
-                                    <p class="text-sm text-surface-400">aircon cleaning, in charge: name</p>
+                    {#each maintenanceRows as maintenanceRow}
+                        {#if !maintenanceRow.isDone}
+                        <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                            <div class="p-4 pb-0">
+                                <div class="flex m-auto justify-between">
+                                    <div class="block">
+                                        {#each roomRows as roomRow} {#if roomRow.dormNo === maintenanceRow.dormNo}<h4 class="h4 text-2 xl font-bold tracking-tight">Room {roomRow.roomName}</h4>{/if}{/each}
+                                        <p class="text-sm text-surface-400">{maintenanceRow.maintenanceRequest}</p>
+                                        <p class="text-sm text-surface-400">Start: {maintenanceRow.startDateOfMaintenance}</p>
+                                        <p class="text-sm text-surface-400">End: {maintenanceRow.endDateOfMaintenance}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="flex p-4 float-right">
-                            <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
-                            <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                            <div class="flex p-4 float-right">
+                                <button on:click={() => { confirmMaintenance(maintenanceRow.maintenanceID) }} class="btn btn-sm variant-filled-success text-white self-end mr-2">Mark Maintenance Done</button>
+                            </div>
                         </div>
-                    </div>
+                        {/if}
+                    {/each}
                 </div>
             </div>
 

@@ -29,6 +29,18 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
   const { data: availabilityData, error: availabilityError } = await supabase
     .from('Availability')
     .select('*');
+
+  const {data: visitorData, error: visitorError} = await supabase
+    .from('Visitor Info')
+    .select('*')
+    .eq('tenantID', tenant.tenantID)
+    .order('startDateOfVisit', { ascending: false });
+
+  const {data: maintenanceData, error: maintenanceError} = await supabase
+    .from('Maintenance Info')
+    .select('*')
+    .eq('dormNo', tenant.dormNo)
+    .order('startDateOfMaintenance', { ascending: false });
     
   if (error) {
     console.log('Error fetching tenant data:', error);
@@ -48,5 +60,8 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
   const { data: roomData, error: roomError } = await supabase
     .from('Dorm Room')
     .select('*');
-  return { rooms: roomData ?? [], user: tenant ?? [], bill: billData ?? [], allTenants: allTenantData ?? [], availability: availabilityData ?? []};
+
+    console.log(maintenanceData);
+    console.log(visitorData);
+  return {maintenance: maintenanceData??[], visitor: visitorData ??[] , rooms: roomData ?? [], user: tenant ?? [], bill: billData ?? [], allTenants: allTenantData ?? [], availability: availabilityData ?? []};
 };
