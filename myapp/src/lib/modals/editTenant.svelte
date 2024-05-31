@@ -51,7 +51,7 @@
             tenantRows = allTenantData || [];
             roomRows = roomData || [];
         } catch (error) {
-            console.error(error);
+            console.error(allTenantDataError);
             tenantRows = [];
         }
 		console.log(allTenantData);
@@ -72,7 +72,6 @@
 		const phone = formData.get('contact');
 		const dormNo = formData.get('roomName');
 
-		alert(dormNo);
 		//inserting to Application Form
 		const { error: tenantError } = await supabase
 		  .from('Tenant') 
@@ -86,10 +85,40 @@
 		  if(tenantError){
 			alert(tenantError);
 		  	alert(' There was an error with the maintenance request');
-		  return;
+		  	return;
 		  }
-		  
+		  const { data: currentAvailability, error: availabilityFetchError } = await supabase
+				.from('Availability')
+				.select('availableSlots, preexistingTenants')
+				.eq('dormNo', dormNo)
+				.single();
 
+			if (availabilityFetchError || !currentAvailability) {
+				alert(`Error fetching availability data for dorm ${dormNo}: ${availabilityFetchError.message}`);
+				return;
+			}
+
+			const updatedAvailableSlots = currentAvailability.availableSlots - 1;
+			const updatedPreexistingTenants = currentAvailability.preexistingTenants + 1;
+
+			const { error: availabilityUpdateError } = await supabase
+				.from('Availability')
+				.update({
+					availableSlots: updatedAvailableSlots,
+					preexistingTenants: updatedPreexistingTenants,
+				})
+				.eq('dormNo', dormNo);
+
+			if (availabilityUpdateError) {
+				alert(`Error updating availability for dorm ${dormNo}: ${availabilityUpdateError.message}`);
+			}
+			if(updatedAvailableSlots==0){
+            //update Availlability if updated available slots = 0
+            const { error: updateAvailError } = await supabase
+                .from('Availability')
+                .update({ availability: false })
+                .eq('dormNo', dormNo);
+        }
 		  alert('Request sent!');
 		  remCookie();
 		  window.location.reload();
@@ -135,7 +164,7 @@
 		<!-- prettier-ignore -->
 		<footer class="modal-footer {parent.regionFooter}">
 			<button class="btn {parent.buttonPositive}">Submit</button>
-			<button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
+			<button class="btn {parent.buttonNeutral}" on:click={() => { parent.onClose(); remCookie(); }}>{parent.buttonTextCancel}</button>
 		</footer>
 		</form>
 	</div>
