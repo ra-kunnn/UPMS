@@ -71,6 +71,26 @@
                 </div>
 
                 <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+
+                <h1 class="h1 font-bold pb-8">Released Bills</h1>
+                
+                <div class="col-span-4 grid 2xl:grid-cols-5 grid-cols-4 gap-4 text-surface-800">
+
+                    <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 font-semibold">Room E – Mar 2024<br>Base Price: <span class="font-bold">₱7,000.00</span></h4>
+                                    <p class="text-sm text-surface-400">tenant 1, tenant 2, tenant 3, tenant 4</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex p-4 float-right">
+                            <button on:click={billPopUp} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </header>

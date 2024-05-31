@@ -148,7 +148,6 @@
                                     </div>
                                     
                                     <div class="flex pt-2 gap-2">
-                                        <button class="btn btn-sm variant-filled-primary text-white self-end w-full">View Bills</button>
                                         <button on:click={assignTenants} class="btn btn-sm variant-filled-surface text-white self-end w-full">Assign Tenants</button>
                                     </div>
 

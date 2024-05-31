@@ -240,9 +240,7 @@
                             <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Confirm</button>
                             <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                         </div>
-            
                     </div>
-                    
                 </div>
             </div>
 

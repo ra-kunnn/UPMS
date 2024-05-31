@@ -160,19 +160,30 @@
     <header class="relative ml-80">
         <div class="w-auto p-10">
             <Profile on:modalOpen={handleProfile} {tenantName} {tenantRoom}/>
+
+            <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+
             {#each availRows as availRow}
                 {#if availRow.dormNo === currentTenantRows.dormNo}
-                    <div class="flex pt-6 gap-3">
-                        {#if !availRow.availability}
-                        <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn text-white variant-filled-success">Tag Room as Available</button>{/if}
-                        {#if availRow.availability}<button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)  }} class="btn text-white variant-filled-error">Tag Room as Unavailable</button>{/if}
-                    </div>
+                    {#if !availRow.availability}
+                        <div class="flex m-auto justify-between pt-4">
+                            <h1 class="h1 text-4xl font-bold">Room {availRow.dormNo} Tagged as Unavailable</h1>
+                            <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn text-white variant-filled-success self-center">Tag Room as Available</button>
+                        </div>
+                    {/if}
+                    {#if availRow.availability}
+                        <div class="flex m-auto justify-between pt-4">
+                            <h1 class="h1 text-4xl font-bold">Room {availRow.dormNo} Tagged as Available</h1>
+                            <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn text-white variant-filled-error">Tag Room as Unavailable</button>
+                        </div>
+                    {/if}
                 {/if}
             {/each}
+
             <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
 
             <h1 class="h1 text-4xl pb-6 font-bold">Roommates</h1>
-            <div class="col-span-4 grid grid-cols-11  md:grid-cols-7 gap-4 text-surface-800">
+            <div class="col-span-4 grid grid-cols-11 md:grid-cols-7 gap-4 text-surface-800">
                 {#each otherTenantRows as otherTenantRow}
                         {#if otherTenantRow.tenantID === currentTenantRows.tenantID}
                             <!-- Do nothing -->
@@ -252,18 +263,57 @@
                                     </table>
                                 </div>
                             </div>
-
-                           
-
-                            
-
-                            
                         {/each}
                     </div>
-                
             </div>
 
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+
+            <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-9 rounded-3xl text-surface-50">
+                <h1 class="h1 font-bold pb-2 text-surface-50">Visitor Requests</h1>
+                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10 text-surface-800">
+                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 text-2 xl font-bold tracking-tight">asdas</h4>
+                                    <p class="text-base pb-1">Visitor: asdasd</p>
+                                    <p class="text-sm text-surface-400">Room asdasd asdasd</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="block gap-1 p-4">
+                            <span class="badge variant-ghost-success text-success-700 mb-1">Not Approved</span>
+                            <span class="badge variant-ghost-error text-error-700 mb-1">Approved</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+
+            <div class="bg-gradient-to-br from-tertiary-700 to-surface-400 p-9 rounded-3xl text-surface-50">
+                <h1 class="h1 font-bold pb-2 text-surface-50">Maintenance Requests</h1>
+                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10 text-surface-800">
+                    <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    <h4 class="h4 text-2 xl font-bold tracking-tight">Gian Paolo Plariza</h4>
+                                    <p class="text-base">Room 201</p>
+                                    <p class="text-sm text-surface-400">aircon cleaning, in charge: name</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="block gap-1 p-4">
+                            <span class="badge variant-ghost-success text-success-700 mb-1">Not Approved</span>
+                            <span class="badge variant-ghost-error text-error-700 mb-1">Approved</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </header>
