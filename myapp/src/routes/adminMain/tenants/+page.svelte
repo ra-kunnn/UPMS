@@ -7,6 +7,8 @@
     import { onMount } from 'svelte';
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
+    import Cookies from 'js-cookie';
+    import { supabase } from '$lib/supabaseClient';
 
     const modalStore = getModalStore();
 
@@ -18,6 +20,13 @@
         modalStore.trigger(modal);
     }
     
+    function applyPopUp(): void {
+        const modal: ModalSettings = {
+        type: 'component',
+        component: '',
+        };
+        modalStore.trigger(modal);
+    }
     export let data:PageData;
 
     const logout = async () => {
@@ -48,17 +57,42 @@
     }
     let tenantRows: Tenant[] = [];
     let roomRows: Room[] = [];
+    let tenantID: number;
+    let tenantName: string;
+    let roomName: string;
     onMount(() => {
         try {
             tenantRows = data.allTenants || [];
             roomRows = data.rooms || [];
-            
+            Cookies.set('tenantID', tenantID);
         } catch (error) {
             console.error(error);
             tenantRows = [];    
         }
     });
+    const setChosenTenant = (tenantID: number, roomName: string, tenantName: string, tenantPhone: number) => {
+        Cookies.set('tenantID', tenantID); 
+        Cookies.set('roomName', roomName); 
+        Cookies.set('tenantName', tenantName);
+        Cookies.set('tenantPhone', tenantPhone);  
+    };
+    const deleteTenant = async (tenantID: number) => {
 
+            const { error: tenantError } = await supabase
+                .from('Tenant')
+                .delete()
+                .eq('tenantID', tenantID);
+
+                if (tenantError) {
+                    console.error('Error deleting application:', availError);
+                    alert('Error deleting application');
+                } 
+       
+       
+
+        alert('Tenant deleted');
+        window.location.reload();
+    };
 </script>
 
 <HideOverflow />
@@ -101,78 +135,13 @@
                             </div>
 
                             <div class="flex p-4 float-right">
-                                <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
-                                <button class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
+                                {#each roomRows as roomRow} {#if roomRow.dormNo === tenantRow.dormNo}<button on:click={() => { editTenant(); setChosenTenant(tenantRow.tenantID, roomRow.roomName, tenantRow.tenantName, tenantRow.tenantPhone); }}  class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>{/if} {/each}
+                                <button on:click={() => { deleteTenant(tenantRow.tenantID) }} class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
                             </div>
                 
                         </div>
                     {/each}
-                    <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
-                        <header>
-                            <img src="https://img-aws.ehowcdn.com/750x428p/photos.demandstudios.com/getty/article/232/231/484726794.jpg" class="object-cover aspect-square w-full" alt="Post" />
-                        </header>
-
-                        <div class="p-4">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Chester John Ratilla</h4>
-                                    <p class="text-base pb-2">Room 201</p>
-                                    <p class="text-sm text-surface-400">cjratilla@gmail.com<br>tenant since May 2023</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex p-4 float-right">
-                            <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
-                            <button
-                             class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
-                        </div>
-            
-                    </div>
-
-                    <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
-                        <header>
-                            <img src="https://carolinatigerrescue.org/wp-content/uploads/garcia.jpg" class="object-cover aspect-square w-full" alt="Post" />
-                        </header>
-
-                        <div class="p-4">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Arwen Eve Veralio</h4>
-                                    <p class="text-base pb-2">Room 207</p>
-                                    <p class="text-sm text-surface-400">rakun@gmail.com<br>tenant since May 2023</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex p-4 float-right">
-                            <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
-                            <button class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
-                        </div>
-            
-                    </div>
-
-                    <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
-                        <header>
-                            <img src="https://cdnb.artstation.com/p/users/avatars/005/132/879/large/030349c9dde8636c1371938fc2e8dc3b.jpg?1646621001" class="object-cover aspect-square w-full" alt="Post" />
-                        </header>
-
-                        <div class="p-4">
-                            <div class="flex m-auto justify-between">
-                                <div class="block">
-                                    <h4 class="h4 pr-3 text-2 xl font-semibold tracking-tight">Violette Gwen Rai Rosales</h4>
-                                    <p class="text-base pb-2">Room A</p>
-                                    <p class="text-sm text-surface-400">gwenrairosales@gmail.com<br>tenant since May 2023</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="flex p-4 float-right">
-                            <button on:click={editTenant} class="btn btn-sm variant-filled-success text-white self-end mr-2">Edit Details</button>
-                            <button class="btn btn-sm variant-filled-error text-white self-end">Remove Tenant</button>
-                        </div>
-            
-                    </div>
+                    
 
                 </div>
 
