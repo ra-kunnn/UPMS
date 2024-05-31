@@ -1,26 +1,70 @@
 <script lang="ts">
 	import type { SvelteComponent } from 'svelte';
-
+	import { supabase } from '$lib/supabaseClient';
+	import Cookies from 'js-cookie';
 	// Stores
 	import { getModalStore } from '@skeletonlabs/skeleton';
-
+	import { onMount } from 'svelte';
 	// Props
 	/** Exposes parent props to this component. */
 	export let parent: SvelteComponent;
 
 	const modalStore = getModalStore();
-
-	const formData = {
-		room: 'Jane Doe',
-		monthlyRent: 5000
-	};
-
+	const roomName = Cookies.get('roomName');
+	const dormNo = Cookies.get('dormNo');
+	const monthlyRent = Cookies.get('monthlyRent');
 	// We've created a custom submit function to pass the response and close the modal.
-	function onFormSubmit(): void {
-		if ($modalStore[0].response) $modalStore[0].response(formData);
-		modalStore.close();
-	}
+	const currentDate = new Date();
+	const issueBill = async (event: Event) => { 
 
+		event.preventDefault();
+        
+        const form = event.target as HTMLFormElement;
+        const formData = new FormData(form);
+
+		const waterBill = formData.get('waterBill');
+		const electricBill = formData.get('electricBill');
+		const hutRent = formData.get('hutRent');
+		const visitorBill = formData.get('visitorBill');
+		const maintenanceBill = formData.get('maintenanceBill');
+
+		//inserting to Application Form
+		const { error: billError } = await supabase
+		  .from('Tenant Bill') 
+		  .insert([
+		    {
+		      dormNo: dormNo,
+			  dateIssued: currentDate,
+			  paymentStatus: false,
+			  datePaid: null,
+			  monthlyRent: monthlyRent,
+			  waterBill: waterBill,
+			  electricityBill: electricBill,
+			  hutRent: hutRent,
+			  visitorOvernightBill: visitorBill,
+			  maintenanceBill: maintenanceBill
+
+		    },
+		  ]);
+
+		  if(billError){
+			alert(billError);
+		  	alert(' There was an error with bill issuance');
+		  return;
+		  }
+		  
+
+		  alert('Bill issued!');
+		  remCookie();
+		  window.location.reload();
+		  parent.onClose();
+
+	};
+	function remCookie(){
+		Cookies.remove('dormNo');
+		Cookies.remove('roomName');
+		Cookies.remove('monthlyRent');
+	}
 	// Base Classes
 	const cBase = 'card p-4 w-modal shadow-xl space-y-4';
 	const cHeader = 'text-2xl font-bold';
@@ -32,48 +76,49 @@
 {#if $modalStore[0]}
 	<div class="modal-example-form {cBase}">
 		<header class={cHeader}>Billing Form</header>
-		<article>mm/dd/yyyy</article>
+		<article>{currentDate}</article>
 		<!-- Enable for debugging: -->
-		<form class="modal-form {cForm}">
+		<form on:submit={issueBill} class="modal-form {cForm}">
 			<label class="label">
-				<span>Room (automate)</span>
+				<span>Room {roomName}</span>
 				<input class="input" type="text" disabled />
 			</label>
 
 			<label class="label">
 				<span>Monthly Rent</span>
-				<input class="input" type="number" bind:value={formData.monthlyRent} placeholder="" />
+				<input name="monthlyRent" class="input" type="number" value={monthlyRent} placeholder={monthlyRent} disabled/>
 			</label>
             
 			<label class="label">
 				<span>Water Bill</span>
-				<input class="input" type="number" placeholder="" />
+				<input name="waterBill" class="input" type="number" placeholder="" />
 			</label>
 
             <label class="label">
 				<span>Electricity Bill</span>
-				<input class="input" type="number" placeholder="" />
+				<input name="electricBill" class="input" type="number" placeholder="" />
 			</label>
 
             <label class="label">
 				<span>Hut Rent</span>
-				<input class="input" type="number" placeholder="" />
+				<input name="hutRent"class="input" type="number" placeholder="" />
 			</label>
 
             <label class="label">
 				<span>Visitor Overnight Bill</span>
-				<input class="input" type="number" placeholder="" />
+				<input name="visitorBill" class="input" type="number" placeholder="" />
 			</label>
 
             <label class="label">
 				<span>Maintenance Bill</span>
-				<input class="input" type="number" placeholder="" />
+				<input name="maintenanceBill" class="input" type="number" placeholder="" />
 			</label>
-		</form>
+		
 		<!-- prettier-ignore -->
 		<footer class="modal-footer {parent.regionFooter}">
-			<button class="btn {parent.buttonPositive}" on:click={onFormSubmit}>Release Bill</button>
-			<button class="btn {parent.buttonNeutral}" on:click={parent.onClose}>{parent.buttonTextCancel}</button>
+			<button class="btn {parent.buttonPositive}" >Release Bill</button>
+			<button class="btn {parent.buttonNeutral}" on:click={() => { parent.onClose(); remCookie(); }}>{parent.buttonTextCancel}</button>
 		</footer>
+		</form>
 	</div>
 {/if}
