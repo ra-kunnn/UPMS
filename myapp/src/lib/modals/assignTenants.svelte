@@ -127,6 +127,14 @@
 			if (availabilityUpdateError) {
 				alert(`Error updating availability for dorm ${dormNo}: ${availabilityUpdateError.message}`);
 			}
+
+			if(updatedAvailableSlots==0){
+            //update Availlability if updated available slots = 0
+            const { error: updateAvailError } = await supabase
+                .from('Availability')
+                .update({ availability: false })
+                .eq('dormNo', dormNo);
+        	}
 		}
 		  
 

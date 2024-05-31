@@ -3,12 +3,16 @@
     import Aside from '$lib/admin/asideAdmin.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/admin/profileAdmin.svelte';
-
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import type { PageData } from './$types';
     import { onMount } from 'svelte';
     const modalStore = getModalStore();
+    import { createEventDispatcher } from 'svelte';
+    import { supabase } from '$lib/supabaseClient';
+
+
+    const dispatch = createEventDispatcher();
 
     function assignTenants(): void {
         const modal: ModalSettings = {
@@ -65,6 +69,182 @@
             roomRows = [];
         }
     });
+
+
+const acceptApplication = async (appID: number, customerID: number, dormNo: number) => {
+
+     console.log("accepting to tenant "+ appID, customerID, dormNo)
+
+     //appid for deletion, customerid for reference in customer and deletion after, dorm no for dorm update
+
+
+    const { data: user, error: userError } = await supabase
+        .from('Potential Customer')
+        .select('*')
+        .eq('customerID',customerID)
+        .single();
+
+    if (userError) {
+        alert('Error fetching user details');
+        return;
+    }
+
+    const { data: application, error: applicationError } = await supabase
+        .from('Application Form')
+        .select('startOfTenancy')
+        .eq('applicationID', appID )
+        .single();
+
+    if (applicationError) {
+    alert('Error fetching application details');
+    console.error(applicationError);
+    return;
+    }
+
+    const startOfTenancy = new Date(application.startOfTenancy);
+
+        console.log("start of tenancy?" +startOfTenancy)
+
+        if (isNaN(startOfTenancy.getTime())) {
+      throw new Error('Invalid start of tenancy date');
+    }
+
+     //adding user to tenant
+     const { error: insertTenantError } = await supabase
+       .from('Tenant') 
+       .insert([
+         {
+           tenantName: user.customerName, 
+           tenantSex: user.customerSex, 
+           userID: user.userID, 
+           dormNo: dormNo,
+           tenantEmail: user.customerEmail, 
+           tenantPhone: user.customerPhone,
+           startOfTenancy: startOfTenancy.toISOString().split('T')[0],
+         },
+       ]);
+
+       console.log("checking tenant details: " +user.customerName, user.customerSex, user.userID, dormNo, user.customerEmail, user.customerPhone, startOfTenancy.toISOString().split('T')[0] )
+
+       if(insertTenantError){
+             alert(' There was an error with adding the tenant');
+             return;
+        }
+
+       //deleting application
+        const { error: deleteAppError } = await supabase
+            .from('Application Form')
+            .delete()
+            .eq('applicationID',appID);
+
+         if(deleteAppError){
+             alert(' There was an error with clearing applications');
+             return;
+        }
+
+        //deleting user
+        const { error: deleteUserError } = await supabase
+            .from('Potential Customer')
+            .delete()
+            .eq('customerID',customerID); 
+
+        if(deleteUserError){
+             alert(' There was an error with converting user account');
+             return;
+        }
+
+        //get availableSlots value
+        const { data: availData, error: availError } = await supabase
+            .from('Availability')
+            .select('availableSlots')
+            .eq('dormNo', dormNo )
+            .single();
+
+        let availSlots = availData.availableSlots - 1;
+
+        //get preexistingTenants value
+        const { data: preexData, error: preexError } = await supabase
+            .from('Availability')
+            .select('preexistingTenants')
+            .eq('dormNo', dormNo )
+            .single();
+
+          let preexTenants = preexData.preexistingTenants + 1;  
+
+        //update availableSlots & preexisting tenants
+        const { error: updateSlotsError } = await supabase
+            .from('Availability')
+            .update({ availableSlots: availSlots , preexistingTenants: preexTenants})
+            .eq('dormNo', dormNo);
+
+        if(updateSlotsError){
+             alert(' There was an error with updating availability 1');
+             return;
+        }
+
+
+        if(availSlots===0){
+            //update Availlability if updated available slots = 0
+            const { error: updateAvailError } = await supabase
+                .from('Availability')
+                .update({ availability: false })
+                .eq('dormNo', dormNo);
+
+            if(updateAvailError){
+             alert(' There was an error with updating availability 2');
+             return;
+            }
+
+        }
+
+        //update room
+        const { error: updateDormError } = await supabase
+          .from('Dorm Room')
+          .update({ currentPeople: supabase.raw('currentPeople + 1') })
+          .eq('dormNo', dormNo);
+
+        if(updateDormError){
+             alert(' There was an error with updating dorm values');
+             return;
+        }
+
+        alert('Tenant applied successfully');
+        window.location.reload();
+    };
+
+
+    const denyApplication = async (appID: number, customerID: number) => {
+
+        console.log("cancelling application "+ appID)
+
+           const { error: deleteError } = await supabase
+               .from('Application Form')
+               .delete()
+               .eq('applicationID',appID);
+
+           if (deleteError) {
+                       console.error('Error deleting application:', error);
+                       alert('Error deleting application');
+                   } 
+
+           const { error: updateError } = await supabase
+               .from('Potential Customer')
+               .update({ hasApplied: false })
+               .eq('customerID', customerID);
+
+           if(updateError){
+             alert(' There was an error with the dorm application');
+             return;
+           }
+
+           alert('Application deleted successfully');
+           window.location.reload();    
+
+    };
+
+
+
+
 </script>
 <HideOverflow />
 <div class="min-h-screen flex-auto w-full h-full font-sans text-surface-900 bg-gradient-to-br from-primary-100 via-slate-300 to-secondary-300">
@@ -94,9 +274,10 @@
                                 </div>
                             </div>
 
+
                             <div class="flex p-4 float-right">
-                                <button class="btn btn-sm variant-filled-success text-white self-end mr-2">Accept</button>
-                                <button class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
+                                <button on:click={() => {acceptApplication(applicationRow.applicationID, applicationRow.customerID, applicationRow.dormNo); }}  class="btn btn-sm variant-filled-success text-white self-end mr-2">Accept</button>
+                                <button on:click={() => {denyApplication(applicationRow.applicationID, applicationRow.customerID); }} class="btn btn-sm variant-filled-error text-white self-end">Deny</button>
                             </div>
                         </div>
                     {/each}
