@@ -30,6 +30,8 @@ depends('supabase:db:Manager'); //find out what this does
   const { data: roomData, error: roomError } = await supabase
     .from('Dorm Room')
     .select('*');
+
+  
   if (error) {
     console.log('Error fetching tenant data:', error);
     return {rooms: roomData ?? [], user: null, bills: billData ?? [], allTenants: allTenantData ?? [], visitor: visitorData ?? [], maintenance: maintenanceData ?? [], error: error.message };
@@ -60,7 +62,6 @@ depends('supabase:db:Manager'); //find out what this does
     return {rooms: [], user: manager ?? null, bills: billData ?? [], allTenants: allTenantData ?? [], visitor: visitorData ?? [], maintenance: maintenanceData ?? [], error: roomError.message}
   }
 
-  console.log(visitorData);
   return { rooms: roomData ?? [], user: manager ?? [], bill: billData ?? [], allTenants: allTenantData ?? [], visitor: visitorData ?? [], maintenance: maintenanceData ?? [] };
 
 };
