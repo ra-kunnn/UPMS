@@ -161,7 +161,8 @@
         <div class="w-auto p-10">
             <Profile on:modalOpen={handleProfile} {customerName} />
             
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+            <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
+
             {#if customerHasApplied}     
                 <div class="block bg-gradient-to-br from-error-500 to-warning-600 text-surface-50 p-3 sm:p-5 lg:p-9 rounded-3xl max-sm:rounded-xl">
                     <h1 class="h1 font-bold text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl pb-8 max-sm:pb-4">Room Application</h1>
@@ -260,8 +261,8 @@
 
 
             {#if !customerHasApplied} 
-                <div class="flex m-auto justify-between pb-8">
-                    <h1 class="h1 font-bold my-auto">Available Rooms</h1>
+                <div class="flex pb-8 max-md:pb-4">
+                    <h1 class="h1 font-bold md:text-5xl">Available Rooms</h1>
                 </div>
              
                 <div class="col-span-3 grid max-md:grid-cols-1 max-lg:grid-cols-2 grid-cols-3 gap-4 text-surface-800">           
@@ -342,7 +343,7 @@
                 </div>
             {/if}
             
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+            <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
 
         </div>
     </header>

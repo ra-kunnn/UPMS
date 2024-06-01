@@ -282,7 +282,9 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
     <header class="sm:ml-60 lg:ml-80">
         <div class="w-auto p-10">
             <div>
-                <h1 class="h1 font-bold pb-8">Room Applications</h1>
+                <div class="flex pb-8 max-md:pb-4">
+                    <h1 class="h1 font-bold md:text-5xl">Room Applications</h1>
+                </div>
                 
                 <div class="col-span-3 grid max-md:grid-cols-1 max-lg:grid-cols-2 max-xl:grid-cols-3 grid-cols-4 gap-4 text-surface-800">
 
@@ -317,7 +319,7 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
                     
                 </div>
 
-                <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+                <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
             </div>
         </div>
     </header>

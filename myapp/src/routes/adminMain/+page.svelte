@@ -214,7 +214,7 @@
         <div class="w-auto p-10">
             <Profile on:modalOpen={handleProfile} {managerName} {managerEmail} />
 
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
 
             <div class="bg-gradient-to-br from-primary-400 to-secondary-700 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 md:max-lg:text-3xl font-bold pb-2 max-lg:pb-0 text-surface-50">Released Bills</h1>
@@ -246,7 +246,7 @@
                 </div>
             </div>
 
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
 
             <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 md:max-lg:text-3xl font-bold pb-2 max-lg:pb-0 text-surface-50">Visitor Requests</h1>
@@ -281,7 +281,7 @@
                 </div>
             </div>
             
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
 
             <div class="bg-gradient-to-br from-tertiary-700 to-surface-400 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 md:max-lg:text-3xl font-bold pb-2 max-lg:pb-0 text-surface-50">Maintenance Requests</h1>
@@ -309,7 +309,7 @@
                 </div>
             </div>
 
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
 
         </div>
     </header>

@@ -78,10 +78,10 @@
                 <blockquote class="blockquote text-surface-50">quote, quote quote quote.</blockquote>
             </div>
             
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
 
-            <div class="flex m-auto justify-between pb-8">
-                <h1 class="h1 font-bold my-auto">Available Rooms</h1>
+            <div class="flex pb-8 max-md:pb-4">
+                <h1 class="h1 font-bold sm:max-md:text-5xl">Available Rooms</h1>
             </div>
             
             <div class="col-span-3 grid max-sm:grid-cols-1 max-lg:grid-cols-2 grid-cols-3 gap-4 text-surface-800">
@@ -159,7 +159,7 @@
                 {/each}
             </div>
 
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
             
         </div>
     </header>

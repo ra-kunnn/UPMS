@@ -184,7 +184,7 @@
         <div class="w-auto p-10">
             <Profile on:modalOpen={handleProfile} {tenantName} {tenantRoom}/>
 
-            <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100" />
+            <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
             
             {#each availRows as availRow}
                 {#if availRow.dormNo === currentTenantRows.dormNo}
@@ -202,9 +202,13 @@
                     {/if}
                 {/if}
             {/each}
-            <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100" />
+            
+            <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
 
-            <h1 class="h1 text-4xl max-md:text-3xl pb-6 font-bold">Roommates</h1>
+            
+            <div class="flex pb-8 max-md:pb-4">
+                <h1 class="h1 font-bold md:text-5xl">Roommates</h1>
+            </div>
             <div class="col-span-4 grid grid-cols-6 gap-4 text-surface-800">
                 {#each otherTenantRows as otherTenantRow}
                         {#if otherTenantRow.tenantID === currentTenantRows.tenantID}
@@ -224,7 +228,7 @@
                 {/each}
             </div>
             
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
 
             <div class="bg-gradient-to-br variant-gradient-secondary-tertiary p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 md:max-lg:text-3xl font-bold pb-8 max-lg:pb-4 text-surface-50">Latest Bills</h1>
@@ -293,7 +297,7 @@
                 
             </div>
 
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
             
             <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 md:max-lg:text-3xl font-bold pb-2 max-lg:pb-0 text-surface-50">Visitor Requests</h1>
@@ -318,7 +322,7 @@
                 </div>
             </div>
             
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
 
             <div class="bg-gradient-to-br from-tertiary-700 to-surface-400 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 md:max-lg:text-3xl font-bold pb-2 max-lg:pb-0 text-surface-50">Maintenance Requests</h1>
@@ -345,7 +349,7 @@
                 
             </div>
 
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
 
         </div>
     </header>

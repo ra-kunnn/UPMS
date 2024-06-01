@@ -122,7 +122,9 @@
     <header class="sm:ml-60 lg:ml-80">
         <div class="w-auto p-10">
             <div>
-                <h1 class="h1 font-bold pb-8">Issue Bills</h1>
+                <div class="flex pb-8 max-md:pb-4">
+                    <h1 class="h1 font-bold md:text-5xl">Issue Bills</h1>
+                </div>
                 
                 <div class="col-span-4 grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 text-surface-800">
 
@@ -146,9 +148,11 @@
                     
                 </div>
 
-                <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+                <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
 
-                <h1 class="h1 font-bold pb-8">Released Bills</h1>
+                <div class="flex pb-8 max-md:pb-4">
+                    <h1 class="h1 font-bold md:text-5xl">Released Bills</h1>
+                </div>
                 
                 <div class="col-span-4 grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 text-surface-800">
                     {#each billRows as billRow}
@@ -174,6 +178,9 @@
                         {/if}
                     {/each}
                 </div>
+
+                <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
+                
             </div>
         </div>
     </header>
