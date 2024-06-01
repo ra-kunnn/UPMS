@@ -180,40 +180,42 @@
 <div class="min-h-screen flex-auto w-full h-full font-sans text-surface-900 bg-gradient-to-br from-primary-100 via-slate-300 to-secondary-300">
     <TenantHeader {logout} />
     <Aside />
-    <header class="relative ml-80">
+    <header class="relative ml-0 sm:ml-60 lg:ml-80">
         <div class="w-auto p-10">
             <Profile on:modalOpen={handleProfile} {tenantName} {tenantRoom}/>
-            <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+
+            <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100" />
+            
             {#each availRows as availRow}
                 {#if availRow.dormNo === currentTenantRows.dormNo}
                     {#if !availRow.availability}
-                        <div class="flex m-auto justify-between pt-4">
-                            <h1 class="h1 text-4xl font-bold">Room {availRow.dormNo} Tagged as Unavailable</h1>
-                            <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn text-white variant-filled-success self-center">Tag Room as Available</button>
+                        <div class="flex m-auto justify-between pt-4 gap-3">
+                            <h1 class="h1 text-2xl max-[480px]:text-base md:text-4xl font-bold">Room {availRow.dormNo} Tagged as Unavailable</h1>
+                            <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn btn-sm md:btn-base text-white variant-filled-success self-center">Tag Room as Available</button>
                         </div>
                     {/if}
                     {#if availRow.availability}
                         <div class="flex m-auto justify-between pt-4">
-                            <h1 class="h1 text-4xl font-bold">Room {availRow.dormNo} Tagged as Available</h1>
-                            <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn text-white variant-filled-error">Tag Room as Unavailable</button>
+                            <h1 class="h1 text-2xl max-[480px]:text-base md:text-4xl font-bold">Room {availRow.dormNo} Tagged as Available</h1>
+                            <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn btn-sm md:btn-base text-white variant-filled-error">Tag Room as Unavailable</button>
                         </div>
                     {/if}
                 {/if}
             {/each}
-            <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+            <hr class="mt-10 mb-6 h-0.5 border-t-0 bg-neutral-100" />
 
-            <h1 class="h1 text-4xl pb-6 font-bold">Roommates</h1>
-            <div class="col-span-4 grid grid-cols-11  md:grid-cols-7 gap-4 text-surface-800">
+            <h1 class="h1 text-4xl max-md:text-3xl pb-6 font-bold">Roommates</h1>
+            <div class="col-span-4 grid grid-cols-6 gap-4 text-surface-800">
                 {#each otherTenantRows as otherTenantRow}
                         {#if otherTenantRow.tenantID === currentTenantRows.tenantID}
                             <!-- Do nothing -->
                         {:else}
-                            <div class="col-span-2 card card-hover overflow-hidden shadow bg-white">
+                            <div class="col-span-3 max-[480px]:col-span-6 max-md:col-span-6 max-sm:col-span-3 lg:col-span-2 card card-hover overflow-hidden shadow bg-white">
                                 <div class="p-4">
                                     <div class="flex m-auto justify-between">
                                         <div class="block">
                                             <h4 class="h4 pb-2 font-semibold tracking-tight">{otherTenantRow.tenantName}</h4>
-                                            <p class="text-sm text-surface-400">{otherTenantRow.tenantPhone}<br>{otherTenantRow.tenantEmail}</p>
+                                            <p class="text-ellipsis text-sm text-surface-400">{otherTenantRow.tenantPhone}<br>{otherTenantRow.tenantEmail}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -222,16 +224,16 @@
                 {/each}
             </div>
             
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
 
-            <div class="bg-gradient-to-br variant-gradient-secondary-tertiary p-9 rounded-3xl text-surface-50">
+            <div class="bg-gradient-to-br variant-gradient-secondary-tertiary p-5 sm:p-9 rounded-3xl max-[480px]:rounded-xl text-surface-50">
                 <h1 class="h1 font-bold pb-8">Latest Bills</h1>
                 
                     <div class="col-span-4 grid 2xl:grid-cols-4 xl:grid-cols-2 gap-4 text-surface-800">
                         {#each billRows.slice(0, maxBills) as billRow}
                             <div class="col-span-1 card card-hover bg-white p-4 shadow overflow-hidden">
                                 <div class="flex m-auto justify-between">
-                                    <h3 class="h3 pr-3 text-3xl font-bold tracking-tight dark:text-white">{billRow.dateIssued}</h3>
+                                    <h3 class="h3 pr-3 text-3xl max-sm:text-xl font-bold tracking-tight dark:text-white">{billRow.dateIssued}</h3>
                                     {#if billRow.paymentStatus}
                                         <span class="badge variant-ghost-success px-3 self-center">Paid</span>
                                     {:else}
@@ -249,7 +251,7 @@
                                 </div>
 
                                 <div class="table-container">
-                                    <table class="table table-hover bg-surface-50">
+                                    <table class="table table-hover bg-surface-50 max-sm:text-sm">
                                         <tbody>
                                             <tr>
                                                 <th>Monthly Rent</th>
@@ -276,9 +278,11 @@
                                                 <td>₱{billRow.maintenanceBill}</td>
                                             </tr>
                                         </tbody>
+                                    </table>
+                                    <table class="table table-hover mt-5 bg-surface-50 max-sm:text-sm">
                                         <tfoot>
-                                                <th>Calculated Bill</th>
-                                                <td>₱{billRow.totalBillAmount}</td>
+                                            <th>Calculated Bill</th>
+                                            <td>₱{billRow.totalBillAmount}</td>
                                         </tfoot>
                                     </table>
                                 </div>
@@ -289,13 +293,13 @@
                 
             </div>
 
-            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100 dark:bg-white/10" />
+            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
             
-            <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-9 rounded-3xl text-surface-50">
+            <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-5 sm:p-9 rounded-3xl max-[480px]:rounded-xl text-surface-50">
                 <h1 class="h1 font-bold pb-2 text-surface-50">Visitor Requests</h1>
-                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10 text-surface-800">
+                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 sm:px-4 sm:py-10 text-surface-800">
                     {#each visitorRows as visitorRow}
-                        <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
                             <div class="p-4 pb-0">
                                 <div class="flex m-auto justify-between">
                                     <div class="block">
@@ -316,12 +320,12 @@
             
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
 
-            <div class="bg-gradient-to-br from-tertiary-700 to-surface-400 p-9 rounded-3xl text-surface-50">
+            <div class="bg-gradient-to-br from-tertiary-700 to-surface-400 p-5 sm:p-9 rounded-3xl max-[480px]:rounded-xl text-surface-50">
                 <h1 class="h1 font-bold pb-2 text-surface-50">Maintenance Requests</h1>
                 
-                    <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10 text-surface-800">
+                    <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 sm:px-4 sm:py-10 text-surface-800">
                         {#each maintenanceRows as maintenanceRow}
-                        <div class="snap-start shrink-0 w-72 card card-hover overflow-hidden shadow bg-white">
+                        <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
                             <div class="p-4 pb-0">
                                 <div class="flex m-auto justify-between">
                                     <div class="block">
