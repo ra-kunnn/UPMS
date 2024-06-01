@@ -73,8 +73,8 @@
     <Header />
     <header class="relative">
         <div class="w-auto p-10">
-            <div class="bg-gradient-to-br from-primary-500 via-indigo-600 to-surface-800 p-5 md:p-9 rounded-3xl text-surface-50">
-                <h1 class="h1 font-bold max-md:text-5xl text-7xl pb-4">Welcome to UPMS!</h1>
+            <div class="bg-gradient-to-br from-primary-500 via-indigo-600 to-surface-800 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
+                <h1 class="h1 font-bold max-md:text-5xl text-7xl pb-4 text-surface-50">Welcome to UPMS!</h1>
                 <blockquote class="blockquote text-surface-50">quote, quote quote quote.</blockquote>
             </div>
             

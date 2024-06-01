@@ -226,8 +226,8 @@
             
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
 
-            <div class="bg-gradient-to-br variant-gradient-secondary-tertiary p-5 sm:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
-                <h1 class="h1 font-bold pb-8">Latest Bills</h1>
+            <div class="bg-gradient-to-br variant-gradient-secondary-tertiary p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
+                <h1 class="h1 md:max-lg:text-3xl font-bold pb-8 max-lg:pb-4 text-surface-50">Latest Bills</h1>
                 
                     <div class="col-span-4 grid 2xl:grid-cols-4 xl:grid-cols-2 gap-4 text-surface-800">
                         {#each billRows.slice(0, maxBills) as billRow}
@@ -295,9 +295,9 @@
 
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
             
-            <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-5 sm:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
-                <h1 class="h1 font-bold pb-2 text-surface-50">Visitor Requests</h1>
-                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 sm:px-4 sm:py-10 text-surface-800">
+            <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
+                <h1 class="h1 md:max-lg:text-3xl font-bold pb-2 max-lg:pb-0 text-surface-50">Visitor Requests</h1>
+                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 lg:px-4 lg:py-10 text-surface-800">
                     {#each visitorRows as visitorRow}
                         <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
                             <div class="p-4 pb-0">
@@ -320,10 +320,10 @@
             
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
 
-            <div class="bg-gradient-to-br from-tertiary-700 to-surface-400 p-5 sm:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
-                <h1 class="h1 font-bold pb-2 text-surface-50">Maintenance Requests</h1>
+            <div class="bg-gradient-to-br from-tertiary-700 to-surface-400 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
+                <h1 class="h1 md:max-lg:text-3xl font-bold pb-2 max-lg:pb-0 text-surface-50">Maintenance Requests</h1>
                 
-                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 sm:px-4 sm:py-10 text-surface-800">
+                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 lg:px-4 lg:py-10 text-surface-800">
                     {#each maintenanceRows as maintenanceRow}
                     <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
                         <div class="p-4 pb-0">
