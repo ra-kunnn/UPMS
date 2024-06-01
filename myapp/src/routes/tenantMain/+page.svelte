@@ -226,7 +226,7 @@
             
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
 
-            <div class="bg-gradient-to-br variant-gradient-secondary-tertiary p-5 sm:p-9 rounded-3xl max-[480px]:rounded-xl text-surface-50">
+            <div class="bg-gradient-to-br variant-gradient-secondary-tertiary p-5 sm:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 font-bold pb-8">Latest Bills</h1>
                 
                     <div class="col-span-4 grid 2xl:grid-cols-4 xl:grid-cols-2 gap-4 text-surface-800">
@@ -295,7 +295,7 @@
 
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
             
-            <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-5 sm:p-9 rounded-3xl max-[480px]:rounded-xl text-surface-50">
+            <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-5 sm:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 font-bold pb-2 text-surface-50">Visitor Requests</h1>
                 <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 sm:px-4 sm:py-10 text-surface-800">
                     {#each visitorRows as visitorRow}
@@ -320,30 +320,33 @@
             
             <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
 
-            <div class="bg-gradient-to-br from-tertiary-700 to-surface-400 p-5 sm:p-9 rounded-3xl max-[480px]:rounded-xl text-surface-50">
+            <div class="bg-gradient-to-br from-tertiary-700 to-surface-400 p-5 sm:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 font-bold pb-2 text-surface-50">Maintenance Requests</h1>
                 
-                    <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 sm:px-4 sm:py-10 text-surface-800">
-                        {#each maintenanceRows as maintenanceRow}
-                        <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
-                            <div class="p-4 pb-0">
-                                <div class="flex m-auto justify-between">
-                                    <div class="block">
-                                        {#each roomRows as roomRow} {#if roomRow.dormNo === maintenanceRow.dormNo}<h4 class="h4 text-2 xl font-bold tracking-tight">Room {roomRow.roomName}</h4>{/if}{/each}
-                                        <p class="text-sm text-surface-400">{maintenanceRow.maintenanceRequest}</p>
-                                    </div>
+                <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 sm:px-4 sm:py-10 text-surface-800">
+                    {#each maintenanceRows as maintenanceRow}
+                    <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
+                        <div class="p-4 pb-0">
+                            <div class="flex m-auto justify-between">
+                                <div class="block">
+                                    {#each roomRows as roomRow} {#if roomRow.dormNo === maintenanceRow.dormNo}<h4 class="h4 text-2 xl font-bold tracking-tight">Room {roomRow.roomName}</h4>{/if}{/each}
+                                    <p class="text-sm text-surface-400">{maintenanceRow.maintenanceRequest}</p>
                                 </div>
                             </div>
-
-                            <div class="block gap-1 p-4">
-                                {#if !maintenanceRow.isDone}<span class="badge variant-ghost-success text-success-700 mb-1">Not Done</span>{/if}
-                                {#if maintenanceRow.isDone}<span class="badge variant-ghost-error text-error-700 mb-1">Done</span>{/if}
-                            </div>
                         </div>
-                        {/each}
+
+                        <div class="block gap-1 p-4">
+                            {#if !maintenanceRow.isDone}<span class="badge variant-ghost-success text-success-700 mb-1">Not Done</span>{/if}
+                            {#if maintenanceRow.isDone}<span class="badge variant-ghost-error text-error-700 mb-1">Done</span>{/if}
+                        </div>
                     </div>
+                    {/each}
+                </div>
                 
             </div>
+
+            <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+            
         </div>
     </header>
 </div>

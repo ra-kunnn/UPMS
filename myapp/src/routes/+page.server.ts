@@ -121,10 +121,6 @@ export const load: PageServerLoad = async ({ depends, locals: { supabase, sessio
     return { rooms: roomData ?? [], availability: [], error: availabilityError.message };
   }
 
-
-
-
-
   return { rooms: roomData ?? [], availability: availabilityData ?? [] };
 
 };
