@@ -58,7 +58,7 @@
 <div class="min-h-screen flex-auto w-full h-full font-sans text-surface-900 bg-gradient-to-br from-primary-100 via-slate-300 to-secondary-300">
     <TenantHeader {logout}/>
     <Aside />
-    <header class="relative ml-0 sm:ml-60 lg:ml-80">
+    <header class="sm:ml-60 lg:ml-80">
         <div class="w-auto p-10">
             <div>
                 <div class="flex m-auto justify-between pb-8">

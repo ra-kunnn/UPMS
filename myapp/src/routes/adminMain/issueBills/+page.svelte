@@ -119,19 +119,20 @@
 <div class="min-h-screen flex-auto w-full h-full font-sans text-surface-900 bg-gradient-to-br from-primary-100 via-slate-300 to-secondary-300">
     <Header {logout}/>
     <Aside />
-    <header class="relative ml-80">
+    <header class="sm:ml-60 lg:ml-80">
         <div class="w-auto p-10">
             <div>
                 <h1 class="h1 font-bold pb-8">Issue Bills</h1>
                 
-                <div class="col-span-4 grid 2xl:grid-cols-5 grid-cols-4 gap-4 text-surface-800">
+                <div class="col-span-4 grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 text-surface-800">
 
                     {#each roomRows as roomRow}
                         <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                             <div class="p-4 pb-0">
                                 <div class="flex m-auto justify-between">
                                     <div class="block">
-                                        <h4 class="h4 font-semibold">Room {roomRow.roomName} <br>Base Price: <span class="font-bold">₱{roomRow.monthlyRent}</span></h4>
+                                        <h4 class="h4 font-bold">Room {roomRow.roomName}</h4>
+                                        <h4 class="h4 font-base">Base Price: <span class="font-bold">₱{roomRow.monthlyRent}</span></h4>
                                         
                                     </div>
                                 </div>
@@ -149,25 +150,29 @@
 
                 <h1 class="h1 font-bold pb-8">Released Bills</h1>
                 
-                <div class="col-span-4 grid 2xl:grid-cols-5 grid-cols-4 gap-4 text-surface-800">
-                {#each billRows as billRow}
-                    {#if !billRow.paymentStatus}
-                        <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
-                            <div class="p-4 pb-0">
-                                <div class="flex m-auto justify-between">
-                                    <div class="block">
-                                    {#each roomRows as roomRow} {#if roomRow.dormNo === billRow.dormNo}    <h4 class="h4 font-semibold">Room {roomRow.roomName} – <br>{billRow.dateIssued}<br>Total Bill: <h4 class="h4 font-semibold">₱{billRow.totalBillAmount}</h4></h4>{/if}{/each}
-                                        
+                <div class="col-span-4 grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 text-surface-800">
+                    {#each billRows as billRow}
+                        {#if !billRow.paymentStatus}
+                            <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
+                                <div class="p-4 pb-0">
+                                    <div class="flex m-auto justify-between">
+                                        <div class="block">
+                                            {#each roomRows as roomRow}
+                                                {#if roomRow.dormNo === billRow.dormNo}
+                                                    <h4 class="h4 font-semibold"><span class="h4 font-bold">Room {roomRow.roomName}</span> ({billRow.dateIssued})</h4>
+                                                    <h4>Total Bill: <span class="h4 font-semibold">₱{billRow.totalBillAmount}</span></h4>
+                                                {/if}
+                                            {/each}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="flex p-4 float-right">
-                                <button on:click={() => { confirmPayment(billRow.billID) }} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                                <div class="flex p-4 float-right">
+                                    <button on:click={() => { confirmPayment(billRow.billID) }} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                                </div>
                             </div>
-                        </div>
-                    {/if}
-                {/each}
+                        {/if}
+                    {/each}
                 </div>
             </div>
         </div>
