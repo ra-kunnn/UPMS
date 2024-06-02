@@ -29,6 +29,12 @@
 			event.preventDefault();
 			alert('Password and Confirm Password are not the same.');
 		}
+
+
+		if (password.length < 6) {
+			event.preventDefault();
+			alert('Password too short. Atleast 6 characters.');
+		}
 	};
 
 </script>
@@ -44,17 +50,17 @@
 			<div class="flex gap-2">
 				<label class="label">
 					<span>First Name</span>
-					<input name="fname" id="fname"  class="input" type="text" />
+					<input name="fname" id="fname"  class="input" type="text" required/>
 				</label>
 	
 				<label class="label">
 					<span>Last Name</span>
-					<input name="lname" id="lname" class="input" type="text" />
+					<input name="lname" id="lname" class="input" type="text" required/>
 				</label>
 
 				<label class="label">
 					<span>Sex</span>
-					<select id="sex" name ="sex" class="select">
+					<select id="sex" name ="sex" class="select" required>
 						<option selected hidden></option>
 						<option value="M">Male</option>
 						<option value="F">Female</option>
@@ -65,12 +71,12 @@
 			<div class="flex gap-2">
 				<label class="label">
 					<span>E-mail</span>
-					<input name="email" id="email"  class="input" type="email" placeholder="name@company.com" />
+					<input name="email" id="email"  class="input" type="email" placeholder="name@company.com" required/>
 				</label>
 	
 				<label class="label">
 					<span>Contact Number</span>
-					<input name="phone" id="phone" class="input" type="text" placeholder="09..." />
+					<input name="phone" maxLength={"11"} id="phone" class="input" type="text" placeholder="09..." required/>
 				</label>
 			</div>
 

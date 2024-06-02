@@ -66,10 +66,7 @@ export const actions: Actions = {
 
       const { error } = await supabase.auth.signInWithPassword({ email, password });
 
-      if (error) {
-        console.error(error);
-        return redirect(303, '/error'); //go to error, make one
-      } 
+      //error is in login now
 
      const { data: potCust } = await supabase
       .from('Potential Customer')
