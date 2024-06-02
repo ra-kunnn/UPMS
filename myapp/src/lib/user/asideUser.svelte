@@ -13,7 +13,7 @@
     }
 </script>
 
-<aside class="fixed top-20 left-0 z-20 w-80 h-screen transition-transform -translate-x-full sm:translate-x-0">
+<aside class="fixed top-20 left-0 z-20 lg:w-80 w-60 h-screen transition-transform -translate-x-full sm:translate-x-0">
     <div class="h-full px-3 py-4 overflow-y-auto bg-white shadow">
         <ul class="space-y-2 font-medium">
             <li>
@@ -22,7 +22,7 @@
                     <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
                     <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
                     </svg>
-                <span class="ms-3">Home Page</span>
+                <span class="ms-3 text-sm lg:text-base">Home Page</span>
                 </a>
             </li>
             <li>
@@ -33,7 +33,7 @@
                     <path d="m8.5 14 7-4"></path>
                     <path d="m8.5 10 7 4"></path>
                     </svg>
-                    <span class="ms-3">Change Password</span>
+                    <span class="ms-3 text-sm lg:text-base">Change Password</span>
                 </button>
             </li>
         </ul>
