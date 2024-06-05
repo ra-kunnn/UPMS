@@ -121,10 +121,15 @@
                 </div>
                 
                 <div class="col-span-3 grid max-md:grid-cols-1 max-xl:grid-cols-2 grid-cols-3 gap-4 text-surface-800">
+
                     {#each roomRows as roomRow}
                         <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                             <header>
-                                <img src="https://cdn.vox-cdn.com/thumbor/z2M_XZXuk2EK-oIBbPXCVizxN80=/0x0:6492x4328/1200x675/filters:focal(2727x1645:3765x2683)/cdn.vox-cdn.com/uploads/chorus_image/image/69720403/13_THURSDAY_020.0.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />
+                                {#if roomRow.PAX === 2}
+                                    <img src="https://reslife.umd.edu/sites/default/files/styles/optimized/public/2022-09/IMG-1216.jpg?itok=do-NZ-Gu" class="object-cover w-full aspect-[21/9]" alt="room for 2" />
+                                {:else}
+                                    <img src="https://www.hostelbacau.ro/wp-content/uploads/2019/02/Hostel-Holland-4-person-room-4.jpg" class="object-cover w-full aspect-[21/9]" alt="room for 4" />
+                                {/if}
                             </header>  
                             <div class="p-4">
                                 <div class="flex m-auto justify-between">
@@ -133,14 +138,13 @@
                                         {#each availableRooms as availableRoom}
                                             {#if availableRoom.dormNo === roomRow.dormNo}
                                                 {#each createArray(availableRoom.preexistingTenants) as _}
-                                                    <svg class="w-4 h-4 text-surface-500 fill-surface-800 transition duration-75 dark:text-surface-400 group-hover:text-surface-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
-                                                        <path d="M 10 9 a 5 4.5 0 1 0 0 -9 a 4.5 4.5 0 0 0 0 9 Z M 10 11 H 5 a 5.006 5.006 0 0 0 -5 5 v 2 a 1 1 0 0 0 1 1 h 18 a 1 1 0 0 0 1 -1 v -2 a 5.006 5.006 0 0 0 -5 -5 Z"/>
+                                                    <svg class="flex-shrink-0 w-5 h-5 fill-surface-700 text-surface-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="5 5 44 44">
+                                                        <path d="M 28.0117 27.3672 C 33.0508 27.3672 37.3867 22.8672 37.3867 17.0078 C 37.3867 11.2187 33.0274 6.9297 28.0117 6.9297 C 22.9961 6.9297 18.6367 11.3125 18.6367 17.0547 C 18.6367 22.8672 22.9961 27.3672 28.0117 27.3672 Z M 13.2930 49.0703 L 42.7305 49.0703 C 46.4101 49.0703 47.7226 48.0156 47.7226 45.9531 C 47.7226 39.9062 40.1523 31.5625 28.0117 31.5625 C 15.8477 31.5625 8.2774 39.9062 8.2774 45.9531 C 8.2774 48.0156 9.5898 49.0703 13.2930 49.0703 Z"></path>
                                                     </svg>
-                                                    
                                                 {/each}
                                                 {#each createArray(availableRoom.availableSlots) as _}
-                                                    <svg class="w-4 h-4 text-surface-500 fill-surface-300 transition duration-75 dark:text-surface-400 group-hover:text-surface-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 21">
-                                                        <path d="M 10 9 a 5 4.5 0 1 0 0 -9 a 4.5 4.5 0 0 0 0 9 Z M 10 11 H 5 a 5.006 5.006 0 0 0 -5 5 v 2 a 1 1 0 0 0 1 1 h 18 a 1 1 0 0 0 1 -1 v -2 a 5.006 5.006 0 0 0 -5 -5 Z"/>
+                                                    <svg class="flex-shrink-0 w-5 h-5 fill-surface-300 text-surface-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="5 5 44 44">
+                                                        <path d="M 28.0117 27.3672 C 33.0508 27.3672 37.3867 22.8672 37.3867 17.0078 C 37.3867 11.2187 33.0274 6.9297 28.0117 6.9297 C 22.9961 6.9297 18.6367 11.3125 18.6367 17.0547 C 18.6367 22.8672 22.9961 27.3672 28.0117 27.3672 Z M 13.2930 49.0703 L 42.7305 49.0703 C 46.4101 49.0703 47.7226 48.0156 47.7226 45.9531 C 47.7226 39.9062 40.1523 31.5625 28.0117 31.5625 C 15.8477 31.5625 8.2774 39.9062 8.2774 45.9531 C 8.2774 48.0156 9.5898 49.0703 13.2930 49.0703 Z"></path>
                                                     </svg>
                                                 {/each}
                                             {/if}
@@ -177,12 +181,14 @@
                                 </div>
 
                                 <div class="flex pt-2 gap-2">
+
                                     {#each availableRooms as availableRoom}
                                         {#if availableRoom.dormNo === roomRow.dormNo}
                                             {#if !availableRoom.availability}<button on:click={() => {setAvailability(availableRoom.availability, availableRoom.dormNo)}} class="btn btn-sm text-white variant-filled-success w-full">Tag Room as Available</button>{/if}
                                             {#if availableRoom.availability}<button on:click={() => {setAvailability(availableRoom.availability, availableRoom.dormNo)}} class="btn btn-sm text-white variant-filled-error w-full">Tag Room as Unavailable</button>{/if}
                                         {/if}
                                     {/each}
+
                                 </div>
                             </div>
                         </div>

@@ -205,27 +205,28 @@
             
             <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
 
-            
             <div class="flex pb-8 max-md:pb-4">
                 <h1 class="h1 font-bold md:text-5xl">Roommates</h1>
             </div>
             <div class="col-span-4 grid grid-cols-6 gap-4 text-surface-800">
+
                 {#each otherTenantRows as otherTenantRow}
-                        {#if otherTenantRow.tenantID === currentTenantRows.tenantID}
-                            <!-- Do nothing -->
-                        {:else}
-                            <div class="col-span-3 max-[480px]:col-span-6 max-md:col-span-6 max-sm:col-span-3 lg:col-span-2 card card-hover overflow-hidden shadow bg-white">
-                                <div class="p-4">
-                                    <div class="flex m-auto justify-between">
-                                        <div class="block">
-                                            <h4 class="h4 pb-2 font-semibold tracking-tight">{otherTenantRow.tenantName}</h4>
-                                            <p class="text-ellipsis text-sm text-surface-400">{otherTenantRow.tenantPhone}<br>{otherTenantRow.tenantEmail}</p>
-                                        </div>
+                    {#if otherTenantRow.tenantID === currentTenantRows.tenantID}
+                        <!-- Do nothing -->
+                    {:else}
+                        <div class="col-span-3 max-[480px]:col-span-6 max-md:col-span-6 max-sm:col-span-3 lg:col-span-2 card card-hover overflow-hidden shadow bg-white">
+                            <div class="p-4">
+                                <div class="flex m-auto justify-between">
+                                    <div class="block">
+                                        <h4 class="h4 pb-2 font-semibold tracking-tight">{otherTenantRow.tenantName}</h4>
+                                        <p class="text-ellipsis text-sm text-surface-400">{otherTenantRow.tenantPhone}<br>{otherTenantRow.tenantEmail}</p>
                                     </div>
                                 </div>
                             </div>
-                        {/if}
+                        </div>
+                    {/if}
                 {/each}
+
             </div>
             
             <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
@@ -291,8 +292,8 @@
                                     </table>
                                 </div>
                             </div>
-
                         {/each}
+
                     </div>
                 
             </div>
@@ -328,6 +329,7 @@
                 <h1 class="h1 md:max-lg:text-3xl font-bold pb-2 max-lg:pb-0 text-surface-50">Maintenance Requests</h1>
                 
                 <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 lg:px-4 lg:py-10 text-surface-800">
+
                     {#each maintenanceRows as maintenanceRow}
                     <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
                         <div class="p-4 pb-0">
@@ -345,6 +347,7 @@
                         </div>
                     </div>
                     {/each}
+                    
                 </div>
                 
             </div>

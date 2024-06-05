@@ -219,29 +219,32 @@
             <div class="bg-gradient-to-br from-primary-400 to-secondary-700 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 md:max-lg:text-3xl font-bold pb-2 max-lg:pb-0 text-surface-50">Released Bills</h1>
                 <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 lg:px-4 lg:py-10 text-surface-800">
-                {#each billRows.slice(0, 4) as billRow}
-                    {#if !billRow.paymentStatus}
-                        <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
-                        {#each roomRows as roomRow}    
-                            {#if roomRow.dormNo === billRow.dormNo}
-                                <div class="p-4 pb-0 min-h-28">
-                                    <div class="flex m-auto justify-between">
-                                        <div class="block">
-                                            <h4 class="h4 font-semibold">Room {roomRow.roomName} – {billRow.dateIssued}</h4>
-                                            <h2 class="h2 tracking-tight font-bold pb-1">₱{billRow.totalBillAmount}</h2>
-                                            <p class="text-sm text-surface-400">{#each tenantRows as tenantRow}    {#if tenantRow.dormNo === billRow.dormNo}{tenantRow.tenantName}, {/if}{/each}</p>
+
+                    {#each billRows.slice(0, 4) as billRow}
+                        {#if !billRow.paymentStatus}
+                            <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
+
+                            {#each roomRows as roomRow}    
+                                {#if roomRow.dormNo === billRow.dormNo}
+                                    <div class="p-4 pb-0 min-h-28">
+                                        <div class="flex m-auto justify-between">
+                                            <div class="block">
+                                                <h4 class="h4 font-semibold">Room {roomRow.roomName} – {billRow.dateIssued}</h4>
+                                                <h2 class="h2 tracking-tight font-bold pb-1">₱{billRow.totalBillAmount}</h2>
+                                                <p class="text-sm text-surface-400">{#each tenantRows as tenantRow}    {#if tenantRow.dormNo === billRow.dormNo}{tenantRow.tenantName}, {/if}{/each}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="flex p-4 float-right">
-                                    <button on:click={() => { confirmPayment(billRow.billID) }} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
-                                </div>
-                            {/if}
-                        {/each}
-                        </div>
-                    {/if}
-                {/each}
+                                    <div class="flex p-4 float-right">
+                                        <button on:click={() => { confirmPayment(billRow.billID) }} class="btn btn-sm variant-filled-success text-white self-end">Confirm Payment</button>
+                                    </div>
+                                {/if}
+                            {/each}
+
+                            </div>
+                        {/if}
+                    {/each}
                     
                 </div>
             </div>
@@ -251,32 +254,35 @@
             <div class="bg-gradient-to-br from-secondary-600 to-tertiary-700 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 md:max-lg:text-3xl font-bold pb-2 max-lg:pb-0 text-surface-50">Visitor Requests</h1>
                 <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 lg:px-4 lg:py-10 text-surface-800">
-                {#each visitorRows as visitorRow}
-                    {#if !visitorRow.isApproved}
-                        <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
-                            <div class="p-4 pb-0 min-h-36">
-                                <div class="flex m-auto justify-between">
-                                    <div class="block">
-                                        {#each tenantRows as tenantRow}
-                                            {#if tenantRow.tenantID === visitorRow.tenantID}
-                                                <h4 class="h4 text-2 xl font-bold tracking-tight">{tenantRow.tenantName}</h4>
-                                                <p class="text-base pb-1">Visitor: {visitorRow.visitorName}, {visitorRow.visitorRelation}</p>
-                                                <p class="text-sm text-surface-400">Room {#each roomRows as roomRow}{#if roomRow.dormNo === tenantRow.dormNo}{roomRow.roomName}{/if}{/each}</p>
-                                                <p class="text-sm text-surface-400">Start: {visitorRow.startDateOfVisit}</p>
-                                            <p class="text-sm text-surface-400">End: {visitorRow.endDateOfVisit}</p>
-                                            {/if}
-                                        {/each}
+
+                    {#each visitorRows as visitorRow}
+                        {#if !visitorRow.isApproved}
+                            <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
+                                <div class="p-4 pb-0 min-h-36">
+                                    <div class="flex m-auto justify-between">
+                                        <div class="block">
+
+                                            {#each tenantRows as tenantRow}
+                                                {#if tenantRow.tenantID === visitorRow.tenantID}
+                                                    <h4 class="h4 text-2 xl font-bold tracking-tight">{tenantRow.tenantName}</h4>
+                                                    <p class="text-base pb-1">Visitor: {visitorRow.visitorName}, {visitorRow.visitorRelation}</p>
+                                                    <p class="text-sm text-surface-400">Room {#each roomRows as roomRow}{#if roomRow.dormNo === tenantRow.dormNo}{roomRow.roomName}{/if}{/each}</p>
+                                                    <p class="text-sm text-surface-400">Start: {visitorRow.startDateOfVisit}</p>
+                                                <p class="text-sm text-surface-400">End: {visitorRow.endDateOfVisit}</p>
+                                                {/if}
+                                            {/each}
+
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="flex p-4 float-right">
-                                <button on:click={() => { confirmVisitor(visitorRow.visitorID) }} class="btn btn-sm variant-filled-success text-white self-end">Confirm</button>
+                                <div class="flex p-4 float-right">
+                                    <button on:click={() => { confirmVisitor(visitorRow.visitorID) }} class="btn btn-sm variant-filled-success text-white self-end">Confirm</button>
+                                </div>
+                    
                             </div>
-                
-                        </div>
-                    {/if}
-                {/each}
+                        {/if}
+                    {/each}
                     
                 </div>
             </div>
@@ -286,6 +292,7 @@
             <div class="bg-gradient-to-br from-tertiary-700 to-surface-400 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 md:max-lg:text-3xl font-bold pb-2 max-lg:pb-0 text-surface-50">Maintenance Requests</h1>
                 <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-2 py-6 lg:px-4 lg:py-10 text-surface-800">
+
                     {#each maintenanceRows as maintenanceRow}
                         {#if !maintenanceRow.isDone}
                         <div class="snap-start shrink-0 w-72 max-sm:w-60 card card-hover overflow-hidden shadow bg-white">
@@ -306,6 +313,7 @@
                         </div>
                         {/if}
                     {/each}
+                    
                 </div>
             </div>
 
