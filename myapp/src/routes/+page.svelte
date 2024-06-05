@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Header from '$lib/landing/headerLanding.svelte';
-    import Aside from '$lib/landing/asideLanding.svelte';
+    import Footer from '$lib/footer.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import { onMount } from 'svelte';
 
@@ -75,7 +75,7 @@
         <div class="w-auto p-10">
             <div class="bg-gradient-to-br from-primary-500 via-indigo-600 to-surface-800 p-5 lg:p-9 rounded-3xl max-sm:rounded-xl text-surface-50">
                 <h1 class="h1 font-bold max-md:text-5xl text-7xl pb-4 text-surface-50">Welcome to UPMS!</h1>
-                <blockquote class="blockquote text-surface-50">quote, quote quote quote.</blockquote>
+                <blockquote class="blockquote text-surface-50">Your home away from home.</blockquote>
             </div>
             
             <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
@@ -164,6 +164,8 @@
             </div>
 
             <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
+
+            <Footer />
             
         </div>
     </header>

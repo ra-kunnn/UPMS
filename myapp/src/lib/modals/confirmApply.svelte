@@ -2,6 +2,7 @@
 	import type { SvelteComponent } from 'svelte';
 	import { supabase } from '$lib/supabaseClient';
 	import Cookies from 'js-cookie';
+	import { onMount } from 'svelte';
 
 	// Stores
 	import { getModalStore } from '@skeletonlabs/skeleton';
@@ -28,6 +29,24 @@
 	console.log(customerID, dormNo);
 	//releasing cookie
 	//Cookies.remove('userID');
+
+	let roomName: string = '';
+
+	onMount(async () => {
+		if (dormNo) {
+			const { data, error } = await supabase
+				.from('Dorm Room')
+				.select('roomName')
+				.eq('dormNo', dormNo)
+				.single();
+
+			if (error) {
+				console.error('Error fetching room name:', error);
+			} else {
+				roomName = data.roomName;
+			}
+		}
+	});
 
 
 	const applyroom = async (event: Event) => { 
@@ -93,13 +112,14 @@
 		Cookies.remove('dormNo');
 	}
 
+	
 
 </script>
 
 {#if $modalStore[0]}
 	<div class="{cBase}">
 		<header class={cHeader}>Confirm Application</header>
-		<article>When is your preferred start of tenancy to {dormNo}?</article>
+		<article>When is your preferred start of tenancy to Room {roomName}?</article>
 		<form on:submit={applyroom}>
 			<input type="date" id="startOfTenancy" name="startOfTenancy" required/>
 			<!-- prettier-ignore -->

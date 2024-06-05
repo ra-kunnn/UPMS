@@ -77,7 +77,7 @@
 
 			<label class="label">
 				<span>Email</span>
-				<input name="email" id="email" class="input" type="email" value="{email}" readonly />
+				<input name="email" id="email" class="input" type="email" value="{email}" disabled />
 			</label>
 
 			<label class="label pb-3">

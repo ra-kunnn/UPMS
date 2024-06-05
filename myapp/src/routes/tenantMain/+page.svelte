@@ -1,6 +1,7 @@
 <script lang="ts">
 	import TenantHeader from '$lib/tenant/headerTenant.svelte';
     import Aside from '$lib/tenant/asideTenant.svelte';
+    import Footer from '$lib/footer.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/tenant/profileTenant.svelte';
     import { onMount } from 'svelte';
@@ -139,7 +140,6 @@
     });
       function handleProfile(event) {
       tenantName = event.detail.tenantName;
-      tenantRoom = event.detail.tenantRoom;
     }
 
     Cookies.set('email', tenantEmail);
@@ -182,7 +182,7 @@
     <Aside />
     <header class="sm:ml-60 lg:ml-80">
         <div class="w-auto p-10">
-            <Profile on:modalOpen={handleProfile} {tenantName} {tenantRoom} />
+            <Profile on:modalOpen={handleProfile} {tenantName} />
 
             <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
             
@@ -361,6 +361,8 @@
             </div>
 
             <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
+
+            <Footer />
 
         </div>
     </header>

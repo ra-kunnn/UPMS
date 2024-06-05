@@ -75,15 +75,10 @@
 
 {#if $modalStore[0]}
 	<div class="modal-example-form {cBase}">
-		<header class={cHeader}>Billing Form</header>
+		<header class={cHeader}>Billing Form for Room {roomName}</header>
 		<article>{currentDate}</article>
 		<!-- Enable for debugging: -->
 		<form on:submit={issueBill} class="modal-form {cForm}">
-			<label class="label">
-				<span>Room {roomName}</span>
-				<input class="input" type="text" disabled />
-			</label>
-
 			<label class="label">
 				<span>Monthly Rent</span>
 				<input name="monthlyRent" class="input" type="number" value={monthlyRent} placeholder={monthlyRent} disabled/>

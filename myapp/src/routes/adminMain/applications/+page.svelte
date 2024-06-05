@@ -1,8 +1,8 @@
 <script lang="ts">
 	import Header from '$lib/admin/headerAdmin.svelte';
     import Aside from '$lib/admin/asideAdmin.svelte';
+    import Footer from '$lib/footer.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
-    import Profile from '$lib/admin/profileAdmin.svelte';
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import type { PageData } from './$types';
@@ -318,6 +318,8 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
                 </div>
 
                 <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
+
+                <Footer />
                 
             </div>
         </div>
