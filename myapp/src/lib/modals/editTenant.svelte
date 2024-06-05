@@ -145,17 +145,17 @@
 		<!-- Enable for debugging: -->
 		<form on:submit={editTenant} class="modal-form {cForm}">
 			<label class="label">
-				<span>Tenant (automate)</span>
+				<span>Tenant</span>
 				<input class="input" name="tenant" id="tenant" value={tenantName} type="text" disabled />
 			</label>
 
 			<label class="label">
-				<span>Contact Number (automate)</span>
+				<span>Contact Number</span>
 				<input class="input" name="contact" id="contact" value={tenantPhone} type="text" />
 			</label>
 
 			<label class="label">
-				<span>Room Assignment (selected should be current room)</span>				
+				<span>Room Assignment</span>				
 					<select name="roomName" id="roomName" class="select">
 						{#each roomRows as roomRow}<option value= {roomRow.dormNo}>Room {roomRow.roomName}</option>{/each}
 					</select>

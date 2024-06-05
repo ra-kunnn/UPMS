@@ -1,9 +1,8 @@
 <script lang="ts">
 	import Header from '$lib/admin/headerAdmin.svelte';
     import Aside from '$lib/admin/asideAdmin.svelte';
+    import Footer from '$lib/footer.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
-    import Profile from '$lib/admin/profileAdmin.svelte';
-
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import type { PageData } from './$types';
@@ -81,49 +80,50 @@
     <Aside />
     <header class="sm:ml-60 lg:ml-80">
         <div class="w-auto p-10">
-            <div>
-                <div class="flex pb-8 max-md:pb-4">
-                    <h1 class="h1 font-bold md:text-5xl">Bill History</h1>
-                </div>
+            <div class="flex pb-8 max-md:pb-4">
+                <h1 class="h1 font-bold md:text-5xl">Bill History</h1>
+            </div>
 
-                <div class="table-container">
-                    <table class="table table-hover bg-surface-50 md:text-xs">
-                        <thead>
-                            <tr class="bg-secondary-400">
-                                <th class="text-center">Room</th>
-                                <th class="text-center">Date</th>
-                                <th class="text-center">Monthly Rent</th>
-                                <th class="text-center">Water Bill</th>
-                                <th class="text-center">Electricity Bill</th>
-                                <th class="text-center">Hut Rent</th>
-                                <th class="text-center">Visitor Overnight Bill</th>
-                                <th class="text-center">Maintenance Bill</th>
-                                <th class="text-center">Total Bill</th>
-                                <th class="text-center">Date Paid</th>
+            <div class="table-container">
+                <table class="table table-hover bg-surface-50 md:text-xs">
+                    <thead>
+                        <tr class="bg-secondary-400">
+                            <th class="text-center">Room</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Monthly Rent</th>
+                            <th class="text-center">Water Bill</th>
+                            <th class="text-center">Electricity Bill</th>
+                            <th class="text-center">Hut Rent</th>
+                            <th class="text-center">Visitor Overnight Bill</th>
+                            <th class="text-center">Maintenance Bill</th>
+                            <th class="text-center">Total Bill</th>
+                            <th class="text-center">Date Paid</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {#each billRows as billRow}
+                            <tr>
+                                {#each roomRows as roomRow}{#if roomRow.dormNo === billRow.dormNo} <td>Room {roomRow.roomName}</td>{/if}{/each}
+                                <td>{billRow.dateIssued}</td>
+                                <td>₱{billRow.monthlyRent}</td>
+                                <td>₱{billRow.waterBill}</td>
+                                <td>₱{billRow.electricityBill}</td>
+                                <td>₱{billRow.hutRent}</td>
+                                <td>₱{billRow.visitorOvernightBill}</td>
+                                <td>₱{billRow.maintenanceBill}</td>
+                                <td class="font-semibold">₱{billRow.totalBillAmount}</td>
+                                {#if billRow.paymentStatus}<td>{billRow.datePaid}</td>
+                                {:else if !billRow.paymentStatus}<td>unpaid</td>
+                                {/if}
                             </tr>
-                        </thead>
-                        <tbody>
-                            {#each billRows as billRow}
-                                <tr>
-                                    {#each roomRows as roomRow}{#if roomRow.dormNo === billRow.dormNo} <td>Room {roomRow.roomName}</td>{/if}{/each}
-                                    <td>{billRow.dateIssued}</td>
-                                    <td>₱{billRow.monthlyRent}</td>
-                                    <td>₱{billRow.waterBill}</td>
-                                    <td>₱{billRow.electricityBill}</td>
-                                    <td>₱{billRow.hutRent}</td>
-                                    <td>₱{billRow.visitorOvernightBill}</td>
-                                    <td>₱{billRow.maintenanceBill}</td>
-                                    <td class="font-semibold">₱{billRow.totalBillAmount}</td>
-                                    {#if billRow.paymentStatus}<td>{billRow.datePaid}</td>
-                                    {:else if !billRow.paymentStatus}<td>unpaid</td>
-                                    {/if}
-                                </tr>
-                            {/each}
-                        </tbody>
-                    </table>
-                </div>
-                
-                <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
+                        {/each}
+                    </tbody>
+                </table>
+            </div>
+            
+            <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
+
+            <Footer />
                 
         </div>
     </header>

@@ -1,8 +1,8 @@
 <script lang="ts">
 	import TenantHeader from '$lib/tenant/headerTenant.svelte';
     import Aside from '$lib/tenant/asideTenant.svelte';
+    import Footer from '$lib/footer.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
-    import Profile from '$lib/tenant/profileTenant.svelte';
     import { onMount } from 'svelte';
     import Cookies from 'js-cookie';
     import { invalidate } from '$app/navigation';
@@ -128,6 +128,8 @@
                 </div>
                     
                 <hr class="my-10 h-0.5 border-t-0 bg-neutral-100" />
+
+                <Footer />
                 
             </div>
         </div>

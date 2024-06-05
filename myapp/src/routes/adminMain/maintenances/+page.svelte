@@ -1,9 +1,8 @@
 <script lang="ts">
 	import Header from '$lib/admin/headerAdmin.svelte';
     import Aside from '$lib/admin/asideAdmin.svelte';
+    import Footer from '$lib/footer.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
-    import Profile from '$lib/admin/profileAdmin.svelte';
-
     import { Modal, getModalStore } from '@skeletonlabs/skeleton';
     import type { ModalSettings, ModalComponent, ModalStore } from '@skeletonlabs/skeleton';
     import type { PageData } from './$types';
@@ -69,39 +68,40 @@
     <Aside />
     <header class="sm:ml-60 lg:ml-80">
         <div class="w-auto p-10">
-            <div>
-                <div class="flex pb-8 max-md:pb-4">
-                    <h1 class="h1 font-bold md:text-5xl">Bill History</h1>
-                </div>
+            <div class="flex pb-8 max-md:pb-4">
+                <h1 class="h1 font-bold md:text-5xl">Maintenance Logbook</h1>
+            </div>
 
-                <div class="table-container">
-                    <table class="table table-hover bg-surface-50">
-                        <thead>
-                            <tr class="bg-secondary-400">
-                                <th>Dorm Room</th>
-                                <th>Task Description</th>
-                                <th>Start Date and Time</th>
-                                <th>End Date and Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                            {#each maintenanceRows as maintenanceRow}
-                                {#if maintenanceRow.isDone}
-                                    <tr>
-                                        {#each roomRows as roomRow}{#if roomRow.dormNo === maintenanceRow.dormNo} <td>Room {roomRow.roomName}</td>{/if}{/each}
-                                        <td>{maintenanceRow.maintenanceRequest}</td>
-                                        <td>{maintenanceRow.startDateOfMaintenance}</td>
-                                        <td>{maintenanceRow.endDateOfMaintenance}</td>
-                                    </tr>
-                                {/if}
-                            {/each}
-                            
-                        </tbody>
-                    </table>
-                </div>
-                
-                <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
+            <div class="table-container">
+                <table class="table table-hover bg-surface-50">
+                    <thead>
+                        <tr class="bg-secondary-400">
+                            <th>Dorm Room</th>
+                            <th>Task Description</th>
+                            <th>Start Date and Time</th>
+                            <th>End Date and Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        {#each maintenanceRows as maintenanceRow}
+                            {#if maintenanceRow.isDone}
+                                <tr>
+                                    {#each roomRows as roomRow}{#if roomRow.dormNo === maintenanceRow.dormNo} <td>Room {roomRow.roomName}</td>{/if}{/each}
+                                    <td>{maintenanceRow.maintenanceRequest}</td>
+                                    <td>{maintenanceRow.startDateOfMaintenance}</td>
+                                    <td>{maintenanceRow.endDateOfMaintenance}</td>
+                                </tr>
+                            {/if}
+                        {/each}
+                        
+                    </tbody>
+                </table>
+            </div>
+            
+            <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
+
+            <Footer />
         </div>
     </header>
 </div>

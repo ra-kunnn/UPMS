@@ -1,6 +1,7 @@
 <script lang="ts">
 	import TenantHeader from '$lib/tenant/headerTenant.svelte';
     import Aside from '$lib/tenant/asideTenant.svelte';
+    import Footer from '$lib/footer.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/tenant/profileTenant.svelte';
     import { onMount } from 'svelte';
@@ -360,6 +361,8 @@
             </div>
 
             <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
+
+            <Footer />
 
         </div>
     </header>

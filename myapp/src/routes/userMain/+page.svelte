@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Header from '$lib/user/headerUser.svelte';
     import Aside from '$lib/user/asideUser.svelte';
+    import Footer from '$lib/footer.svelte';
     import HideOverflow from '$lib/hideOverflowX.svelte';
     import Profile from '$lib/user/profileUser.svelte';
     import Cookies from 'js-cookie';
@@ -349,6 +350,8 @@
             {/if}
             
             <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
+
+            <Footer />
 
         </div>
     </header>
