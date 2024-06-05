@@ -121,10 +121,15 @@
                 </div>
                 
                 <div class="col-span-3 grid max-md:grid-cols-1 max-xl:grid-cols-2 grid-cols-3 gap-4 text-surface-800">
+
                     {#each roomRows as roomRow}
                         <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                             <header>
-                                <img src="https://cdn.vox-cdn.com/thumbor/z2M_XZXuk2EK-oIBbPXCVizxN80=/0x0:6492x4328/1200x675/filters:focal(2727x1645:3765x2683)/cdn.vox-cdn.com/uploads/chorus_image/image/69720403/13_THURSDAY_020.0.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />
+                                {#if roomRow.PAX === 2}
+                                    <img src="https://reslife.umd.edu/sites/default/files/styles/optimized/public/2022-09/IMG-1216.jpg?itok=do-NZ-Gu" class="object-cover w-full aspect-[21/9]" alt="room for 2" />
+                                {:else}
+                                    <img src="https://www.hostelbacau.ro/wp-content/uploads/2019/02/Hostel-Holland-4-person-room-4.jpg" class="object-cover w-full aspect-[21/9]" alt="room for 4" />
+                                {/if}
                             </header>  
                             <div class="p-4">
                                 <div class="flex m-auto justify-between">
@@ -176,12 +181,14 @@
                                 </div>
 
                                 <div class="flex pt-2 gap-2">
+
                                     {#each availableRooms as availableRoom}
                                         {#if availableRoom.dormNo === roomRow.dormNo}
                                             {#if !availableRoom.availability}<button on:click={() => {setAvailability(availableRoom.availability, availableRoom.dormNo)}} class="btn btn-sm text-white variant-filled-success w-full">Tag Room as Available</button>{/if}
                                             {#if availableRoom.availability}<button on:click={() => {setAvailability(availableRoom.availability, availableRoom.dormNo)}} class="btn btn-sm text-white variant-filled-error w-full">Tag Room as Unavailable</button>{/if}
                                         {/if}
                                     {/each}
+
                                 </div>
                             </div>
                         </div>

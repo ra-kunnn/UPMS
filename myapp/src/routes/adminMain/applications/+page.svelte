@@ -291,7 +291,7 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
                     {#each applicationRows as applicationRow}
                         <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                             <header>
-                                <img src="https://i.pinimg.com/736x/a0/ee/92/a0ee92666bfb87aed854e2017a1c451a.jpg" class="object-cover aspect-square w-full" alt="Post" />
+                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" class="object-cover aspect-square w-full" alt="profile pic" />
                             </header>
 
                             <div class="p-4">
@@ -314,12 +314,11 @@ const acceptApplication = async (appID: number, customerID: number, dormNo: numb
                             </div>
                         </div>
                     {/each}
-                        
-
                     
                 </div>
 
                 <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
+                
             </div>
         </div>
     </header>

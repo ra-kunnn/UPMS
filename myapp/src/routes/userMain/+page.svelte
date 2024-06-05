@@ -168,18 +168,17 @@
                     <h1 class="h1 font-bold text-3xl sm:text-4xl lg:text-5xl 2xl:text-6xl pb-8 max-sm:pb-4">Room Application</h1>
                    
                     {#each applicationRows as applicationRow}
+
                         {#each roomRows as roomRow}
                             {#if roomRow.dormNo === applicationRow.dormNo}
                             <div class="block w-full md:w-9/12 lg:w-8/12 2xl:w-6/12 mx-auto">
                                 <div class="card overflow-hidden shadow bg-white text-surface-800">
                                     <header>
-                                        
                                         {#if roomRow.PAX === 2}
-                                            <img src="https://cdn.vox-cdn.com/thumbor/z2M_XZXuk2EK-oIBbPXCVizxN80=/0x0:6492x4328/1200x675/filters:focal(2727x1645:3765x2683)/cdn.vox-cdn.com/uploads/chorus_image/image/69720403/13_THURSDAY_020.0.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />
+                                            <img src="https://reslife.umd.edu/sites/default/files/styles/optimized/public/2022-09/IMG-1216.jpg?itok=do-NZ-Gu" class="object-cover w-full aspect-[21/9]" alt="room for 2" />
                                         {:else}
-                                            <img src="https://asiasociety.org/sites/default/files/styles/1200w/public/D/dormroom.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />
+                                            <img src="https://www.hostelbacau.ro/wp-content/uploads/2019/02/Hostel-Holland-4-person-room-4.jpg" class="object-cover w-full aspect-[21/9]" alt="room for 4" />
                                         {/if}
-                                            
                                     </header>
                                     
                                     <div class="p-4">
@@ -253,7 +252,9 @@
                             </div>
                             {/if}
                         {/each}
+
                     {/each}
+
                 </div>
             {/if}
 
@@ -263,16 +264,22 @@
                     <h1 class="h1 font-bold md:text-5xl">Available Rooms</h1>
                 </div>
              
-                <div class="col-span-3 grid max-md:grid-cols-1 max-lg:grid-cols-2 grid-cols-3 gap-4 text-surface-800">           
+                <div class="col-span-3 grid max-md:grid-cols-1 max-lg:grid-cols-2 grid-cols-3 gap-4 text-surface-800">  
+
                     {#each availableRooms as roomRow}
                         <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                             <header>
-                                <img src="https://cdn.vox-cdn.com/thumbor/z2M_XZXuk2EK-oIBbPXCVizxN80=/0x0:6492x4328/1200x675/filters:focal(2727x1645:3765x2683)/cdn.vox-cdn.com/uploads/chorus_image/image/69720403/13_THURSDAY_020.0.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />
+                                {#if roomRow.PAX === 2}
+                                <img src="https://reslife.umd.edu/sites/default/files/styles/optimized/public/2022-09/IMG-1216.jpg?itok=do-NZ-Gu" class="object-cover w-full aspect-[21/9]" alt="room for 2" />
+                                {:else}
+                                    <img src="https://www.hostelbacau.ro/wp-content/uploads/2019/02/Hostel-Holland-4-person-room-4.jpg" class="object-cover w-full aspect-[21/9]" alt="room for 4" />
+                                {/if}
                             </header>  
                             <div class="p-4">
                                 <div class="flex m-auto justify-between">
                                     <h3 class="h3 pr-3 text-3xl font-bold tracking-tight">Room {roomRow.roomName}</h3> 
                                     <div class="flex items-center">
+
                                         {#each availRows as availRow}
                                             {#if availRow.dormNo === roomRow.dormNo}
                                                 {#each createArray(availRow.preexistingTenants) as _}
@@ -287,6 +294,7 @@
                                                 {/each}
                                             {/if}
                                         {/each}
+
                                     </div>
                                 </div>
 
@@ -336,6 +344,7 @@
                             </div>
                         </div>
                     {/each}
+
                 </div>
             {/if}
             

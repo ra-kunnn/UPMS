@@ -85,6 +85,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             {#each maintenanceRows as maintenanceRow}
                                 {#if maintenanceRow.isDone}
                                     <tr>

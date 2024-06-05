@@ -84,6 +84,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                            
                             {#each visitorRows as visitorRow}
                                 {#if visitorRow.isApproved}
                                     <tr>

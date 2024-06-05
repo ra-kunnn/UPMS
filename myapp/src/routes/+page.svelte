@@ -88,7 +88,11 @@
                 {#each availableRooms as roomRow}
                     <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
                         <header>
-                            <img src="https://cdn.vox-cdn.com/thumbor/z2M_XZXuk2EK-oIBbPXCVizxN80=/0x0:6492x4328/1200x675/filters:focal(2727x1645:3765x2683)/cdn.vox-cdn.com/uploads/chorus_image/image/69720403/13_THURSDAY_020.0.jpg" class="object-cover w-full aspect-[21/9]" alt="Post" />
+                            {#if roomRow.PAX === 2}
+                                <img src="https://reslife.umd.edu/sites/default/files/styles/optimized/public/2022-09/IMG-1216.jpg?itok=do-NZ-Gu" class="object-cover w-full aspect-[21/9]" alt="room for 2" />
+                            {:else}
+                                <img src="https://www.hostelbacau.ro/wp-content/uploads/2019/02/Hostel-Holland-4-person-room-4.jpg" class="object-cover w-full aspect-[21/9]" alt="room for 4" />
+                            {/if}
                         </header>  
                         <div class="p-4">
                             <div class="flex m-auto justify-between">
@@ -127,6 +131,7 @@
                                     {/if}
                                 {/if}
                             </div>
+                            
                             <div class="block gap-1">
                                 {#if roomRow.PAX === 2}
                                     <span class="badge variant-ghost-primary text-primary-700 mb-1">1 Bunk Bed</span>
@@ -149,6 +154,7 @@
                                     <span class="badge variant-ghost-error text-error-700 mb-1">No Aircon</span>
                                 {/if}
                             </div>
+
                             <div class="flex pt-4">
                                 <button on:click={makeAnAccount} class="btn btn-sm variant-filled-success text-white w-full">Apply</button>
                             </div>

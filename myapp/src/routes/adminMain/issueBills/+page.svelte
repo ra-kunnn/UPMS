@@ -155,6 +155,7 @@
                 </div>
                 
                 <div class="col-span-4 grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 text-surface-800">
+
                     {#each billRows as billRow}
                         {#if !billRow.paymentStatus}
                             <div class="col-span-1 card card-hover overflow-hidden shadow bg-white">
@@ -177,6 +178,7 @@
                             </div>
                         {/if}
                     {/each}
+                    
                 </div>
 
                 <hr class="my-10 max-md:my-8 h-0.5 border-t-0 bg-neutral-100" />
