@@ -182,27 +182,35 @@
     <Aside />
     <header class="sm:ml-60 lg:ml-80">
         <div class="w-auto p-10">
-            <Profile on:modalOpen={handleProfile} {tenantName} {tenantRoom}/>
+            <Profile on:modalOpen={handleProfile} {tenantName} {tenantRoom} />
 
             <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
             
             {#each availRows as availRow}
                 {#if availRow.dormNo === currentTenantRows.dormNo}
                     {#if !availRow.availability}
-                        <div class="flex m-auto justify-between pt-4 gap-3">
-                            <h1 class="h1 text-2xl max-[480px]:text-base md:text-4xl font-bold">Room {availRow.dormNo} Tagged as Unavailable</h1>
-                            <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn btn-sm md:btn-base text-white variant-filled-success self-center">Tag Room as Available</button>
-                        </div>
+                        {#each roomRows as roomRow}
+                            {#if roomRow.dormNo === availRow.dormNo}
+                                <div class="flex m-auto justify-between pt-4">
+                                    <h1 class="h1 text-4xl font-bold">Room {roomRow.roomName} Tagged as Unavailable</h1>
+                                    <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn text-white variant-filled-success self-center">Tag Room as Available</button>
+                                </div>
+                            {/if}
+                        {/each}
                     {/if}
                     {#if availRow.availability}
-                        <div class="flex m-auto justify-between pt-4">
-                            <h1 class="h1 text-2xl max-[480px]:text-base md:text-4xl font-bold">Room {availRow.dormNo} Tagged as Available</h1>
-                            <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn btn-sm md:btn-base text-white variant-filled-error">Tag Room as Unavailable</button>
-                        </div>
+                        {#each roomRows as roomRow}
+                            {#if roomRow.dormNo === availRow.dormNo}
+                                <div class="flex m-auto justify-between pt-4">
+                                    <h1 class="h1 text-4xl font-bold">Room {roomRow.roomName} Tagged as Available</h1>
+                                    <button on:click={() => {setAvailability(availRow.availability, availRow.dormNo)}} class="btn text-white variant-filled-error">Tag Room as Unavailable</button>
+                                </div>
+                            {/if}
+                        {/each}
                     {/if}
                 {/if}
             {/each}
-            
+
             <hr class="my-10 mb-6 max-md:my-8 max-md:mb-4 h-0.5 border-t-0 bg-neutral-100" />
 
             <div class="flex pb-8 max-md:pb-4">
@@ -213,7 +221,7 @@
                 {#each otherTenantRows as otherTenantRow}
                     {#if otherTenantRow.tenantID === currentTenantRows.tenantID}
                         <!-- Do nothing -->
-                    {:else}
+                    {:else if otherTenantRow.dormNo === currentTenantRows.dormNo}
                         <div class="col-span-3 max-[480px]:col-span-6 max-md:col-span-6 max-sm:col-span-3 lg:col-span-2 card card-hover overflow-hidden shadow bg-white">
                             <div class="p-4">
                                 <div class="flex m-auto justify-between">
@@ -315,8 +323,8 @@
                             </div>
 
                             <div class="block gap-1 p-4">
-                                {#if !visitorRow.isApproved}<span class="badge variant-ghost-success text-success-700 mb-1">Not Approved</span>{/if}
-                                {#if visitorRow.isApproved}<span class="badge variant-ghost-error text-error-700 mb-1">Approved</span>{/if}
+                                {#if !visitorRow.isApproved}<span class="badge variant-ghost-error text-error-700 mb-1">Not Approved</span>{/if}
+                                {#if visitorRow.isApproved}<span class="badge variant-ghost-success text-success-700 mb-1">Approved</span>{/if}
                             </div>
                         </div>
                     {/each}
@@ -342,8 +350,8 @@
                         </div>
 
                         <div class="block gap-1 p-4">
-                            {#if !maintenanceRow.isDone}<span class="badge variant-ghost-success text-success-700 mb-1">Not Done</span>{/if}
-                            {#if maintenanceRow.isDone}<span class="badge variant-ghost-error text-error-700 mb-1">Done</span>{/if}
+                            {#if !maintenanceRow.isDone}<span class="badge variant-ghost-error text-error-700 mb-1">Not Done</span>{/if}
+                            {#if maintenanceRow.isDone}<span class="badge variant-ghost-success text-success-700 mb-1">Done</span>{/if}
                         </div>
                     </div>
                     {/each}
