@@ -17,6 +17,7 @@
 	    <div class="flex items-end pl-2 md:pl-3 lg:pl-5">
 	        <div class="block">
 	            <h1 class="h1 break-words font-bold leading-none text-xl max-[480px]:text-xl max-sm:text-3xl md:text-4xl lg:text-5xl">{tenantName}</h1>
+	            <p class="font-bold text-xs max-[480px]:text-xs lg:text-base max-sm:font-semibold">Tenant</p>
 	        </div>
 	    </div>
 	</div>
